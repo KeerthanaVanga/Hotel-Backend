@@ -40,3 +40,11 @@ coverage/
 # Temporary files
 tmp/
 temp/
+
+/generated/prisma
+
+/generated/prisma
+
+/generated/prisma
+
+/generated/prisma
