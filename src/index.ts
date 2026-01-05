@@ -18,13 +18,26 @@ import "./utils/bigint.js";
 // in server.ts or app.ts
 import "dotenv/config";
 
-
 const app = express();
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://hotel-frontend-kbhksla5k-keerthana-vangas-projects.vercel.app",
+];
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // frontend URL
-    credentials: true,               // allow cookies
+    origin: (origin, callback) => {
+      // allow requests with no origin (Postman, mobile apps)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
+    credentials: true,
   })
 );
 
@@ -42,6 +55,14 @@ app.use("/reports", reportRoutes);
 app.use("/dashboard", dashboardRoutes);
 app.use("/inventory", inventoryRoutes);
 app.use("/whatsapp", whatsappRoutes);
+
+app.get("/", (_req, res) => {
+  res.json({ status: "ok", message: "Backend is running 🚀" });
+});
+
+app.get("/health", (_req, res) => {
+  res.json({ status: "healthy", uptime: process.uptime() });
+});
 
 app.listen(3000, () => {
   console.log("Server running on http://localhost:3000");
