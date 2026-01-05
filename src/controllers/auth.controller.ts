@@ -3,8 +3,8 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { prisma } from "../lib/prisma.js";
 import { generateAccessToken, generateRefreshToken } from "../utils/token.js";
-import { setAuthCookies, clearAuthCookies } from "../utils/cookies";
-import { AuthRequest } from "../middlewares/auth.middleware";
+import { setAuthCookies, clearAuthCookies } from "../utils/cookies.js";
+import { AuthRequest } from "../middlewares/auth.middleware.js";
 
 /* ================= REGISTER ================= */
 export const createUser = async (req: Request, res: Response) => {
