@@ -6,8 +6,8 @@ import {
   getAllOffers,
   getOfferById,
   updateOffer,
-} from "../services/offers.service";
-import { prisma } from "../lib/prisma";
+} from "../services/offers.service.js";
+import { prisma } from "../lib/prisma.js";
 
 /** GET /offers */
 export const fetchOffers = async (_req: Request, res: Response) => {
@@ -16,7 +16,9 @@ export const fetchOffers = async (_req: Request, res: Response) => {
     return res.status(200).json({ success: true, data: offers });
   } catch (error) {
     console.error("FETCH OFFERS ERROR:", error);
-    return res.status(500).json({ success: false, message: "Failed to fetch offers" });
+    return res
+      .status(500)
+      .json({ success: false, message: "Failed to fetch offers" });
   }
 };
 
@@ -41,7 +43,8 @@ export const fetchOfferById = async (req: Request, res: Response) => {
 
 /** POST /offers */
 export const createOfferHandler = async (req: Request, res: Response) => {
-  const { title,room_id, discount_percent, start_date, end_date, is_active } = req.body;
+  const { title, room_id, discount_percent, start_date, end_date, is_active } =
+    req.body;
 
   if (!room_id || !discount_percent) {
     return res.status(400).json({
@@ -61,7 +64,7 @@ export const createOfferHandler = async (req: Request, res: Response) => {
     }
 
     const created = await createOffer({
-      title:title,
+      title: title,
       room_id: room.room_id,
       discount_percent: Number(discount_percent),
       start_date: start_date ? new Date(start_date) : null,
@@ -83,7 +86,8 @@ export const updateOfferHandler = async (req: Request, res: Response) => {
     return res.status(400).json({ message: "Invalid offer id" });
   }
 
-  const { title,room_id, discount_percent, start_date, end_date, is_active } = req.body;
+  const { title, room_id, discount_percent, start_date, end_date, is_active } =
+    req.body;
 
   try {
     let room_id: number | undefined;
@@ -102,9 +106,15 @@ export const updateOfferHandler = async (req: Request, res: Response) => {
 
     const updated = await updateOffer(offerId, {
       ...(room_id ? { room_id } : {}),
-      ...(discount_percent !== undefined ? { discount_percent: Number(discount_percent) } : {}),
-      ...(start_date !== undefined ? { start_date: start_date ? new Date(start_date) : null } : {}),
-      ...(end_date !== undefined ? { end_date: end_date ? new Date(end_date) : null } : {}),
+      ...(discount_percent !== undefined
+        ? { discount_percent: Number(discount_percent) }
+        : {}),
+      ...(start_date !== undefined
+        ? { start_date: start_date ? new Date(start_date) : null }
+        : {}),
+      ...(end_date !== undefined
+        ? { end_date: end_date ? new Date(end_date) : null }
+        : {}),
       ...(is_active !== undefined ? { is_active: Boolean(is_active) } : {}),
       ...(title !== undefined ? { title } : {}),
     });

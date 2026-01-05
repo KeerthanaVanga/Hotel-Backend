@@ -2,14 +2,8 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { prisma } from "../lib/prisma.js";
-import {
-  generateAccessToken,
-  generateRefreshToken,
-} from "../utils/token";
-import {
-  setAuthCookies,
-  clearAuthCookies,
-} from "../utils/cookies";
+import { generateAccessToken, generateRefreshToken } from "../utils/token.js";
+import { setAuthCookies, clearAuthCookies } from "../utils/cookies";
 import { AuthRequest } from "../middlewares/auth.middleware";
 
 /* ================= REGISTER ================= */
@@ -82,10 +76,7 @@ export const loginUser = async (req: Request, res: Response) => {
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
-    const passwordMatch = await bcrypt.compare(
-      password,
-      user.password
-    );
+    const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordMatch) {
       return res.status(401).json({ message: "Invalid credentials" });
@@ -144,10 +135,9 @@ export const refreshToken = async (req: Request, res: Response) => {
       return res.status(401).json({ message: "Refresh token missing" });
     }
 
-    const payload = jwt.verify(
-      token,
-      process.env.REFRESH_TOKEN_SECRET!
-    ) as { userId: number };
+    const payload = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET!) as {
+      userId: number;
+    };
 
     const user = await prisma.admin.findUnique({
       where: { id: payload.userId },
