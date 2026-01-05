@@ -314,6 +314,7 @@ export type roomsWhereInput = {
   amenities?: Prisma.StringNullableListFilter<"rooms">
   bookings?: Prisma.BookingsListRelationFilter
   reviews?: Prisma.ReviewsListRelationFilter
+  room_offers?: Prisma.Room_offersListRelationFilter
 }
 
 export type roomsOrderByWithRelationInput = {
@@ -334,6 +335,7 @@ export type roomsOrderByWithRelationInput = {
   amenities?: Prisma.SortOrder
   bookings?: Prisma.bookingsOrderByRelationAggregateInput
   reviews?: Prisma.reviewsOrderByRelationAggregateInput
+  room_offers?: Prisma.room_offersOrderByRelationAggregateInput
 }
 
 export type roomsWhereUniqueInput = Prisma.AtLeast<{
@@ -358,6 +360,7 @@ export type roomsWhereUniqueInput = Prisma.AtLeast<{
   amenities?: Prisma.StringNullableListFilter<"rooms">
   bookings?: Prisma.BookingsListRelationFilter
   reviews?: Prisma.ReviewsListRelationFilter
+  room_offers?: Prisma.Room_offersListRelationFilter
 }, "room_id" | "room_type_room_number">
 
 export type roomsOrderByWithAggregationInput = {
@@ -421,6 +424,7 @@ export type roomsCreateInput = {
   amenities?: Prisma.roomsCreateamenitiesInput | string[]
   bookings?: Prisma.bookingsCreateNestedManyWithoutRoomsInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutRoomsInput
+  room_offers?: Prisma.room_offersCreateNestedManyWithoutRoomsInput
 }
 
 export type roomsUncheckedCreateInput = {
@@ -441,6 +445,7 @@ export type roomsUncheckedCreateInput = {
   amenities?: Prisma.roomsCreateamenitiesInput | string[]
   bookings?: Prisma.bookingsUncheckedCreateNestedManyWithoutRoomsInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutRoomsInput
+  room_offers?: Prisma.room_offersUncheckedCreateNestedManyWithoutRoomsInput
 }
 
 export type roomsUpdateInput = {
@@ -460,6 +465,7 @@ export type roomsUpdateInput = {
   amenities?: Prisma.roomsUpdateamenitiesInput | string[]
   bookings?: Prisma.bookingsUpdateManyWithoutRoomsNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutRoomsNestedInput
+  room_offers?: Prisma.room_offersUpdateManyWithoutRoomsNestedInput
 }
 
 export type roomsUncheckedUpdateInput = {
@@ -480,6 +486,7 @@ export type roomsUncheckedUpdateInput = {
   amenities?: Prisma.roomsUpdateamenitiesInput | string[]
   bookings?: Prisma.bookingsUncheckedUpdateManyWithoutRoomsNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutRoomsNestedInput
+  room_offers?: Prisma.room_offersUncheckedUpdateManyWithoutRoomsNestedInput
 }
 
 export type roomsCreateManyInput = {
@@ -669,6 +676,20 @@ export type roomsUpdateOneRequiredWithoutReviewsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.roomsUpdateToOneWithWhereWithoutReviewsInput, Prisma.roomsUpdateWithoutReviewsInput>, Prisma.roomsUncheckedUpdateWithoutReviewsInput>
 }
 
+export type roomsCreateNestedOneWithoutRoom_offersInput = {
+  create?: Prisma.XOR<Prisma.roomsCreateWithoutRoom_offersInput, Prisma.roomsUncheckedCreateWithoutRoom_offersInput>
+  connectOrCreate?: Prisma.roomsCreateOrConnectWithoutRoom_offersInput
+  connect?: Prisma.roomsWhereUniqueInput
+}
+
+export type roomsUpdateOneRequiredWithoutRoom_offersNestedInput = {
+  create?: Prisma.XOR<Prisma.roomsCreateWithoutRoom_offersInput, Prisma.roomsUncheckedCreateWithoutRoom_offersInput>
+  connectOrCreate?: Prisma.roomsCreateOrConnectWithoutRoom_offersInput
+  upsert?: Prisma.roomsUpsertWithoutRoom_offersInput
+  connect?: Prisma.roomsWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.roomsUpdateToOneWithWhereWithoutRoom_offersInput, Prisma.roomsUpdateWithoutRoom_offersInput>, Prisma.roomsUncheckedUpdateWithoutRoom_offersInput>
+}
+
 export type roomsCreateWithoutBookingsInput = {
   room_type: string
   room_number: number
@@ -685,6 +706,7 @@ export type roomsCreateWithoutBookingsInput = {
   room_name?: string | null
   amenities?: Prisma.roomsCreateamenitiesInput | string[]
   reviews?: Prisma.reviewsCreateNestedManyWithoutRoomsInput
+  room_offers?: Prisma.room_offersCreateNestedManyWithoutRoomsInput
 }
 
 export type roomsUncheckedCreateWithoutBookingsInput = {
@@ -704,6 +726,7 @@ export type roomsUncheckedCreateWithoutBookingsInput = {
   room_name?: string | null
   amenities?: Prisma.roomsCreateamenitiesInput | string[]
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutRoomsInput
+  room_offers?: Prisma.room_offersUncheckedCreateNestedManyWithoutRoomsInput
 }
 
 export type roomsCreateOrConnectWithoutBookingsInput = {
@@ -738,6 +761,7 @@ export type roomsUpdateWithoutBookingsInput = {
   room_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amenities?: Prisma.roomsUpdateamenitiesInput | string[]
   reviews?: Prisma.reviewsUpdateManyWithoutRoomsNestedInput
+  room_offers?: Prisma.room_offersUpdateManyWithoutRoomsNestedInput
 }
 
 export type roomsUncheckedUpdateWithoutBookingsInput = {
@@ -757,6 +781,7 @@ export type roomsUncheckedUpdateWithoutBookingsInput = {
   room_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amenities?: Prisma.roomsUpdateamenitiesInput | string[]
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutRoomsNestedInput
+  room_offers?: Prisma.room_offersUncheckedUpdateManyWithoutRoomsNestedInput
 }
 
 export type roomsCreateWithoutReviewsInput = {
@@ -775,6 +800,7 @@ export type roomsCreateWithoutReviewsInput = {
   room_name?: string | null
   amenities?: Prisma.roomsCreateamenitiesInput | string[]
   bookings?: Prisma.bookingsCreateNestedManyWithoutRoomsInput
+  room_offers?: Prisma.room_offersCreateNestedManyWithoutRoomsInput
 }
 
 export type roomsUncheckedCreateWithoutReviewsInput = {
@@ -794,6 +820,7 @@ export type roomsUncheckedCreateWithoutReviewsInput = {
   room_name?: string | null
   amenities?: Prisma.roomsCreateamenitiesInput | string[]
   bookings?: Prisma.bookingsUncheckedCreateNestedManyWithoutRoomsInput
+  room_offers?: Prisma.room_offersUncheckedCreateNestedManyWithoutRoomsInput
 }
 
 export type roomsCreateOrConnectWithoutReviewsInput = {
@@ -828,6 +855,7 @@ export type roomsUpdateWithoutReviewsInput = {
   room_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amenities?: Prisma.roomsUpdateamenitiesInput | string[]
   bookings?: Prisma.bookingsUpdateManyWithoutRoomsNestedInput
+  room_offers?: Prisma.room_offersUpdateManyWithoutRoomsNestedInput
 }
 
 export type roomsUncheckedUpdateWithoutReviewsInput = {
@@ -847,6 +875,101 @@ export type roomsUncheckedUpdateWithoutReviewsInput = {
   room_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amenities?: Prisma.roomsUpdateamenitiesInput | string[]
   bookings?: Prisma.bookingsUncheckedUpdateManyWithoutRoomsNestedInput
+  room_offers?: Prisma.room_offersUncheckedUpdateManyWithoutRoomsNestedInput
+}
+
+export type roomsCreateWithoutRoom_offersInput = {
+  room_type: string
+  room_number: number
+  rooms_available?: number | null
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  description?: string | null
+  image_urls?: Prisma.roomsCreateimage_urlsInput | string[]
+  total_rooms?: number | null
+  booked_rooms?: number | null
+  guests?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  room_size?: string | null
+  room_name?: string | null
+  amenities?: Prisma.roomsCreateamenitiesInput | string[]
+  bookings?: Prisma.bookingsCreateNestedManyWithoutRoomsInput
+  reviews?: Prisma.reviewsCreateNestedManyWithoutRoomsInput
+}
+
+export type roomsUncheckedCreateWithoutRoom_offersInput = {
+  room_id?: number
+  room_type: string
+  room_number: number
+  rooms_available?: number | null
+  price: runtime.Decimal | runtime.DecimalJsLike | number | string
+  description?: string | null
+  image_urls?: Prisma.roomsCreateimage_urlsInput | string[]
+  total_rooms?: number | null
+  booked_rooms?: number | null
+  guests?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  room_size?: string | null
+  room_name?: string | null
+  amenities?: Prisma.roomsCreateamenitiesInput | string[]
+  bookings?: Prisma.bookingsUncheckedCreateNestedManyWithoutRoomsInput
+  reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutRoomsInput
+}
+
+export type roomsCreateOrConnectWithoutRoom_offersInput = {
+  where: Prisma.roomsWhereUniqueInput
+  create: Prisma.XOR<Prisma.roomsCreateWithoutRoom_offersInput, Prisma.roomsUncheckedCreateWithoutRoom_offersInput>
+}
+
+export type roomsUpsertWithoutRoom_offersInput = {
+  update: Prisma.XOR<Prisma.roomsUpdateWithoutRoom_offersInput, Prisma.roomsUncheckedUpdateWithoutRoom_offersInput>
+  create: Prisma.XOR<Prisma.roomsCreateWithoutRoom_offersInput, Prisma.roomsUncheckedCreateWithoutRoom_offersInput>
+  where?: Prisma.roomsWhereInput
+}
+
+export type roomsUpdateToOneWithWhereWithoutRoom_offersInput = {
+  where?: Prisma.roomsWhereInput
+  data: Prisma.XOR<Prisma.roomsUpdateWithoutRoom_offersInput, Prisma.roomsUncheckedUpdateWithoutRoom_offersInput>
+}
+
+export type roomsUpdateWithoutRoom_offersInput = {
+  room_type?: Prisma.StringFieldUpdateOperationsInput | string
+  room_number?: Prisma.IntFieldUpdateOperationsInput | number
+  rooms_available?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image_urls?: Prisma.roomsUpdateimage_urlsInput | string[]
+  total_rooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  booked_rooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  guests?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  room_size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  room_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amenities?: Prisma.roomsUpdateamenitiesInput | string[]
+  bookings?: Prisma.bookingsUpdateManyWithoutRoomsNestedInput
+  reviews?: Prisma.reviewsUpdateManyWithoutRoomsNestedInput
+}
+
+export type roomsUncheckedUpdateWithoutRoom_offersInput = {
+  room_id?: Prisma.IntFieldUpdateOperationsInput | number
+  room_type?: Prisma.StringFieldUpdateOperationsInput | string
+  room_number?: Prisma.IntFieldUpdateOperationsInput | number
+  rooms_available?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  price?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  image_urls?: Prisma.roomsUpdateimage_urlsInput | string[]
+  total_rooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  booked_rooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  guests?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  room_size?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  room_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  amenities?: Prisma.roomsUpdateamenitiesInput | string[]
+  bookings?: Prisma.bookingsUncheckedUpdateManyWithoutRoomsNestedInput
+  reviews?: Prisma.reviewsUncheckedUpdateManyWithoutRoomsNestedInput
 }
 
 
@@ -857,11 +980,13 @@ export type roomsUncheckedUpdateWithoutReviewsInput = {
 export type RoomsCountOutputType = {
   bookings: number
   reviews: number
+  room_offers: number
 }
 
 export type RoomsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bookings?: boolean | RoomsCountOutputTypeCountBookingsArgs
   reviews?: boolean | RoomsCountOutputTypeCountReviewsArgs
+  room_offers?: boolean | RoomsCountOutputTypeCountRoom_offersArgs
 }
 
 /**
@@ -888,6 +1013,13 @@ export type RoomsCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.reviewsWhereInput
 }
 
+/**
+ * RoomsCountOutputType without action
+ */
+export type RoomsCountOutputTypeCountRoom_offersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.room_offersWhereInput
+}
+
 
 export type roomsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   room_id?: boolean
@@ -907,6 +1039,7 @@ export type roomsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   amenities?: boolean
   bookings?: boolean | Prisma.rooms$bookingsArgs<ExtArgs>
   reviews?: boolean | Prisma.rooms$reviewsArgs<ExtArgs>
+  room_offers?: boolean | Prisma.rooms$room_offersArgs<ExtArgs>
   _count?: boolean | Prisma.RoomsCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["rooms"]>
 
@@ -968,6 +1101,7 @@ export type roomsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
 export type roomsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bookings?: boolean | Prisma.rooms$bookingsArgs<ExtArgs>
   reviews?: boolean | Prisma.rooms$reviewsArgs<ExtArgs>
+  room_offers?: boolean | Prisma.rooms$room_offersArgs<ExtArgs>
   _count?: boolean | Prisma.RoomsCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type roomsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -978,6 +1112,7 @@ export type $roomsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   objects: {
     bookings: Prisma.$bookingsPayload<ExtArgs>[]
     reviews: Prisma.$reviewsPayload<ExtArgs>[]
+    room_offers: Prisma.$room_offersPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     room_id: number
@@ -1391,6 +1526,7 @@ export interface Prisma__roomsClient<T, Null = never, ExtArgs extends runtime.Ty
   readonly [Symbol.toStringTag]: "PrismaPromise"
   bookings<T extends Prisma.rooms$bookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.rooms$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$bookingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reviews<T extends Prisma.rooms$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.rooms$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$reviewsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  room_offers<T extends Prisma.rooms$room_offersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.rooms$room_offersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$room_offersPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1868,6 +2004,30 @@ export type rooms$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.ReviewsScalarFieldEnum | Prisma.ReviewsScalarFieldEnum[]
+}
+
+/**
+ * rooms.room_offers
+ */
+export type rooms$room_offersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the room_offers
+   */
+  select?: Prisma.room_offersSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the room_offers
+   */
+  omit?: Prisma.room_offersOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.room_offersInclude<ExtArgs> | null
+  where?: Prisma.room_offersWhereInput
+  orderBy?: Prisma.room_offersOrderByWithRelationInput | Prisma.room_offersOrderByWithRelationInput[]
+  cursor?: Prisma.room_offersWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Room_offersScalarFieldEnum | Prisma.Room_offersScalarFieldEnum[]
 }
 
 /**

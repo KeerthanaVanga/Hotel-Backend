@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { prisma } from "../lib/prisma";
-import { serializeBigInt } from "../utils/serializeBigint";
+import { prisma } from "../lib/prisma.js";
+import { serializeBigInt } from "../utils/serializeBigint.js";
 
 const BOT_NUMBER = "916301633158";
 

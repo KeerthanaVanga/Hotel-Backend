@@ -1,4 +1,4 @@
-import { prisma } from "../lib/prisma";
+import { prisma } from "../lib/prisma.js";
 import { startOfDay, endOfDay } from "date-fns";
 
 const formatDate = (date: Date) =>

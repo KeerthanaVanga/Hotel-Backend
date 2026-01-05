@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getAllUsers } from "../services/user.service";
+import { getAllUsers,createUser,updateUser } from "../services/user.service.js";
 
 export const fetchUsers = async (req: Request, res: Response) => {
   try {
@@ -16,6 +16,55 @@ export const fetchUsers = async (req: Request, res: Response) => {
     return res.status(500).json({
       success: false,
       message: "Failed to fetch users",
+    });
+  }
+};
+
+export const addUser = async (req: Request, res: Response) => {
+  try {
+    const user = await createUser(req.body);
+
+    return res.status(201).json({
+      success: true,
+      data: user,
+    });
+  } catch (error: any) {
+    if (error.code === "P2002") {
+      const field = error.meta.target[0];
+      return res.status(400).json({
+        success: false,
+        message: `${field} already exists`,
+      });
+    }
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to add user",
+    });
+  }
+};
+
+export const editUser = async (req: Request, res: Response) => {
+  try {
+    const userId = Number(req.params.id);
+    const user = await updateUser(userId, req.body);
+
+    return res.status(200).json({
+      success: true,
+      data: user,
+    });
+  } catch (error: any) {
+    if (error.code === "P2002") {
+      const field = error.meta.target[0];
+      return res.status(400).json({
+        success: false,
+        message: `${field} already exists`,
+      });
+    }
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to update user",
     });
   }
 };

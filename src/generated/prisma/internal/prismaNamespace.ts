@@ -394,7 +394,8 @@ export const ModelName = {
   rooms: 'rooms',
   users: 'users',
   whatsapp_messages: 'whatsapp_messages',
-  reviews: 'reviews'
+  reviews: 'reviews',
+  room_offers: 'room_offers'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -410,7 +411,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "admin" | "bookings" | "calendar" | "email_templates" | "emails" | "payments" | "payments_webhooks" | "rooms" | "users" | "whatsapp_messages" | "reviews"
+    modelProps: "admin" | "bookings" | "calendar" | "email_templates" | "emails" | "payments" | "payments_webhooks" | "rooms" | "users" | "whatsapp_messages" | "reviews" | "room_offers"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1228,6 +1229,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    room_offers: {
+      payload: Prisma.$room_offersPayload<ExtArgs>
+      fields: Prisma.room_offersFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.room_offersFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_offersPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.room_offersFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_offersPayload>
+        }
+        findFirst: {
+          args: Prisma.room_offersFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_offersPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.room_offersFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_offersPayload>
+        }
+        findMany: {
+          args: Prisma.room_offersFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_offersPayload>[]
+        }
+        create: {
+          args: Prisma.room_offersCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_offersPayload>
+        }
+        createMany: {
+          args: Prisma.room_offersCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.room_offersCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_offersPayload>[]
+        }
+        delete: {
+          args: Prisma.room_offersDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_offersPayload>
+        }
+        update: {
+          args: Prisma.room_offersUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_offersPayload>
+        }
+        deleteMany: {
+          args: Prisma.room_offersDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.room_offersUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.room_offersUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_offersPayload>[]
+        }
+        upsert: {
+          args: Prisma.room_offersUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_offersPayload>
+        }
+        aggregate: {
+          args: Prisma.Room_offersAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRoom_offers>
+        }
+        groupBy: {
+          args: Prisma.room_offersGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Room_offersGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.room_offersCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Room_offersCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1418,6 +1493,22 @@ export const ReviewsScalarFieldEnum = {
 export type ReviewsScalarFieldEnum = (typeof ReviewsScalarFieldEnum)[keyof typeof ReviewsScalarFieldEnum]
 
 
+export const Room_offersScalarFieldEnum = {
+  offer_id: 'offer_id',
+  room_id: 'room_id',
+  discount_percent: 'discount_percent',
+  offer_price: 'offer_price',
+  start_date: 'start_date',
+  end_date: 'end_date',
+  is_active: 'is_active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  title: 'title'
+} as const
+
+export type Room_offersScalarFieldEnum = (typeof Room_offersScalarFieldEnum)[keyof typeof Room_offersScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1549,6 +1640,13 @@ export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$Prisma
 
 
 /**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'Float'
  */
 export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -1667,6 +1765,7 @@ export type GlobalOmitConfig = {
   users?: Prisma.usersOmit
   whatsapp_messages?: Prisma.whatsapp_messagesOmit
   reviews?: Prisma.reviewsOmit
+  room_offers?: Prisma.room_offersOmit
 }
 
 /* Types for Logging */

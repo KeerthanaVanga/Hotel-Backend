@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getReportsSummary } from "../services/reports.service";
+import { getReportsSummary } from "../services/reports.service.js";
 
 export const getReports = async (req: Request, res: Response) => {
   try {

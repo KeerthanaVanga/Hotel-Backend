@@ -91,23 +91,24 @@ model payments_webhooks {
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model rooms {
-  room_id         Int        @id @default(autoincrement())
+  room_id         Int           @id @default(autoincrement())
   room_type       String
   room_number     Int
   rooms_available Int?
-  price           Decimal    @db.Decimal(10, 2)
+  price           Decimal       @db.Decimal(10, 2)
   description     String?
   image_urls      String[]
   total_rooms     Int?
   booked_rooms    Int?
   guests          Int?
-  created_at      DateTime   @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
-  updated_at      DateTime   @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
+  created_at      DateTime      @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
+  updated_at      DateTime      @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
   room_size       String?
   room_name       String?
   amenities       String[]
   bookings        bookings[]
   reviews         reviews[]
+  room_offers     room_offers[]
 
   @@unique([room_type, room_number], map: "uq_room_type_number")
 }
@@ -152,4 +153,19 @@ model reviews {
   bookings   bookings @relation(fields: [booking_id], references: [booking_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_room_reviews_booking")
   rooms      rooms    @relation(fields: [room_id], references: [room_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_room_reviews_room")
   users      users    @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_room_reviews_user")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model room_offers {
+  offer_id         Int       @id @default(autoincrement())
+  room_id          Int
+  discount_percent Int
+  offer_price      Decimal?  @db.Decimal(10, 2)
+  start_date       DateTime? @db.Date
+  end_date         DateTime? @db.Date
+  is_active        Boolean?  @default(true)
+  created_at       DateTime  @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
+  updated_at       DateTime  @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
+  title            String?
+  rooms            rooms     @relation(fields: [room_id], references: [room_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_room")
 }

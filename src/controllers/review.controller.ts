@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getAllReviews } from "../services/review.service";
+import { getAllReviews } from "../services/review.service.js";
 
 // BigInt-safe serializer
 const serializeBigInt = (data: any) =>

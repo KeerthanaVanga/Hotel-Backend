@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getUpcomingBookingsForAllUsers,getTodayCheckIns,getTodayCheckOuts } from "../services/booking.service";
+import { getUpcomingBookingsForAllUsers,getTodayCheckIns,getTodayCheckOuts } from "../services/booking.service.js";
 
 // BigInt-safe serializer
 const serializeBigInt = (data: any) =>

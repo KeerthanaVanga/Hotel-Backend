@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getDashboardSummary } from "../services/dashboard.service";
+import { getDashboardSummary } from "../services/dashboard.service.js";
 
 // BigInt-safe serializer
 const serializeBigInt = (data: any) =>

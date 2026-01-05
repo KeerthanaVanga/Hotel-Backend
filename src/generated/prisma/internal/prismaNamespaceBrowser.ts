@@ -61,7 +61,8 @@ export const ModelName = {
   rooms: 'rooms',
   users: 'users',
   whatsapp_messages: 'whatsapp_messages',
-  reviews: 'reviews'
+  reviews: 'reviews',
+  room_offers: 'room_offers'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -229,6 +230,22 @@ export const ReviewsScalarFieldEnum = {
 } as const
 
 export type ReviewsScalarFieldEnum = (typeof ReviewsScalarFieldEnum)[keyof typeof ReviewsScalarFieldEnum]
+
+
+export const Room_offersScalarFieldEnum = {
+  offer_id: 'offer_id',
+  room_id: 'room_id',
+  discount_percent: 'discount_percent',
+  offer_price: 'offer_price',
+  start_date: 'start_date',
+  end_date: 'end_date',
+  is_active: 'is_active',
+  created_at: 'created_at',
+  updated_at: 'updated_at',
+  title: 'title'
+} as const
+
+export type Room_offersScalarFieldEnum = (typeof Room_offersScalarFieldEnum)[keyof typeof Room_offersScalarFieldEnum]
 
 
 export const SortOrder = {

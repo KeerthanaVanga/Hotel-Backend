@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { getAllRooms, createRoom, updateRoomById } from "../services/room.service";
-import { uploadBufferToCloudinary } from "../utils/cloudinaryUpload";
+import { getAllRooms, createRoom, updateRoomById } from "../services/room.service.js";
+import { uploadBufferToCloudinary } from "../utils/cloudinaryUpload.js";
 
 // BigInt-safe serializer
 const serializeBigInt = (data: any) =>

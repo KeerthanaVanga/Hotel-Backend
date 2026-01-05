@@ -1,4 +1,4 @@
-import { prisma } from "../lib/prisma";
+import { prisma } from "../lib/prisma.js";
 
 export const createRoom = async (data: any) => {
   return prisma.rooms.create({
