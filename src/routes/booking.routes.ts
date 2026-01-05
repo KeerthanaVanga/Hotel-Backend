@@ -1,6 +1,10 @@
 import { Router } from "express";
 import { requireAuth } from "../middlewares/auth.middleware.js";
-import { fetchUpcomingBookingsForAllUsers,fetchTodayCheckOuts,fetchTodayCheckIns } from "../controllers/booking.controller";
+import {
+  fetchUpcomingBookingsForAllUsers,
+  fetchTodayCheckOuts,
+  fetchTodayCheckIns,
+} from "../controllers/booking.controller.js";
 
 const router = Router();
 router.use(requireAuth);
