@@ -23,6 +23,7 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
   "https://hotel-frontend-kbhksla5k-keerthana-vangas-projects.vercel.app",
+  "https://hotel-frontend-zeta-one.vercel.app"
 ];
 
 app.use(
