@@ -43,14 +43,11 @@ export const fetchWhatsappMessages = async (req: Request, res: Response) => {
 
     const messages = await prisma.whatsapp_messages.findMany({
       where: {
-<<<<<<< HEAD
         OR: [{ fromnumber: phone }, { tonumber: phone }],
-=======
         OR: [
           { fromnumber: phone },
           { tonumber: phone },
         ],
->>>>>>> 818acb3b135319b965b9a195c6a17d4f52f55110
       },
       orderBy: {
         created_at: "asc",
