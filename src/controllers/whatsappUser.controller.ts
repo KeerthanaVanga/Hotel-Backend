@@ -4,8 +4,6 @@ import { serializeBigInt } from "../utils/serializeBigint.js";
 
 export const fetchWhatsappUsers = async (_req: Request, res: Response) => {
   try {
-    import { Prisma } from "@prisma/client";
-
 const users = await prisma.$queryRaw<
   {
     name: string | null;
@@ -14,8 +12,7 @@ const users = await prisma.$queryRaw<
     last_message: string;
     created_at: Date;
   }[]
->(
-  Prisma.sql`
+>`
     SELECT DISTINCT ON (fromnumber)
       name,
       fromnumber AS phone,
@@ -25,8 +22,7 @@ const users = await prisma.$queryRaw<
     FROM "whatsapp_messages"
     WHERE sender_type = 'user'
     ORDER BY fromnumber, created_at DESC
-  `
-);  
+  `;  
     res.json({
       success: true,
       data: users,
