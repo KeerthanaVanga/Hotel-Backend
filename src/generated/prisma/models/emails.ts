@@ -461,6 +461,14 @@ export type emailsUncheckedUpdateManyWithoutBookingsNestedInput = {
   deleteMany?: Prisma.emailsScalarWhereInput | Prisma.emailsScalarWhereInput[]
 }
 
+export type NullableBigIntFieldUpdateOperationsInput = {
+  set?: bigint | number | null
+  increment?: bigint | number
+  decrement?: bigint | number
+  multiply?: bigint | number
+  divide?: bigint | number
+}
+
 export type emailsCreateNestedManyWithoutUsersInput = {
   create?: Prisma.XOR<Prisma.emailsCreateWithoutUsersInput, Prisma.emailsUncheckedCreateWithoutUsersInput> | Prisma.emailsCreateWithoutUsersInput[] | Prisma.emailsUncheckedCreateWithoutUsersInput[]
   connectOrCreate?: Prisma.emailsCreateOrConnectWithoutUsersInput | Prisma.emailsCreateOrConnectWithoutUsersInput[]

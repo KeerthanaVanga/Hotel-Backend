@@ -286,7 +286,6 @@ export type bookingsWhereInput = {
   updated_at?: Prisma.DateTimeFilter<"bookings"> | Date | string
   rooms?: Prisma.XOR<Prisma.RoomsScalarRelationFilter, Prisma.roomsWhereInput>
   users?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
-  calendar?: Prisma.CalendarListRelationFilter
   emails?: Prisma.EmailsListRelationFilter
   payments?: Prisma.PaymentsListRelationFilter
   reviews?: Prisma.ReviewsListRelationFilter
@@ -306,7 +305,6 @@ export type bookingsOrderByWithRelationInput = {
   updated_at?: Prisma.SortOrder
   rooms?: Prisma.roomsOrderByWithRelationInput
   users?: Prisma.usersOrderByWithRelationInput
-  calendar?: Prisma.calendarOrderByRelationAggregateInput
   emails?: Prisma.emailsOrderByRelationAggregateInput
   payments?: Prisma.paymentsOrderByRelationAggregateInput
   reviews?: Prisma.reviewsOrderByRelationAggregateInput
@@ -329,7 +327,6 @@ export type bookingsWhereUniqueInput = Prisma.AtLeast<{
   updated_at?: Prisma.DateTimeFilter<"bookings"> | Date | string
   rooms?: Prisma.XOR<Prisma.RoomsScalarRelationFilter, Prisma.roomsWhereInput>
   users?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
-  calendar?: Prisma.CalendarListRelationFilter
   emails?: Prisma.EmailsListRelationFilter
   payments?: Prisma.PaymentsListRelationFilter
   reviews?: Prisma.ReviewsListRelationFilter
@@ -383,7 +380,6 @@ export type bookingsCreateInput = {
   updated_at?: Date | string
   rooms: Prisma.roomsCreateNestedOneWithoutBookingsInput
   users: Prisma.usersCreateNestedOneWithoutBookingsInput
-  calendar?: Prisma.calendarCreateNestedManyWithoutBookingsInput
   emails?: Prisma.emailsCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutBookingsInput
@@ -401,7 +397,6 @@ export type bookingsUncheckedCreateInput = {
   guests_total?: number | null
   created_at?: Date | string
   updated_at?: Date | string
-  calendar?: Prisma.calendarUncheckedCreateNestedManyWithoutBookingsInput
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutBookingsInput
@@ -419,7 +414,6 @@ export type bookingsUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rooms?: Prisma.roomsUpdateOneRequiredWithoutBookingsNestedInput
   users?: Prisma.usersUpdateOneRequiredWithoutBookingsNestedInput
-  calendar?: Prisma.calendarUpdateManyWithoutBookingsNestedInput
   emails?: Prisma.emailsUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutBookingsNestedInput
@@ -437,7 +431,6 @@ export type bookingsUncheckedUpdateInput = {
   guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  calendar?: Prisma.calendarUncheckedUpdateManyWithoutBookingsNestedInput
   emails?: Prisma.emailsUncheckedUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutBookingsNestedInput
@@ -579,22 +572,6 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type bookingsCreateNestedOneWithoutCalendarInput = {
-  create?: Prisma.XOR<Prisma.bookingsCreateWithoutCalendarInput, Prisma.bookingsUncheckedCreateWithoutCalendarInput>
-  connectOrCreate?: Prisma.bookingsCreateOrConnectWithoutCalendarInput
-  connect?: Prisma.bookingsWhereUniqueInput
-}
-
-export type bookingsUpdateOneWithoutCalendarNestedInput = {
-  create?: Prisma.XOR<Prisma.bookingsCreateWithoutCalendarInput, Prisma.bookingsUncheckedCreateWithoutCalendarInput>
-  connectOrCreate?: Prisma.bookingsCreateOrConnectWithoutCalendarInput
-  upsert?: Prisma.bookingsUpsertWithoutCalendarInput
-  disconnect?: Prisma.bookingsWhereInput | boolean
-  delete?: Prisma.bookingsWhereInput | boolean
-  connect?: Prisma.bookingsWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.bookingsUpdateToOneWithWhereWithoutCalendarInput, Prisma.bookingsUpdateWithoutCalendarInput>, Prisma.bookingsUncheckedUpdateWithoutCalendarInput>
-}
-
 export type bookingsCreateNestedOneWithoutEmailsInput = {
   create?: Prisma.XOR<Prisma.bookingsCreateWithoutEmailsInput, Prisma.bookingsUncheckedCreateWithoutEmailsInput>
   connectOrCreate?: Prisma.bookingsCreateOrConnectWithoutEmailsInput
@@ -723,90 +700,6 @@ export type bookingsUpdateOneRequiredWithoutReviewsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.bookingsUpdateToOneWithWhereWithoutReviewsInput, Prisma.bookingsUpdateWithoutReviewsInput>, Prisma.bookingsUncheckedUpdateWithoutReviewsInput>
 }
 
-export type bookingsCreateWithoutCalendarInput = {
-  booking_id?: bigint | number
-  check_in: Date | string
-  check_out: Date | string
-  status?: string
-  adults?: number | null
-  children?: number | null
-  guests_total?: number | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  rooms: Prisma.roomsCreateNestedOneWithoutBookingsInput
-  users: Prisma.usersCreateNestedOneWithoutBookingsInput
-  emails?: Prisma.emailsCreateNestedManyWithoutBookingsInput
-  payments?: Prisma.paymentsCreateNestedManyWithoutBookingsInput
-  reviews?: Prisma.reviewsCreateNestedManyWithoutBookingsInput
-}
-
-export type bookingsUncheckedCreateWithoutCalendarInput = {
-  booking_id?: bigint | number
-  user_id: number
-  room_id: number
-  check_in: Date | string
-  check_out: Date | string
-  status?: string
-  adults?: number | null
-  children?: number | null
-  guests_total?: number | null
-  created_at?: Date | string
-  updated_at?: Date | string
-  emails?: Prisma.emailsUncheckedCreateNestedManyWithoutBookingsInput
-  payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutBookingsInput
-  reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutBookingsInput
-}
-
-export type bookingsCreateOrConnectWithoutCalendarInput = {
-  where: Prisma.bookingsWhereUniqueInput
-  create: Prisma.XOR<Prisma.bookingsCreateWithoutCalendarInput, Prisma.bookingsUncheckedCreateWithoutCalendarInput>
-}
-
-export type bookingsUpsertWithoutCalendarInput = {
-  update: Prisma.XOR<Prisma.bookingsUpdateWithoutCalendarInput, Prisma.bookingsUncheckedUpdateWithoutCalendarInput>
-  create: Prisma.XOR<Prisma.bookingsCreateWithoutCalendarInput, Prisma.bookingsUncheckedCreateWithoutCalendarInput>
-  where?: Prisma.bookingsWhereInput
-}
-
-export type bookingsUpdateToOneWithWhereWithoutCalendarInput = {
-  where?: Prisma.bookingsWhereInput
-  data: Prisma.XOR<Prisma.bookingsUpdateWithoutCalendarInput, Prisma.bookingsUncheckedUpdateWithoutCalendarInput>
-}
-
-export type bookingsUpdateWithoutCalendarInput = {
-  booking_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  check_in?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  check_out?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  adults?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  children?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  rooms?: Prisma.roomsUpdateOneRequiredWithoutBookingsNestedInput
-  users?: Prisma.usersUpdateOneRequiredWithoutBookingsNestedInput
-  emails?: Prisma.emailsUpdateManyWithoutBookingsNestedInput
-  payments?: Prisma.paymentsUpdateManyWithoutBookingsNestedInput
-  reviews?: Prisma.reviewsUpdateManyWithoutBookingsNestedInput
-}
-
-export type bookingsUncheckedUpdateWithoutCalendarInput = {
-  booking_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  user_id?: Prisma.IntFieldUpdateOperationsInput | number
-  room_id?: Prisma.IntFieldUpdateOperationsInput | number
-  check_in?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  check_out?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  adults?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  children?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  emails?: Prisma.emailsUncheckedUpdateManyWithoutBookingsNestedInput
-  payments?: Prisma.paymentsUncheckedUpdateManyWithoutBookingsNestedInput
-  reviews?: Prisma.reviewsUncheckedUpdateManyWithoutBookingsNestedInput
-}
-
 export type bookingsCreateWithoutEmailsInput = {
   booking_id?: bigint | number
   check_in: Date | string
@@ -819,7 +712,6 @@ export type bookingsCreateWithoutEmailsInput = {
   updated_at?: Date | string
   rooms: Prisma.roomsCreateNestedOneWithoutBookingsInput
   users: Prisma.usersCreateNestedOneWithoutBookingsInput
-  calendar?: Prisma.calendarCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutBookingsInput
 }
@@ -836,7 +728,6 @@ export type bookingsUncheckedCreateWithoutEmailsInput = {
   guests_total?: number | null
   created_at?: Date | string
   updated_at?: Date | string
-  calendar?: Prisma.calendarUncheckedCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutBookingsInput
 }
@@ -869,7 +760,6 @@ export type bookingsUpdateWithoutEmailsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rooms?: Prisma.roomsUpdateOneRequiredWithoutBookingsNestedInput
   users?: Prisma.usersUpdateOneRequiredWithoutBookingsNestedInput
-  calendar?: Prisma.calendarUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutBookingsNestedInput
 }
@@ -886,7 +776,6 @@ export type bookingsUncheckedUpdateWithoutEmailsInput = {
   guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  calendar?: Prisma.calendarUncheckedUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutBookingsNestedInput
 }
@@ -903,7 +792,6 @@ export type bookingsCreateWithoutPaymentsInput = {
   updated_at?: Date | string
   rooms: Prisma.roomsCreateNestedOneWithoutBookingsInput
   users: Prisma.usersCreateNestedOneWithoutBookingsInput
-  calendar?: Prisma.calendarCreateNestedManyWithoutBookingsInput
   emails?: Prisma.emailsCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutBookingsInput
 }
@@ -920,7 +808,6 @@ export type bookingsUncheckedCreateWithoutPaymentsInput = {
   guests_total?: number | null
   created_at?: Date | string
   updated_at?: Date | string
-  calendar?: Prisma.calendarUncheckedCreateNestedManyWithoutBookingsInput
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutBookingsInput
 }
@@ -953,7 +840,6 @@ export type bookingsUpdateWithoutPaymentsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rooms?: Prisma.roomsUpdateOneRequiredWithoutBookingsNestedInput
   users?: Prisma.usersUpdateOneRequiredWithoutBookingsNestedInput
-  calendar?: Prisma.calendarUpdateManyWithoutBookingsNestedInput
   emails?: Prisma.emailsUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutBookingsNestedInput
 }
@@ -970,7 +856,6 @@ export type bookingsUncheckedUpdateWithoutPaymentsInput = {
   guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  calendar?: Prisma.calendarUncheckedUpdateManyWithoutBookingsNestedInput
   emails?: Prisma.emailsUncheckedUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutBookingsNestedInput
 }
@@ -986,7 +871,6 @@ export type bookingsCreateWithoutRoomsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   users: Prisma.usersCreateNestedOneWithoutBookingsInput
-  calendar?: Prisma.calendarCreateNestedManyWithoutBookingsInput
   emails?: Prisma.emailsCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutBookingsInput
@@ -1003,7 +887,6 @@ export type bookingsUncheckedCreateWithoutRoomsInput = {
   guests_total?: number | null
   created_at?: Date | string
   updated_at?: Date | string
-  calendar?: Prisma.calendarUncheckedCreateNestedManyWithoutBookingsInput
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutBookingsInput
@@ -1063,7 +946,6 @@ export type bookingsCreateWithoutUsersInput = {
   created_at?: Date | string
   updated_at?: Date | string
   rooms: Prisma.roomsCreateNestedOneWithoutBookingsInput
-  calendar?: Prisma.calendarCreateNestedManyWithoutBookingsInput
   emails?: Prisma.emailsCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutBookingsInput
@@ -1080,7 +962,6 @@ export type bookingsUncheckedCreateWithoutUsersInput = {
   guests_total?: number | null
   created_at?: Date | string
   updated_at?: Date | string
-  calendar?: Prisma.calendarUncheckedCreateNestedManyWithoutBookingsInput
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutBookingsInput
@@ -1124,7 +1005,6 @@ export type bookingsCreateWithoutReviewsInput = {
   updated_at?: Date | string
   rooms: Prisma.roomsCreateNestedOneWithoutBookingsInput
   users: Prisma.usersCreateNestedOneWithoutBookingsInput
-  calendar?: Prisma.calendarCreateNestedManyWithoutBookingsInput
   emails?: Prisma.emailsCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsCreateNestedManyWithoutBookingsInput
 }
@@ -1141,7 +1021,6 @@ export type bookingsUncheckedCreateWithoutReviewsInput = {
   guests_total?: number | null
   created_at?: Date | string
   updated_at?: Date | string
-  calendar?: Prisma.calendarUncheckedCreateNestedManyWithoutBookingsInput
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutBookingsInput
 }
@@ -1174,7 +1053,6 @@ export type bookingsUpdateWithoutReviewsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rooms?: Prisma.roomsUpdateOneRequiredWithoutBookingsNestedInput
   users?: Prisma.usersUpdateOneRequiredWithoutBookingsNestedInput
-  calendar?: Prisma.calendarUpdateManyWithoutBookingsNestedInput
   emails?: Prisma.emailsUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutBookingsNestedInput
 }
@@ -1191,7 +1069,6 @@ export type bookingsUncheckedUpdateWithoutReviewsInput = {
   guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  calendar?: Prisma.calendarUncheckedUpdateManyWithoutBookingsNestedInput
   emails?: Prisma.emailsUncheckedUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutBookingsNestedInput
 }
@@ -1220,7 +1097,6 @@ export type bookingsUpdateWithoutRoomsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.usersUpdateOneRequiredWithoutBookingsNestedInput
-  calendar?: Prisma.calendarUpdateManyWithoutBookingsNestedInput
   emails?: Prisma.emailsUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutBookingsNestedInput
@@ -1237,7 +1113,6 @@ export type bookingsUncheckedUpdateWithoutRoomsInput = {
   guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  calendar?: Prisma.calendarUncheckedUpdateManyWithoutBookingsNestedInput
   emails?: Prisma.emailsUncheckedUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutBookingsNestedInput
@@ -1280,7 +1155,6 @@ export type bookingsUpdateWithoutUsersInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rooms?: Prisma.roomsUpdateOneRequiredWithoutBookingsNestedInput
-  calendar?: Prisma.calendarUpdateManyWithoutBookingsNestedInput
   emails?: Prisma.emailsUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutBookingsNestedInput
@@ -1297,7 +1171,6 @@ export type bookingsUncheckedUpdateWithoutUsersInput = {
   guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  calendar?: Prisma.calendarUncheckedUpdateManyWithoutBookingsNestedInput
   emails?: Prisma.emailsUncheckedUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutBookingsNestedInput
@@ -1322,14 +1195,12 @@ export type bookingsUncheckedUpdateManyWithoutUsersInput = {
  */
 
 export type BookingsCountOutputType = {
-  calendar: number
   emails: number
   payments: number
   reviews: number
 }
 
 export type BookingsCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  calendar?: boolean | BookingsCountOutputTypeCountCalendarArgs
   emails?: boolean | BookingsCountOutputTypeCountEmailsArgs
   payments?: boolean | BookingsCountOutputTypeCountPaymentsArgs
   reviews?: boolean | BookingsCountOutputTypeCountReviewsArgs
@@ -1343,13 +1214,6 @@ export type BookingsCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Ext
    * Select specific fields to fetch from the BookingsCountOutputType
    */
   select?: Prisma.BookingsCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * BookingsCountOutputType without action
- */
-export type BookingsCountOutputTypeCountCalendarArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.calendarWhereInput
 }
 
 /**
@@ -1388,7 +1252,6 @@ export type bookingsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   updated_at?: boolean
   rooms?: boolean | Prisma.roomsDefaultArgs<ExtArgs>
   users?: boolean | Prisma.usersDefaultArgs<ExtArgs>
-  calendar?: boolean | Prisma.bookings$calendarArgs<ExtArgs>
   emails?: boolean | Prisma.bookings$emailsArgs<ExtArgs>
   payments?: boolean | Prisma.bookings$paymentsArgs<ExtArgs>
   reviews?: boolean | Prisma.bookings$reviewsArgs<ExtArgs>
@@ -1445,7 +1308,6 @@ export type bookingsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs =
 export type bookingsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   rooms?: boolean | Prisma.roomsDefaultArgs<ExtArgs>
   users?: boolean | Prisma.usersDefaultArgs<ExtArgs>
-  calendar?: boolean | Prisma.bookings$calendarArgs<ExtArgs>
   emails?: boolean | Prisma.bookings$emailsArgs<ExtArgs>
   payments?: boolean | Prisma.bookings$paymentsArgs<ExtArgs>
   reviews?: boolean | Prisma.bookings$reviewsArgs<ExtArgs>
@@ -1465,7 +1327,6 @@ export type $bookingsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   objects: {
     rooms: Prisma.$roomsPayload<ExtArgs>
     users: Prisma.$usersPayload<ExtArgs>
-    calendar: Prisma.$calendarPayload<ExtArgs>[]
     emails: Prisma.$emailsPayload<ExtArgs>[]
     payments: Prisma.$paymentsPayload<ExtArgs>[]
     reviews: Prisma.$reviewsPayload<ExtArgs>[]
@@ -1878,7 +1739,6 @@ export interface Prisma__bookingsClient<T, Null = never, ExtArgs extends runtime
   readonly [Symbol.toStringTag]: "PrismaPromise"
   rooms<T extends Prisma.roomsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.roomsDefaultArgs<ExtArgs>>): Prisma.Prisma__roomsClient<runtime.Types.Result.GetResult<Prisma.$roomsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   users<T extends Prisma.usersDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.usersDefaultArgs<ExtArgs>>): Prisma.Prisma__usersClient<runtime.Types.Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  calendar<T extends Prisma.bookings$calendarArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.bookings$calendarArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$calendarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   emails<T extends Prisma.bookings$emailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.bookings$emailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$emailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payments<T extends Prisma.bookings$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.bookings$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$paymentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reviews<T extends Prisma.bookings$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.bookings$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$reviewsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2315,30 +2175,6 @@ export type bookingsDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Limit how many bookings to delete.
    */
   limit?: number
-}
-
-/**
- * bookings.calendar
- */
-export type bookings$calendarArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the calendar
-   */
-  select?: Prisma.calendarSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the calendar
-   */
-  omit?: Prisma.calendarOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.calendarInclude<ExtArgs> | null
-  where?: Prisma.calendarWhereInput
-  orderBy?: Prisma.calendarOrderByWithRelationInput | Prisma.calendarOrderByWithRelationInput[]
-  cursor?: Prisma.calendarWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CalendarScalarFieldEnum | Prisma.CalendarScalarFieldEnum[]
 }
 
 /**

@@ -386,7 +386,6 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   admin: 'admin',
   bookings: 'bookings',
-  calendar: 'calendar',
   email_templates: 'email_templates',
   emails: 'emails',
   payments: 'payments',
@@ -411,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "admin" | "bookings" | "calendar" | "email_templates" | "emails" | "payments" | "payments_webhooks" | "rooms" | "users" | "whatsapp_messages" | "reviews" | "room_offers"
+    modelProps: "admin" | "bookings" | "email_templates" | "emails" | "payments" | "payments_webhooks" | "rooms" | "users" | "whatsapp_messages" | "reviews" | "room_offers"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -560,80 +559,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.bookingsCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.BookingsCountAggregateOutputType> | number
-        }
-      }
-    }
-    calendar: {
-      payload: Prisma.$calendarPayload<ExtArgs>
-      fields: Prisma.calendarFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.calendarFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$calendarPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.calendarFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$calendarPayload>
-        }
-        findFirst: {
-          args: Prisma.calendarFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$calendarPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.calendarFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$calendarPayload>
-        }
-        findMany: {
-          args: Prisma.calendarFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$calendarPayload>[]
-        }
-        create: {
-          args: Prisma.calendarCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$calendarPayload>
-        }
-        createMany: {
-          args: Prisma.calendarCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.calendarCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$calendarPayload>[]
-        }
-        delete: {
-          args: Prisma.calendarDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$calendarPayload>
-        }
-        update: {
-          args: Prisma.calendarUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$calendarPayload>
-        }
-        deleteMany: {
-          args: Prisma.calendarDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.calendarUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.calendarUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$calendarPayload>[]
-        }
-        upsert: {
-          args: Prisma.calendarUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$calendarPayload>
-        }
-        aggregate: {
-          args: Prisma.CalendarAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateCalendar>
-        }
-        groupBy: {
-          args: Prisma.calendarGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.CalendarGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.calendarCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.CalendarCountAggregateOutputType> | number
         }
       }
     }
@@ -1348,8 +1273,8 @@ export const AdminScalarFieldEnum = {
   email: 'email',
   password: 'password',
   refreshToken: 'refreshToken',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  createdat: 'createdat',
+  updatedat: 'updatedat'
 } as const
 
 export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
@@ -1370,18 +1295,6 @@ export const BookingsScalarFieldEnum = {
 } as const
 
 export type BookingsScalarFieldEnum = (typeof BookingsScalarFieldEnum)[keyof typeof BookingsScalarFieldEnum]
-
-
-export const CalendarScalarFieldEnum = {
-  id: 'id',
-  user_id: 'user_id',
-  booking_id: 'booking_id',
-  event_id: 'event_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type CalendarScalarFieldEnum = (typeof CalendarScalarFieldEnum)[keyof typeof CalendarScalarFieldEnum]
 
 
 export const Email_templatesScalarFieldEnum = {
@@ -1756,7 +1669,6 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   admin?: Prisma.adminOmit
   bookings?: Prisma.bookingsOmit
-  calendar?: Prisma.calendarOmit
   email_templates?: Prisma.email_templatesOmit
   emails?: Prisma.emailsOmit
   payments?: Prisma.paymentsOmit

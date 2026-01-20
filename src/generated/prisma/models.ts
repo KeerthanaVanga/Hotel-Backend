@@ -10,7 +10,6 @@
  */
 export type * from './models/admin.js'
 export type * from './models/bookings.js'
-export type * from './models/calendar.js'
 export type * from './models/email_templates.js'
 export type * from './models/emails.js'
 export type * from './models/payments.js'

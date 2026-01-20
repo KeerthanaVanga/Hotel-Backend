@@ -53,7 +53,6 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   admin: 'admin',
   bookings: 'bookings',
-  calendar: 'calendar',
   email_templates: 'email_templates',
   emails: 'emails',
   payments: 'payments',
@@ -87,8 +86,8 @@ export const AdminScalarFieldEnum = {
   email: 'email',
   password: 'password',
   refreshToken: 'refreshToken',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  createdat: 'createdat',
+  updatedat: 'updatedat'
 } as const
 
 export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
@@ -109,18 +108,6 @@ export const BookingsScalarFieldEnum = {
 } as const
 
 export type BookingsScalarFieldEnum = (typeof BookingsScalarFieldEnum)[keyof typeof BookingsScalarFieldEnum]
-
-
-export const CalendarScalarFieldEnum = {
-  id: 'id',
-  user_id: 'user_id',
-  booking_id: 'booking_id',
-  event_id: 'event_id',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-} as const
-
-export type CalendarScalarFieldEnum = (typeof CalendarScalarFieldEnum)[keyof typeof CalendarScalarFieldEnum]
 
 
 export const Email_templatesScalarFieldEnum = {

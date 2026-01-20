@@ -7,6 +7,4 @@ const router = Router();
 router.use(requireAuth);
 router.get("/users", fetchWhatsappUsers);
 router.get("/messages/:phone", fetchWhatsappMessages);
-
-
 export default router;

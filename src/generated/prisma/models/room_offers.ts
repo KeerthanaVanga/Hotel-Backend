@@ -29,21 +29,21 @@ export type AggregateRoom_offers = {
 export type Room_offersAvgAggregateOutputType = {
   offer_id: number | null
   room_id: number | null
-  discount_percent: number | null
+  discount_percent: runtime.Decimal | null
   offer_price: runtime.Decimal | null
 }
 
 export type Room_offersSumAggregateOutputType = {
   offer_id: number | null
   room_id: number | null
-  discount_percent: number | null
+  discount_percent: runtime.Decimal | null
   offer_price: runtime.Decimal | null
 }
 
 export type Room_offersMinAggregateOutputType = {
   offer_id: number | null
   room_id: number | null
-  discount_percent: number | null
+  discount_percent: runtime.Decimal | null
   offer_price: runtime.Decimal | null
   start_date: Date | null
   end_date: Date | null
@@ -56,7 +56,7 @@ export type Room_offersMinAggregateOutputType = {
 export type Room_offersMaxAggregateOutputType = {
   offer_id: number | null
   room_id: number | null
-  discount_percent: number | null
+  discount_percent: runtime.Decimal | null
   offer_price: runtime.Decimal | null
   start_date: Date | null
   end_date: Date | null
@@ -224,7 +224,7 @@ export type room_offersGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 export type Room_offersGroupByOutputType = {
   offer_id: number
   room_id: number
-  discount_percent: number
+  discount_percent: runtime.Decimal
   offer_price: runtime.Decimal | null
   start_date: Date | null
   end_date: Date | null
@@ -260,7 +260,7 @@ export type room_offersWhereInput = {
   NOT?: Prisma.room_offersWhereInput | Prisma.room_offersWhereInput[]
   offer_id?: Prisma.IntFilter<"room_offers"> | number
   room_id?: Prisma.IntFilter<"room_offers"> | number
-  discount_percent?: Prisma.IntFilter<"room_offers"> | number
+  discount_percent?: Prisma.DecimalFilter<"room_offers"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   offer_price?: Prisma.DecimalNullableFilter<"room_offers"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   start_date?: Prisma.DateTimeNullableFilter<"room_offers"> | Date | string | null
   end_date?: Prisma.DateTimeNullableFilter<"room_offers"> | Date | string | null
@@ -291,7 +291,7 @@ export type room_offersWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.room_offersWhereInput[]
   NOT?: Prisma.room_offersWhereInput | Prisma.room_offersWhereInput[]
   room_id?: Prisma.IntFilter<"room_offers"> | number
-  discount_percent?: Prisma.IntFilter<"room_offers"> | number
+  discount_percent?: Prisma.DecimalFilter<"room_offers"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   offer_price?: Prisma.DecimalNullableFilter<"room_offers"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   start_date?: Prisma.DateTimeNullableFilter<"room_offers"> | Date | string | null
   end_date?: Prisma.DateTimeNullableFilter<"room_offers"> | Date | string | null
@@ -326,7 +326,7 @@ export type room_offersScalarWhereWithAggregatesInput = {
   NOT?: Prisma.room_offersScalarWhereWithAggregatesInput | Prisma.room_offersScalarWhereWithAggregatesInput[]
   offer_id?: Prisma.IntWithAggregatesFilter<"room_offers"> | number
   room_id?: Prisma.IntWithAggregatesFilter<"room_offers"> | number
-  discount_percent?: Prisma.IntWithAggregatesFilter<"room_offers"> | number
+  discount_percent?: Prisma.DecimalWithAggregatesFilter<"room_offers"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   offer_price?: Prisma.DecimalNullableWithAggregatesFilter<"room_offers"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   start_date?: Prisma.DateTimeNullableWithAggregatesFilter<"room_offers"> | Date | string | null
   end_date?: Prisma.DateTimeNullableWithAggregatesFilter<"room_offers"> | Date | string | null
@@ -337,7 +337,7 @@ export type room_offersScalarWhereWithAggregatesInput = {
 }
 
 export type room_offersCreateInput = {
-  discount_percent: number
+  discount_percent: runtime.Decimal | runtime.DecimalJsLike | number | string
   offer_price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   start_date?: Date | string | null
   end_date?: Date | string | null
@@ -351,7 +351,7 @@ export type room_offersCreateInput = {
 export type room_offersUncheckedCreateInput = {
   offer_id?: number
   room_id: number
-  discount_percent: number
+  discount_percent: runtime.Decimal | runtime.DecimalJsLike | number | string
   offer_price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   start_date?: Date | string | null
   end_date?: Date | string | null
@@ -362,7 +362,7 @@ export type room_offersUncheckedCreateInput = {
 }
 
 export type room_offersUpdateInput = {
-  discount_percent?: Prisma.IntFieldUpdateOperationsInput | number
+  discount_percent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   offer_price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -376,7 +376,7 @@ export type room_offersUpdateInput = {
 export type room_offersUncheckedUpdateInput = {
   offer_id?: Prisma.IntFieldUpdateOperationsInput | number
   room_id?: Prisma.IntFieldUpdateOperationsInput | number
-  discount_percent?: Prisma.IntFieldUpdateOperationsInput | number
+  discount_percent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   offer_price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -389,7 +389,7 @@ export type room_offersUncheckedUpdateInput = {
 export type room_offersCreateManyInput = {
   offer_id?: number
   room_id: number
-  discount_percent: number
+  discount_percent: runtime.Decimal | runtime.DecimalJsLike | number | string
   offer_price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   start_date?: Date | string | null
   end_date?: Date | string | null
@@ -400,7 +400,7 @@ export type room_offersCreateManyInput = {
 }
 
 export type room_offersUpdateManyMutationInput = {
-  discount_percent?: Prisma.IntFieldUpdateOperationsInput | number
+  discount_percent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   offer_price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -413,7 +413,7 @@ export type room_offersUpdateManyMutationInput = {
 export type room_offersUncheckedUpdateManyInput = {
   offer_id?: Prisma.IntFieldUpdateOperationsInput | number
   room_id?: Prisma.IntFieldUpdateOperationsInput | number
-  discount_percent?: Prisma.IntFieldUpdateOperationsInput | number
+  discount_percent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   offer_price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -541,7 +541,7 @@ export type NullableBoolFieldUpdateOperationsInput = {
 }
 
 export type room_offersCreateWithoutRoomsInput = {
-  discount_percent: number
+  discount_percent: runtime.Decimal | runtime.DecimalJsLike | number | string
   offer_price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   start_date?: Date | string | null
   end_date?: Date | string | null
@@ -553,7 +553,7 @@ export type room_offersCreateWithoutRoomsInput = {
 
 export type room_offersUncheckedCreateWithoutRoomsInput = {
   offer_id?: number
-  discount_percent: number
+  discount_percent: runtime.Decimal | runtime.DecimalJsLike | number | string
   offer_price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   start_date?: Date | string | null
   end_date?: Date | string | null
@@ -595,7 +595,7 @@ export type room_offersScalarWhereInput = {
   NOT?: Prisma.room_offersScalarWhereInput | Prisma.room_offersScalarWhereInput[]
   offer_id?: Prisma.IntFilter<"room_offers"> | number
   room_id?: Prisma.IntFilter<"room_offers"> | number
-  discount_percent?: Prisma.IntFilter<"room_offers"> | number
+  discount_percent?: Prisma.DecimalFilter<"room_offers"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   offer_price?: Prisma.DecimalNullableFilter<"room_offers"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   start_date?: Prisma.DateTimeNullableFilter<"room_offers"> | Date | string | null
   end_date?: Prisma.DateTimeNullableFilter<"room_offers"> | Date | string | null
@@ -607,7 +607,7 @@ export type room_offersScalarWhereInput = {
 
 export type room_offersCreateManyRoomsInput = {
   offer_id?: number
-  discount_percent: number
+  discount_percent: runtime.Decimal | runtime.DecimalJsLike | number | string
   offer_price?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   start_date?: Date | string | null
   end_date?: Date | string | null
@@ -618,7 +618,7 @@ export type room_offersCreateManyRoomsInput = {
 }
 
 export type room_offersUpdateWithoutRoomsInput = {
-  discount_percent?: Prisma.IntFieldUpdateOperationsInput | number
+  discount_percent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   offer_price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -630,7 +630,7 @@ export type room_offersUpdateWithoutRoomsInput = {
 
 export type room_offersUncheckedUpdateWithoutRoomsInput = {
   offer_id?: Prisma.IntFieldUpdateOperationsInput | number
-  discount_percent?: Prisma.IntFieldUpdateOperationsInput | number
+  discount_percent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   offer_price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -642,7 +642,7 @@ export type room_offersUncheckedUpdateWithoutRoomsInput = {
 
 export type room_offersUncheckedUpdateManyWithoutRoomsInput = {
   offer_id?: Prisma.IntFieldUpdateOperationsInput | number
-  discount_percent?: Prisma.IntFieldUpdateOperationsInput | number
+  discount_percent?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   offer_price?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   start_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   end_date?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -728,7 +728,7 @@ export type $room_offersPayload<ExtArgs extends runtime.Types.Extensions.Interna
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     offer_id: number
     room_id: number
-    discount_percent: number
+    discount_percent: runtime.Decimal
     offer_price: runtime.Decimal | null
     start_date: Date | null
     end_date: Date | null
@@ -1162,7 +1162,7 @@ export interface Prisma__room_offersClient<T, Null = never, ExtArgs extends runt
 export interface room_offersFieldRefs {
   readonly offer_id: Prisma.FieldRef<"room_offers", 'Int'>
   readonly room_id: Prisma.FieldRef<"room_offers", 'Int'>
-  readonly discount_percent: Prisma.FieldRef<"room_offers", 'Int'>
+  readonly discount_percent: Prisma.FieldRef<"room_offers", 'Decimal'>
   readonly offer_price: Prisma.FieldRef<"room_offers", 'Decimal'>
   readonly start_date: Prisma.FieldRef<"room_offers", 'DateTime'>
   readonly end_date: Prisma.FieldRef<"room_offers", 'DateTime'>

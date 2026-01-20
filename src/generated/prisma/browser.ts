@@ -28,11 +28,6 @@ export type admin = Prisma.adminModel
  */
 export type bookings = Prisma.bookingsModel
 /**
- * Model calendar
- * 
- */
-export type calendar = Prisma.calendarModel
-/**
  * Model email_templates
  * 
  */

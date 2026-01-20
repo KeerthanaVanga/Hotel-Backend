@@ -6,9 +6,14 @@ const formatHour = (d: Date) =>
   d.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" });
 
 export const getDashboardSummary = async () => {
-  const now = new Date();
-  const fromDate = startOfDay(now);
-  const toDate = endOfDay(now);
+  // Always compute "today" in IST
+  const nowIST = new Date(
+    new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata" })
+  );
+
+  // Midnight IST → 23:59:59 IST
+  const fromDate = startOfDay(nowIST);
+  const toDate = endOfDay(nowIST);
 
   // Total users
   const totalUsers = await prisma.users.count();
@@ -45,7 +50,7 @@ export const getDashboardSummary = async () => {
   // Today revenue (sum of bill_paid_amount)
   const todayRevenueAgg = await prisma.payments.aggregate({
     _sum: { bill_paid_amount: true },
-    where: { created_at: { gte: fromDate, lte: toDate } },
+    where: { updated_at: { gte: fromDate, lte: toDate } },
   });
 
   const todayRevenue = Number(todayRevenueAgg._sum.bill_paid_amount || 0);
@@ -54,7 +59,7 @@ export const getDashboardSummary = async () => {
   const statusGroups = await prisma.bookings.groupBy({
     by: ["status"],
     _count: { status: true },
-    where: { created_at: { gte: fromDate, lte: toDate } },
+    where: { updated_at: { gte: fromDate, lte: toDate } },
   });
 
   const bookingStatus = statusGroups.map((g) => ({

@@ -290,7 +290,7 @@ export type reviewsWhereUniqueInput = Prisma.AtLeast<{
   bookings?: Prisma.XOR<Prisma.BookingsScalarRelationFilter, Prisma.bookingsWhereInput>
   rooms?: Prisma.XOR<Prisma.RoomsScalarRelationFilter, Prisma.roomsWhereInput>
   users?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
-}, "id">
+}, "id" | "id">
 
 export type reviewsOrderByWithAggregationInput = {
   id?: Prisma.SortOrder

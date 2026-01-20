@@ -8,13 +8,13 @@ datasource db {
 }
 
 model admin {
-  id           Int      @id(map: "Admin_pkey") @default(autoincrement())
+  id           Int      @id @default(autoincrement())
   username     String
-  email        String   @unique(map: "Admin_email_key")
+  email        String   @unique
   password     String
   refreshToken String?
-  createdAt    DateTime @default(dbgenerated("timezone('Asia/Kolkata'::text, now())")) @db.Timestamptz(6)
-  updatedAt    DateTime @default(dbgenerated("timezone('Asia/Kolkata'::text, now())")) @db.Timestamptz(6)
+  createdat    DateTime @default(dbgenerated("timezone('Asia/Kolkata'::text, now())")) @db.Timestamptz(6)
+  updatedat    DateTime @default(dbgenerated("timezone('Asia/Kolkata'::text, now())")) @db.Timestamptz(6)
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -32,21 +32,9 @@ model bookings {
   updated_at   DateTime   @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
   rooms        rooms      @relation(fields: [room_id], references: [room_id], onUpdate: NoAction)
   users        users      @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
-  calendar     calendar[]
   emails       emails[]
   payments     payments[]
   reviews      reviews[]
-}
-
-model calendar {
-  id         BigInt    @id @default(autoincrement())
-  user_id    Int?
-  booking_id BigInt?
-  event_id   String
-  created_at DateTime  @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
-  updated_at DateTime  @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
-  bookings   bookings? @relation(fields: [booking_id], references: [booking_id], onDelete: Cascade, onUpdate: NoAction, map: "booking_id")
-  users      users?    @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
 }
 
 model email_templates {
@@ -121,7 +109,6 @@ model users {
   created_at      DateTime   @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
   updated_at      DateTime   @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
   bookings        bookings[]
-  calendar        calendar[]
   emails          emails[]
   payments        payments[]
   reviews         reviews[]
@@ -142,7 +129,7 @@ model whatsapp_messages {
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model reviews {
-  id         BigInt   @id(map: "room_reviews_pkey") @default(autoincrement())
+  id         BigInt   @id @unique(map: "room_reviews_pkey") @default(autoincrement())
   booking_id BigInt
   user_id    Int
   room_id    Int
@@ -159,7 +146,7 @@ model reviews {
 model room_offers {
   offer_id         Int       @id @default(autoincrement())
   room_id          Int
-  discount_percent Int
+  discount_percent Decimal   @db.Decimal(10, 2)
   offer_price      Decimal?  @db.Decimal(10, 2)
   start_date       DateTime? @db.Date
   end_date         DateTime? @db.Date

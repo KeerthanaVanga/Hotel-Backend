@@ -229,7 +229,6 @@ export type usersWhereInput = {
   created_at?: Prisma.DateTimeFilter<"users"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"users"> | Date | string
   bookings?: Prisma.BookingsListRelationFilter
-  calendar?: Prisma.CalendarListRelationFilter
   emails?: Prisma.EmailsListRelationFilter
   payments?: Prisma.PaymentsListRelationFilter
   reviews?: Prisma.ReviewsListRelationFilter
@@ -243,7 +242,6 @@ export type usersOrderByWithRelationInput = {
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
   bookings?: Prisma.bookingsOrderByRelationAggregateInput
-  calendar?: Prisma.calendarOrderByRelationAggregateInput
   emails?: Prisma.emailsOrderByRelationAggregateInput
   payments?: Prisma.paymentsOrderByRelationAggregateInput
   reviews?: Prisma.reviewsOrderByRelationAggregateInput
@@ -260,7 +258,6 @@ export type usersWhereUniqueInput = Prisma.AtLeast<{
   created_at?: Prisma.DateTimeFilter<"users"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"users"> | Date | string
   bookings?: Prisma.BookingsListRelationFilter
-  calendar?: Prisma.CalendarListRelationFilter
   emails?: Prisma.EmailsListRelationFilter
   payments?: Prisma.PaymentsListRelationFilter
   reviews?: Prisma.ReviewsListRelationFilter
@@ -299,7 +296,6 @@ export type usersCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   bookings?: Prisma.bookingsCreateNestedManyWithoutUsersInput
-  calendar?: Prisma.calendarCreateNestedManyWithoutUsersInput
   emails?: Prisma.emailsCreateNestedManyWithoutUsersInput
   payments?: Prisma.paymentsCreateNestedManyWithoutUsersInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutUsersInput
@@ -313,7 +309,6 @@ export type usersUncheckedCreateInput = {
   created_at?: Date | string
   updated_at?: Date | string
   bookings?: Prisma.bookingsUncheckedCreateNestedManyWithoutUsersInput
-  calendar?: Prisma.calendarUncheckedCreateNestedManyWithoutUsersInput
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutUsersInput
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutUsersInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutUsersInput
@@ -326,7 +321,6 @@ export type usersUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.bookingsUpdateManyWithoutUsersNestedInput
-  calendar?: Prisma.calendarUpdateManyWithoutUsersNestedInput
   emails?: Prisma.emailsUpdateManyWithoutUsersNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutUsersNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutUsersNestedInput
@@ -340,7 +334,6 @@ export type usersUncheckedUpdateInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.bookingsUncheckedUpdateManyWithoutUsersNestedInput
-  calendar?: Prisma.calendarUncheckedUpdateManyWithoutUsersNestedInput
   emails?: Prisma.emailsUncheckedUpdateManyWithoutUsersNestedInput
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutUsersNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutUsersNestedInput
@@ -433,22 +426,6 @@ export type usersUpdateOneRequiredWithoutBookingsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutBookingsInput, Prisma.usersUpdateWithoutBookingsInput>, Prisma.usersUncheckedUpdateWithoutBookingsInput>
 }
 
-export type usersCreateNestedOneWithoutCalendarInput = {
-  create?: Prisma.XOR<Prisma.usersCreateWithoutCalendarInput, Prisma.usersUncheckedCreateWithoutCalendarInput>
-  connectOrCreate?: Prisma.usersCreateOrConnectWithoutCalendarInput
-  connect?: Prisma.usersWhereUniqueInput
-}
-
-export type usersUpdateOneWithoutCalendarNestedInput = {
-  create?: Prisma.XOR<Prisma.usersCreateWithoutCalendarInput, Prisma.usersUncheckedCreateWithoutCalendarInput>
-  connectOrCreate?: Prisma.usersCreateOrConnectWithoutCalendarInput
-  upsert?: Prisma.usersUpsertWithoutCalendarInput
-  disconnect?: Prisma.usersWhereInput | boolean
-  delete?: Prisma.usersWhereInput | boolean
-  connect?: Prisma.usersWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutCalendarInput, Prisma.usersUpdateWithoutCalendarInput>, Prisma.usersUncheckedUpdateWithoutCalendarInput>
-}
-
 export type usersCreateNestedOneWithoutEmailsInput = {
   create?: Prisma.XOR<Prisma.usersCreateWithoutEmailsInput, Prisma.usersUncheckedCreateWithoutEmailsInput>
   connectOrCreate?: Prisma.usersCreateOrConnectWithoutEmailsInput
@@ -499,7 +476,6 @@ export type usersCreateWithoutBookingsInput = {
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
-  calendar?: Prisma.calendarCreateNestedManyWithoutUsersInput
   emails?: Prisma.emailsCreateNestedManyWithoutUsersInput
   payments?: Prisma.paymentsCreateNestedManyWithoutUsersInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutUsersInput
@@ -512,7 +488,6 @@ export type usersUncheckedCreateWithoutBookingsInput = {
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
-  calendar?: Prisma.calendarUncheckedCreateNestedManyWithoutUsersInput
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutUsersInput
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutUsersInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutUsersInput
@@ -540,7 +515,6 @@ export type usersUpdateWithoutBookingsInput = {
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  calendar?: Prisma.calendarUpdateManyWithoutUsersNestedInput
   emails?: Prisma.emailsUpdateManyWithoutUsersNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutUsersNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutUsersNestedInput
@@ -553,73 +527,6 @@ export type usersUncheckedUpdateWithoutBookingsInput = {
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  calendar?: Prisma.calendarUncheckedUpdateManyWithoutUsersNestedInput
-  emails?: Prisma.emailsUncheckedUpdateManyWithoutUsersNestedInput
-  payments?: Prisma.paymentsUncheckedUpdateManyWithoutUsersNestedInput
-  reviews?: Prisma.reviewsUncheckedUpdateManyWithoutUsersNestedInput
-}
-
-export type usersCreateWithoutCalendarInput = {
-  name: string
-  email: string
-  whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
-  created_at?: Date | string
-  updated_at?: Date | string
-  bookings?: Prisma.bookingsCreateNestedManyWithoutUsersInput
-  emails?: Prisma.emailsCreateNestedManyWithoutUsersInput
-  payments?: Prisma.paymentsCreateNestedManyWithoutUsersInput
-  reviews?: Prisma.reviewsCreateNestedManyWithoutUsersInput
-}
-
-export type usersUncheckedCreateWithoutCalendarInput = {
-  user_id?: number
-  name: string
-  email: string
-  whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
-  created_at?: Date | string
-  updated_at?: Date | string
-  bookings?: Prisma.bookingsUncheckedCreateNestedManyWithoutUsersInput
-  emails?: Prisma.emailsUncheckedCreateNestedManyWithoutUsersInput
-  payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutUsersInput
-  reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutUsersInput
-}
-
-export type usersCreateOrConnectWithoutCalendarInput = {
-  where: Prisma.usersWhereUniqueInput
-  create: Prisma.XOR<Prisma.usersCreateWithoutCalendarInput, Prisma.usersUncheckedCreateWithoutCalendarInput>
-}
-
-export type usersUpsertWithoutCalendarInput = {
-  update: Prisma.XOR<Prisma.usersUpdateWithoutCalendarInput, Prisma.usersUncheckedUpdateWithoutCalendarInput>
-  create: Prisma.XOR<Prisma.usersCreateWithoutCalendarInput, Prisma.usersUncheckedCreateWithoutCalendarInput>
-  where?: Prisma.usersWhereInput
-}
-
-export type usersUpdateToOneWithWhereWithoutCalendarInput = {
-  where?: Prisma.usersWhereInput
-  data: Prisma.XOR<Prisma.usersUpdateWithoutCalendarInput, Prisma.usersUncheckedUpdateWithoutCalendarInput>
-}
-
-export type usersUpdateWithoutCalendarInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bookings?: Prisma.bookingsUpdateManyWithoutUsersNestedInput
-  emails?: Prisma.emailsUpdateManyWithoutUsersNestedInput
-  payments?: Prisma.paymentsUpdateManyWithoutUsersNestedInput
-  reviews?: Prisma.reviewsUpdateManyWithoutUsersNestedInput
-}
-
-export type usersUncheckedUpdateWithoutCalendarInput = {
-  user_id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  bookings?: Prisma.bookingsUncheckedUpdateManyWithoutUsersNestedInput
   emails?: Prisma.emailsUncheckedUpdateManyWithoutUsersNestedInput
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutUsersNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutUsersNestedInput
@@ -632,7 +539,6 @@ export type usersCreateWithoutEmailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   bookings?: Prisma.bookingsCreateNestedManyWithoutUsersInput
-  calendar?: Prisma.calendarCreateNestedManyWithoutUsersInput
   payments?: Prisma.paymentsCreateNestedManyWithoutUsersInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutUsersInput
 }
@@ -645,7 +551,6 @@ export type usersUncheckedCreateWithoutEmailsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   bookings?: Prisma.bookingsUncheckedCreateNestedManyWithoutUsersInput
-  calendar?: Prisma.calendarUncheckedCreateNestedManyWithoutUsersInput
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutUsersInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutUsersInput
 }
@@ -673,7 +578,6 @@ export type usersUpdateWithoutEmailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.bookingsUpdateManyWithoutUsersNestedInput
-  calendar?: Prisma.calendarUpdateManyWithoutUsersNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutUsersNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutUsersNestedInput
 }
@@ -686,7 +590,6 @@ export type usersUncheckedUpdateWithoutEmailsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.bookingsUncheckedUpdateManyWithoutUsersNestedInput
-  calendar?: Prisma.calendarUncheckedUpdateManyWithoutUsersNestedInput
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutUsersNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutUsersNestedInput
 }
@@ -698,7 +601,6 @@ export type usersCreateWithoutPaymentsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   bookings?: Prisma.bookingsCreateNestedManyWithoutUsersInput
-  calendar?: Prisma.calendarCreateNestedManyWithoutUsersInput
   emails?: Prisma.emailsCreateNestedManyWithoutUsersInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutUsersInput
 }
@@ -711,7 +613,6 @@ export type usersUncheckedCreateWithoutPaymentsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   bookings?: Prisma.bookingsUncheckedCreateNestedManyWithoutUsersInput
-  calendar?: Prisma.calendarUncheckedCreateNestedManyWithoutUsersInput
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutUsersInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutUsersInput
 }
@@ -739,7 +640,6 @@ export type usersUpdateWithoutPaymentsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.bookingsUpdateManyWithoutUsersNestedInput
-  calendar?: Prisma.calendarUpdateManyWithoutUsersNestedInput
   emails?: Prisma.emailsUpdateManyWithoutUsersNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutUsersNestedInput
 }
@@ -752,7 +652,6 @@ export type usersUncheckedUpdateWithoutPaymentsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.bookingsUncheckedUpdateManyWithoutUsersNestedInput
-  calendar?: Prisma.calendarUncheckedUpdateManyWithoutUsersNestedInput
   emails?: Prisma.emailsUncheckedUpdateManyWithoutUsersNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutUsersNestedInput
 }
@@ -764,7 +663,6 @@ export type usersCreateWithoutReviewsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   bookings?: Prisma.bookingsCreateNestedManyWithoutUsersInput
-  calendar?: Prisma.calendarCreateNestedManyWithoutUsersInput
   emails?: Prisma.emailsCreateNestedManyWithoutUsersInput
   payments?: Prisma.paymentsCreateNestedManyWithoutUsersInput
 }
@@ -777,7 +675,6 @@ export type usersUncheckedCreateWithoutReviewsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   bookings?: Prisma.bookingsUncheckedCreateNestedManyWithoutUsersInput
-  calendar?: Prisma.calendarUncheckedCreateNestedManyWithoutUsersInput
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutUsersInput
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutUsersInput
 }
@@ -805,7 +702,6 @@ export type usersUpdateWithoutReviewsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.bookingsUpdateManyWithoutUsersNestedInput
-  calendar?: Prisma.calendarUpdateManyWithoutUsersNestedInput
   emails?: Prisma.emailsUpdateManyWithoutUsersNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutUsersNestedInput
 }
@@ -818,7 +714,6 @@ export type usersUncheckedUpdateWithoutReviewsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   bookings?: Prisma.bookingsUncheckedUpdateManyWithoutUsersNestedInput
-  calendar?: Prisma.calendarUncheckedUpdateManyWithoutUsersNestedInput
   emails?: Prisma.emailsUncheckedUpdateManyWithoutUsersNestedInput
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutUsersNestedInput
 }
@@ -830,7 +725,6 @@ export type usersUncheckedUpdateWithoutReviewsInput = {
 
 export type UsersCountOutputType = {
   bookings: number
-  calendar: number
   emails: number
   payments: number
   reviews: number
@@ -838,7 +732,6 @@ export type UsersCountOutputType = {
 
 export type UsersCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bookings?: boolean | UsersCountOutputTypeCountBookingsArgs
-  calendar?: boolean | UsersCountOutputTypeCountCalendarArgs
   emails?: boolean | UsersCountOutputTypeCountEmailsArgs
   payments?: boolean | UsersCountOutputTypeCountPaymentsArgs
   reviews?: boolean | UsersCountOutputTypeCountReviewsArgs
@@ -859,13 +752,6 @@ export type UsersCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
  */
 export type UsersCountOutputTypeCountBookingsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.bookingsWhereInput
-}
-
-/**
- * UsersCountOutputType without action
- */
-export type UsersCountOutputTypeCountCalendarArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.calendarWhereInput
 }
 
 /**
@@ -898,7 +784,6 @@ export type usersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   created_at?: boolean
   updated_at?: boolean
   bookings?: boolean | Prisma.users$bookingsArgs<ExtArgs>
-  calendar?: boolean | Prisma.users$calendarArgs<ExtArgs>
   emails?: boolean | Prisma.users$emailsArgs<ExtArgs>
   payments?: boolean | Prisma.users$paymentsArgs<ExtArgs>
   reviews?: boolean | Prisma.users$reviewsArgs<ExtArgs>
@@ -935,7 +820,6 @@ export type usersSelectScalar = {
 export type usersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"user_id" | "name" | "email" | "whatsapp_number" | "created_at" | "updated_at", ExtArgs["result"]["users"]>
 export type usersInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bookings?: boolean | Prisma.users$bookingsArgs<ExtArgs>
-  calendar?: boolean | Prisma.users$calendarArgs<ExtArgs>
   emails?: boolean | Prisma.users$emailsArgs<ExtArgs>
   payments?: boolean | Prisma.users$paymentsArgs<ExtArgs>
   reviews?: boolean | Prisma.users$reviewsArgs<ExtArgs>
@@ -948,7 +832,6 @@ export type $usersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   name: "users"
   objects: {
     bookings: Prisma.$bookingsPayload<ExtArgs>[]
-    calendar: Prisma.$calendarPayload<ExtArgs>[]
     emails: Prisma.$emailsPayload<ExtArgs>[]
     payments: Prisma.$paymentsPayload<ExtArgs>[]
     reviews: Prisma.$reviewsPayload<ExtArgs>[]
@@ -1355,7 +1238,6 @@ readonly fields: usersFieldRefs;
 export interface Prisma__usersClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   bookings<T extends Prisma.users$bookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$bookingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  calendar<T extends Prisma.users$calendarArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$calendarArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$calendarPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   emails<T extends Prisma.users$emailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$emailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$emailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payments<T extends Prisma.users$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$paymentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reviews<T extends Prisma.users$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$reviewsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1803,30 +1685,6 @@ export type users$bookingsArgs<ExtArgs extends runtime.Types.Extensions.Internal
   take?: number
   skip?: number
   distinct?: Prisma.BookingsScalarFieldEnum | Prisma.BookingsScalarFieldEnum[]
-}
-
-/**
- * users.calendar
- */
-export type users$calendarArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the calendar
-   */
-  select?: Prisma.calendarSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the calendar
-   */
-  omit?: Prisma.calendarOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.calendarInclude<ExtArgs> | null
-  where?: Prisma.calendarWhereInput
-  orderBy?: Prisma.calendarOrderByWithRelationInput | Prisma.calendarOrderByWithRelationInput[]
-  cursor?: Prisma.calendarWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.CalendarScalarFieldEnum | Prisma.CalendarScalarFieldEnum[]
 }
 
 /**
