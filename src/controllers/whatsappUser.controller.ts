@@ -4,26 +4,29 @@ import { serializeBigInt } from "../utils/serializeBigint.js";
 
 export const fetchWhatsappUsers = async (_req: Request, res: Response) => {
   try {
-    const users = await prisma.$queryRaw<
-      {
-        name: string | null;
-        phone: string;
-        sender_type: string;
-        last_message: string;
-        created_at: Date;
-      }[]
-    `
-      SELECT DISTINCT ON (fromnumber)
-        name,
-        fromnumber AS phone,
-        sender_type,
-        message AS last_message,
-        created_at
-      FROM "whatsapp_messages"
-      WHERE sender_type = 'user'
-      ORDER BY fromnumber, created_at DESC
-    `;
-    
+    import { Prisma } from "@prisma/client";
+
+const users = await prisma.$queryRaw<
+  {
+    name: string | null;
+    phone: string;
+    sender_type: string;
+    last_message: string;
+    created_at: Date;
+  }[]
+>(
+  Prisma.sql`
+    SELECT DISTINCT ON (fromnumber)
+      name,
+      fromnumber AS phone,
+      sender_type,
+      message AS last_message,
+      created_at
+    FROM "whatsapp_messages"
+    WHERE sender_type = 'user'
+    ORDER BY fromnumber, created_at DESC
+  `
+);  
     res.json({
       success: true,
       data: users,
@@ -42,23 +45,23 @@ export const fetchWhatsappMessages = async (req: Request, res: Response) => {
     const { phone } = req.params;
 
     const messages = await prisma.whatsapp_messages.findMany({
-      where: {
-        OR: [{ fromnumber: phone }, { tonumber: phone }],
-        OR: [
-          { fromnumber: phone },
-          { tonumber: phone },
-        ],
-      },
-      orderBy: {
-        created_at: "asc",
-      },
-      select: {
-        id: true, // BigInt
-        message: true,
-        sender_type: true,
-        created_at: true,
-      },
-    });
+  where: {
+    OR: [
+      { fromnumber: phone },
+      { tonumber: phone },
+    ],
+  },
+  orderBy: {
+    created_at: "asc",
+  },
+  select: {
+    id: true,
+    message: true,
+    sender_type: true,
+    created_at: true,
+  },
+});
+
 
     res.json({
       success: true,
