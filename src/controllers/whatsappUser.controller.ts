@@ -12,7 +12,7 @@ export const fetchWhatsappUsers = async (_req: Request, res: Response) => {
         last_message: string;
         created_at: Date;
       }[]
-    >`
+    `
       SELECT DISTINCT ON (fromnumber)
         name,
         fromnumber AS phone,
