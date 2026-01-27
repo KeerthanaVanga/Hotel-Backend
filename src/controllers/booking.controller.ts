@@ -1,18 +1,22 @@
 import { Request, Response } from "express";
-import { getUpcomingBookingsForAllUsers,getTodayCheckIns,getTodayCheckOuts } from "../services/booking.service.js";
+import {
+  getUpcomingBookingsForAllUsers,
+  getTodayCheckIns,
+  getTodayCheckOuts,
+  updateBookingStatus,
+} from "../services/booking.service.js";
 
 // BigInt-safe serializer
 const serializeBigInt = (data: any) =>
   JSON.parse(
     JSON.stringify(data, (_, value) =>
-      typeof value === "bigint" ? value.toString() : value
-    )
+      typeof value === "bigint" ? value.toString() : value,
+    ),
   );
-
 
 export const fetchUpcomingBookingsForAllUsers = async (
   req: Request,
-  res: Response
+  res: Response,
 ) => {
   try {
     const bookings = await getUpcomingBookingsForAllUsers();
@@ -32,12 +36,7 @@ export const fetchUpcomingBookingsForAllUsers = async (
   }
 };
 
-
-
-export const fetchTodayCheckIns = async (
-  req: Request,
-  res: Response
-) => {
+export const fetchTodayCheckIns = async (req: Request, res: Response) => {
   try {
     const checkins = await getTodayCheckIns();
 
@@ -56,14 +55,7 @@ export const fetchTodayCheckIns = async (
   }
 };
 
-
-
-
-
-export const fetchTodayCheckOuts = async (
-  req: Request,
-  res: Response
-) => {
+export const fetchTodayCheckOuts = async (req: Request, res: Response) => {
   try {
     const checkouts = await getTodayCheckOuts();
 
@@ -78,6 +70,38 @@ export const fetchTodayCheckOuts = async (
     return res.status(500).json({
       success: false,
       message: "Failed to fetch today's check-outs",
+    });
+  }
+};
+
+export const updateBookingStatusController = async (
+  req: Request,
+  res: Response,
+) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    if (!status) {
+      return res.status(400).json({
+        success: false,
+        message: "Status is required",
+      });
+    }
+
+    const updated = await updateBookingStatus(BigInt(id), status);
+
+    return res.status(200).json({
+      success: true,
+      data: updated,
+      message: "Status Updated Successfully",
+    });
+  } catch (error) {
+    console.error("UPDATE BOOKING STATUS ERROR:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to update booking status",
     });
   }
 };

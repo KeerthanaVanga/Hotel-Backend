@@ -13,7 +13,7 @@ export const getUpcomingBookingsForAllUsers = async () => {
   }
 
   // 2️⃣ Extract user IDs
-  const userIds = users.map(user => user.user_id);
+  const userIds = users.map((user) => user.user_id);
 
   // 3️⃣ Calculate start of today in IST → UTC
   const now = new Date();
@@ -22,12 +22,15 @@ export const getUpcomingBookingsForAllUsers = async () => {
     now.getFullYear(),
     now.getMonth(),
     now.getDate(),
-    0, 0, 0, 0
+    0,
+    0,
+    0,
+    0,
   );
 
   // IST offset = +5:30
   const startOfTodayUTC = new Date(
-    startOfTodayIST.getTime() - (5.5 * 60 * 60 * 1000)
+    startOfTodayIST.getTime() - 5.5 * 60 * 60 * 1000,
   );
 
   // 4️⃣ Fetch bookings
@@ -52,14 +55,14 @@ export const getUpcomingBookingsForAllUsers = async () => {
         },
       },
       rooms: {
-  select: {
-    room_id: true,
-    room_name: true,
-    room_type: true,
-    room_number: true,
-    price: true,
-  },
-},
+        select: {
+          room_id: true,
+          room_name: true,
+          room_type: true,
+          room_number: true,
+          price: true,
+        },
+      },
     },
   });
 };
@@ -147,6 +150,20 @@ export const getTodayCheckOuts = async () => {
     },
     orderBy: {
       check_out: "asc",
+    },
+  });
+};
+
+export const updateBookingStatus = async (
+  bookingId: bigint,
+  status: string,
+) => {
+  return prisma.bookings.update({
+    where: {
+      booking_id: bookingId,
+    },
+    data: {
+      status,
     },
   });
 };
