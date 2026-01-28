@@ -23,8 +23,10 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173",
   "https://hotel-frontend-kbhksla5k-keerthana-vangas-projects.vercel.app",
-  "https://hotel-frontend-zeta-one.vercel.app"
+  "https://hotel-frontend-zeta-one.vercel.app",
 ];
+
+app.set("trust proxy", 1); // 👈 ADD THIS
 
 app.use(
   cors({
@@ -39,7 +41,7 @@ app.use(
       return callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
-  })
+  }),
 );
 
 app.use(express.json());

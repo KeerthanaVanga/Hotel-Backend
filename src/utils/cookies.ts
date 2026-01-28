@@ -3,7 +3,7 @@ import { Response } from "express";
 export const setAuthCookies = (
   res: Response,
   accessToken: string,
-  refreshToken: string
+  refreshToken: string,
 ) => {
   res.cookie("accessToken", accessToken, {
     httpOnly: true,
@@ -21,6 +21,15 @@ export const setAuthCookies = (
 };
 
 export const clearAuthCookies = (res: Response) => {
-  res.clearCookie("accessToken");
-  res.clearCookie("refreshToken");
+  res.clearCookie("accessToken", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+  });
+
+  res.clearCookie("refreshToken", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
+  });
 };
