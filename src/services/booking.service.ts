@@ -128,7 +128,7 @@ export const getTodayCheckOuts = async () => {
             lt: today,
           },
           status: {
-            not: "checked-out",
+            not: "checked out",
           },
         },
       ],

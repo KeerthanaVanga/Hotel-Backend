@@ -1,9 +1,13 @@
 import { prisma } from "../lib/prisma.js";
 import { startOfDay, endOfDay } from "date-fns";
 
-/** Format helpers */
+/** Format hour in UTC so we don't double-convert (DB stores UTC; avoid showing IST) */
 const formatHour = (d: Date) =>
-  d.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" });
+  d.toLocaleTimeString("en-IN", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "UTC",
+  });
 
 export const getDashboardSummary = async () => {
   // Always compute "today" in IST
@@ -67,20 +71,18 @@ export const getDashboardSummary = async () => {
     count: g._count.status,
   }));
 
-  // Graph: hourly bookings today (created_at grouped by hour)
-  // Postgres:
-  const hourly = await prisma.$queryRaw<{ hour: Date; count: number }[]>`
-    SELECT date_trunc('hour', created_at) as hour,
+  // Graph: bookings today by exact time (minute) so e.g. 9:05 AM shows exactly
+  const byMinute = await prisma.$queryRaw<{ time: Date; count: number }[]>` 
+    SELECT date_trunc('minute', created_at) as time,
            COUNT(*)::int as count
     FROM bookings
     WHERE created_at BETWEEN ${fromDate} AND ${toDate}
-    GROUP BY date_trunc('hour', created_at)
-    ORDER BY date_trunc('hour', created_at)
+    GROUP BY date_trunc('minute', created_at)
+    ORDER BY date_trunc('minute', created_at)
   `;
-
-  const hourlyBookings = hourly.map((h) => ({
-    hour: formatHour(h.hour),
-    count: Number(h.count),
+  const hourlyBookings = byMinute.map((row) => ({
+    hour: formatHour(row.time),
+    count: Number(row.count),
   }));
 
   return {
