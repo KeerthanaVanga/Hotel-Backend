@@ -41,18 +41,6 @@ export async function searchHotels(
   });
 
   return {
-    ads: (data.ads || []).map((a: any) => ({
-      id: a.property_token,
-      name: a.name,
-      price: a.extracted_price,
-      image: a.thumbnail,
-      rating: a.overall_rating,
-      reviews: a.reviews,
-      source: a.source,
-      amenities: a.amenities || [],
-      propertyToken: a.property_token,
-    })),
-
     properties: (data.properties || []).map((p: any) => ({
       id: p.property_token,
       name: p.name,
