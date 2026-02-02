@@ -34,7 +34,8 @@ export const getDashboardSummary = async () => {
 
   // Today check-in (check_in is today)
   const todayCheckIn = await prisma.bookings.count({
-    where: { check_in: { gte: fromDate, lte: toDate } },
+    where: { check_in: { gte: fromDate, lte: toDate },
+    NOT: { status: "cancelled" }, },
   });
 
   // Today checkout (check_out is today)

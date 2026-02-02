@@ -43,17 +43,16 @@ export const fetchOfferById = async (req: Request, res: Response) => {
 
 /** POST /offers */
 export const createOfferHandler = async (req: Request, res: Response) => {
-  const { title, room_id, discount_percent, start_date, end_date, is_active } =
+  const { title, room_id, discount_percent, offer_price, start_date, end_date, is_active } =
     req.body;
 
   if (!room_id || !discount_percent) {
     return res.status(400).json({
-      message: "room_name and discount_percent are required",
+      message: "room_id and discount_percent are required",
     });
   }
 
   try {
-    // 🔑 Convert room_name → room_id
     const room = await prisma.rooms.findFirst({
       where: { room_id },
       select: { room_id: true },
@@ -67,6 +66,7 @@ export const createOfferHandler = async (req: Request, res: Response) => {
       title: title,
       room_id: room.room_id,
       discount_percent: Number(discount_percent),
+      offer_price: offer_price != null && offer_price !== "" ? Number(offer_price) : null,
       start_date: start_date ? new Date(start_date) : null,
       end_date: end_date ? new Date(end_date) : null,
       is_active: is_active ?? true,
@@ -86,13 +86,13 @@ export const updateOfferHandler = async (req: Request, res: Response) => {
     return res.status(400).json({ message: "Invalid offer id" });
   }
 
-  const { title, room_id, discount_percent, start_date, end_date, is_active } =
+  const { title, room_id, discount_percent, offer_price, start_date, end_date, is_active } =
     req.body;
 
   try {
-    let room_id: number | undefined;
+    let resolvedRoomId: number | undefined;
 
-    if (room_id) {
+    if (room_id != null) {
       const room = await prisma.rooms.findFirst({
         where: { room_id },
         select: { room_id: true },
@@ -101,13 +101,16 @@ export const updateOfferHandler = async (req: Request, res: Response) => {
       if (!room) {
         return res.status(404).json({ message: "Room not found" });
       }
-      room_id = room.room_id;
+      resolvedRoomId = room.room_id;
     }
 
     const updated = await updateOffer(offerId, {
-      ...(room_id ? { room_id } : {}),
+      ...(resolvedRoomId !== undefined ? { room_id: resolvedRoomId } : {}),
       ...(discount_percent !== undefined
         ? { discount_percent: Number(discount_percent) }
+        : {}),
+      ...(offer_price !== undefined
+        ? { offer_price: offer_price == null || offer_price === "" ? null : Number(offer_price) }
         : {}),
       ...(start_date !== undefined
         ? { start_date: start_date ? new Date(start_date) : null }
