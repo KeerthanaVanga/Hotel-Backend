@@ -14,6 +14,11 @@ const serializeBigInt = (data: any) =>
   );
 
 const PAYMENT_METHODS = ["partial_online", "full_online", "offline"] as const;
+/** Legacy values from booking flow; map to PAYMENT_METHODS before validation */
+const METHOD_ALIASES: Record<string, (typeof PAYMENT_METHODS)[number]> = {
+  partial: "partial_online",
+  online: "full_online",
+};
 const PAYMENT_STATUSES = ["partial_paid", "paid", "pending"] as const;
 
 export const fetchAllUsersPayments = async (
@@ -45,13 +50,14 @@ export const updatePaymentHandler = async (req: Request, res: Response) => {
 
     const data: Parameters<typeof updatePayment>[1] = {};
     if (method !== undefined) {
-      if (!PAYMENT_METHODS.includes(method)) {
+      const normalizedMethod = METHOD_ALIASES[method] ?? method;
+      if (!PAYMENT_METHODS.includes(normalizedMethod)) {
         return res.status(400).json({
           success: false,
           message: "method must be one of: partial_online, full_online, offline",
         });
       }
-      data.method = method;
+      data.method = normalizedMethod;
     }
     if (status !== undefined) {
       if (!PAYMENT_STATUSES.includes(status)) {
