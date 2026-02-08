@@ -4,14 +4,7 @@ import {
   getPaymentById,
   updatePayment,
 } from "../services/payment.service.js";
-
-// BigInt-safe serializer
-const serializeBigInt = (data: any) =>
-  JSON.parse(
-    JSON.stringify(data, (_, value) =>
-      typeof value === "bigint" ? value.toString() : value
-    )
-  );
+import { serializeBigInt } from "../utils/serializeBigint.js";
 
 const PAYMENT_METHODS = ["partial_online", "full_online", "offline"] as const;
 /** Legacy values from booking flow; map to PAYMENT_METHODS before validation */
@@ -21,10 +14,7 @@ const METHOD_ALIASES: Record<string, (typeof PAYMENT_METHODS)[number]> = {
 };
 const PAYMENT_STATUSES = ["partial_paid", "paid", "pending"] as const;
 
-export const fetchAllUsersPayments = async (
-  req: Request,
-  res: Response
-) => {
+export const fetchAllUsersPayments = async (req: Request, res: Response) => {
   try {
     const payments = await getAllUsersPayments();
 
@@ -54,7 +44,8 @@ export const updatePaymentHandler = async (req: Request, res: Response) => {
       if (!PAYMENT_METHODS.includes(normalizedMethod)) {
         return res.status(400).json({
           success: false,
-          message: "method must be one of: partial_online, full_online, offline",
+          message:
+            "method must be one of: partial_online, full_online, offline",
         });
       }
       data.method = normalizedMethod;

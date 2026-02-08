@@ -288,15 +288,15 @@ export const rescheduleBooking = async (input: RescheduleBookingInput) => {
   const billAmount = pricePerNight * nights;
 
   const guestEmail =
-    input.guest_email?.trim() ||
-    `guest-${Date.now()}@booking.local`;
+    input.guest_email?.trim() || `guest-${Date.now()}@booking.local`;
 
   await prisma.users.update({
     where: { user_id: booking.user_id },
     data: {
       name: input.guest_name.trim(),
       email: guestEmail,
-      whatsapp_number: String(input.whatsapp_number).replace(/\D/g, "").slice(0, 12) || "0",
+      whatsapp_number:
+        String(input.whatsapp_number).replace(/\D/g, "").slice(0, 12) || "0",
     },
   });
 
@@ -449,13 +449,13 @@ export const createBooking = async (input: CreateBookingInput) => {
     user = existing;
   } else {
     const guestEmail =
-      input.guest_email?.trim() ||
-      `guest-${Date.now()}@booking.local`;
+      input.guest_email?.trim() || `guest-${Date.now()}@booking.local`;
     user = await prisma.users.create({
       data: {
         name: input.guest_name,
         email: guestEmail,
-        whatsapp_number: String(input.whatsapp_number).replace(/\D/g, "").slice(0, 12) || "0",
+        whatsapp_number:
+          String(input.whatsapp_number).replace(/\D/g, "").slice(0, 12) || "0",
       },
     });
   }
@@ -476,7 +476,7 @@ export const createBooking = async (input: CreateBookingInput) => {
     },
   });
 
-  await prisma.payments.create({
+  const payment = await prisma.payments.create({
     data: {
       user_id: user.user_id,
       booking_id: booking.booking_id,
@@ -488,5 +488,5 @@ export const createBooking = async (input: CreateBookingInput) => {
     },
   });
 
-  return booking;
+  return { booking, payment, room };
 };

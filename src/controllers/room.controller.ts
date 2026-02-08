@@ -1,14 +1,11 @@
 import { Request, Response } from "express";
-import { getAllRooms, createRoom, updateRoomById } from "../services/room.service.js";
+import {
+  getAllRooms,
+  createRoom,
+  updateRoomById,
+} from "../services/room.service.js";
 import { uploadBufferToCloudinary } from "../utils/cloudinaryUpload.js";
-
-// BigInt-safe serializer
-const serializeBigInt = (data: any) =>
-  JSON.parse(
-    JSON.stringify(data, (_, value) =>
-      typeof value === "bigint" ? value.toString() : value
-    )
-  );
+import { serializeBigInt } from "../utils/serializeBigint.js";
 
 export const fetchAllRooms = async (req: Request, res: Response) => {
   try {
@@ -47,7 +44,7 @@ export const addRoom = async (req: Request, res: Response) => {
 
     // ✅ Upload to Cloudinary
     const image_urls = await Promise.all(
-      files.map((f) => uploadBufferToCloudinary(f.buffer, "hotel/rooms"))
+      files.map((f) => uploadBufferToCloudinary(f.buffer, "hotel/rooms")),
     );
 
     const room = await createRoom({
@@ -96,7 +93,7 @@ export const updateRoom = async (req: Request, res: Response) => {
 
     // ✅ Upload new images to Cloudinary
     const newImageUrls = await Promise.all(
-      files.map((f) => uploadBufferToCloudinary(f.buffer, "hotel/rooms"))
+      files.map((f) => uploadBufferToCloudinary(f.buffer, "hotel/rooms")),
     );
 
     const finalImages = [

@@ -1,13 +1,6 @@
 import { Request, Response } from "express";
 import { getDashboardSummary } from "../services/dashboard.service.js";
-
-// BigInt-safe serializer
-const serializeBigInt = (data: any) =>
-  JSON.parse(
-    JSON.stringify(data, (_, value) =>
-      typeof value === "bigint" ? value.toString() : value
-    )
-  );
+import { serializeBigInt } from "../utils/serializeBigint.js";
 
 export const fetchDashboardSummary = async (req: Request, res: Response) => {
   try {

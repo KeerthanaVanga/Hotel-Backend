@@ -1,13 +1,6 @@
 import { Request, Response } from "express";
 import { getAllReviews } from "../services/review.service.js";
-
-// BigInt-safe serializer
-const serializeBigInt = (data: any) =>
-  JSON.parse(
-    JSON.stringify(data, (_, value) =>
-      typeof value === "bigint" ? value.toString() : value
-    )
-  );
+import { serializeBigInt } from "../utils/serializeBigint.js";
 
 export const fetchAllReviews = async (req: Request, res: Response) => {
   try {

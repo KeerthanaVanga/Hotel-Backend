@@ -9,14 +9,8 @@ import {
   checkRoomAvailability,
   rescheduleBooking,
 } from "../services/booking.service.js";
-
-// BigInt-safe serializer
-const serializeBigInt = (data: any) =>
-  JSON.parse(
-    JSON.stringify(data, (_, value) =>
-      typeof value === "bigint" ? value.toString() : value,
-    ),
-  );
+import { sendBookingConfirmationWhatsApp } from "../services/whatsapp.service.js";
+import { serializeBigInt } from "../utils/serializeBigint.js";
 
 export const fetchUpcomingBookingsForAllUsers = async (
   req: Request,
@@ -195,7 +189,8 @@ export const rescheduleBookingController = async (
       check_in: String(body.check_in),
       check_out: String(body.check_out),
       guest_name: String(body.guest_name).trim(),
-      guest_email: body.guest_email != null ? String(body.guest_email).trim() : undefined,
+      guest_email:
+        body.guest_email != null ? String(body.guest_email).trim() : undefined,
       whatsapp_number: String(body.whatsapp_number).trim(),
       adults,
       children: body.children != null ? Number(body.children) : undefined,
@@ -303,7 +298,7 @@ export const createBookingController = async (req: Request, res: Response) => {
       });
     }
 
-    const booking = await createBooking({
+    const { booking, payment, room } = await createBooking({
       room_id,
       check_in: body.check_in,
       check_out: body.check_out,
@@ -316,6 +311,17 @@ export const createBookingController = async (req: Request, res: Response) => {
       payment_method: paymentMethod,
     });
 
+    sendBookingConfirmationWhatsApp({
+      phone: String(body.whatsapp_number).trim(),
+      guestName: String(body.guest_name),
+      checkIn: String(body.check_in),
+      checkOut: String(body.check_out),
+      nights: String(booking.check_out.getDate() - booking.check_in.getDate()),
+      adults: String(adults),
+      children: String(body.children),
+      room_name: String(room.room_name),
+      final_amount: String(payment.bill_amount),
+    });
     return res.status(201).json({
       success: true,
       data: serializeBigInt(booking),
