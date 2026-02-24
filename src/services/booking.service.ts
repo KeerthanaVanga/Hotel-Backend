@@ -51,6 +51,7 @@ export const getUpcomingBookingsForAllUsers = async () => {
         select: {
           user_id: true,
           name: true,
+          whatsapp_number: true,
           email: true,
         },
       },
