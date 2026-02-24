@@ -15,6 +15,18 @@ export const createUser = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "Missing required fields" });
     }
 
+    // ✅ Get allowed emails from .env
+    const allowedEmails = process.env.ALLOWED_ADMIN_EMAILS?.split(",").map(
+      (e) => e.trim().toLowerCase(),
+    );
+
+    // ✅ Check if email is allowed
+    if (!allowedEmails?.includes(email.toLowerCase())) {
+      return res.status(403).json({
+        message: "You are not authorized to create an account",
+      });
+    }
+
     const existingUser = await prisma.admin.findUnique({
       where: { email },
     });
@@ -245,11 +257,15 @@ export const changePassword = async (req: AuthRequest, res: Response) => {
     const { currentPassword, newPassword } = req.body;
 
     if (!currentPassword || !newPassword) {
-      return res.status(400).json({ message: "Current password and new password are required" });
+      return res
+        .status(400)
+        .json({ message: "Current password and new password are required" });
     }
 
     if (newPassword.length < 6) {
-      return res.status(400).json({ message: "New password must be at least 6 characters" });
+      return res
+        .status(400)
+        .json({ message: "New password must be at least 6 characters" });
     }
 
     const admin = await prisma.admin.findUnique({
@@ -323,11 +339,15 @@ export const createAdmin = async (req: AuthRequest, res: Response) => {
     const { username, email, password } = req.body;
 
     if (!username || !email || !password) {
-      return res.status(400).json({ message: "Username, email and password are required" });
+      return res
+        .status(400)
+        .json({ message: "Username, email and password are required" });
     }
 
     if (password.length < 6) {
-      return res.status(400).json({ message: "Password must be at least 6 characters" });
+      return res
+        .status(400)
+        .json({ message: "Password must be at least 6 characters" });
     }
 
     const existing = await prisma.admin.findUnique({
@@ -335,7 +355,9 @@ export const createAdmin = async (req: AuthRequest, res: Response) => {
     });
 
     if (existing) {
-      return res.status(409).json({ message: "An admin with this email already exists" });
+      return res
+        .status(409)
+        .json({ message: "An admin with this email already exists" });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -375,7 +397,9 @@ export const updateAdmin = async (req: AuthRequest, res: Response) => {
     if (email !== undefined) data.email = email;
     if (password !== undefined && password !== "") {
       if (password.length < 6) {
-        return res.status(400).json({ message: "Password must be at least 6 characters" });
+        return res
+          .status(400)
+          .json({ message: "Password must be at least 6 characters" });
       }
       data.password = await bcrypt.hash(password, 10);
     }
@@ -389,7 +413,9 @@ export const updateAdmin = async (req: AuthRequest, res: Response) => {
         where: { email, id: { not: id } },
       });
       if (existing) {
-        return res.status(409).json({ message: "An admin with this email already exists" });
+        return res
+          .status(409)
+          .json({ message: "An admin with this email already exists" });
       }
     }
 
@@ -427,7 +453,9 @@ export const deleteAdmin = async (req: AuthRequest, res: Response) => {
     }
 
     if (id === req.userId) {
-      return res.status(400).json({ message: "You cannot delete your own account" });
+      return res
+        .status(400)
+        .json({ message: "You cannot delete your own account" });
     }
 
     await prisma.admin.delete({
