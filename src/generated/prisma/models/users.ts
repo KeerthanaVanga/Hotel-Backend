@@ -192,7 +192,7 @@ export type usersGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type UsersGroupByOutputType = {
   user_id: number
   name: string
-  email: string
+  email: string | null
   whatsapp_number: runtime.Decimal
   created_at: Date
   updated_at: Date
@@ -224,7 +224,7 @@ export type usersWhereInput = {
   NOT?: Prisma.usersWhereInput | Prisma.usersWhereInput[]
   user_id?: Prisma.IntFilter<"users"> | number
   name?: Prisma.StringFilter<"users"> | string
-  email?: Prisma.StringFilter<"users"> | string
+  email?: Prisma.StringNullableFilter<"users"> | string | null
   whatsapp_number?: Prisma.DecimalFilter<"users"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFilter<"users"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"users"> | Date | string
@@ -237,7 +237,7 @@ export type usersWhereInput = {
 export type usersOrderByWithRelationInput = {
   user_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  email?: Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
   whatsapp_number?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -253,7 +253,7 @@ export type usersWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.usersWhereInput[]
   NOT?: Prisma.usersWhereInput | Prisma.usersWhereInput[]
   name?: Prisma.StringFilter<"users"> | string
-  email?: Prisma.StringFilter<"users"> | string
+  email?: Prisma.StringNullableFilter<"users"> | string | null
   whatsapp_number?: Prisma.DecimalFilter<"users"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFilter<"users"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"users"> | Date | string
@@ -266,7 +266,7 @@ export type usersWhereUniqueInput = Prisma.AtLeast<{
 export type usersOrderByWithAggregationInput = {
   user_id?: Prisma.SortOrder
   name?: Prisma.SortOrder
-  email?: Prisma.SortOrder
+  email?: Prisma.SortOrderInput | Prisma.SortOrder
   whatsapp_number?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
@@ -283,7 +283,7 @@ export type usersScalarWhereWithAggregatesInput = {
   NOT?: Prisma.usersScalarWhereWithAggregatesInput | Prisma.usersScalarWhereWithAggregatesInput[]
   user_id?: Prisma.IntWithAggregatesFilter<"users"> | number
   name?: Prisma.StringWithAggregatesFilter<"users"> | string
-  email?: Prisma.StringWithAggregatesFilter<"users"> | string
+  email?: Prisma.StringNullableWithAggregatesFilter<"users"> | string | null
   whatsapp_number?: Prisma.DecimalWithAggregatesFilter<"users"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeWithAggregatesFilter<"users"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"users"> | Date | string
@@ -291,7 +291,7 @@ export type usersScalarWhereWithAggregatesInput = {
 
 export type usersCreateInput = {
   name: string
-  email: string
+  email?: string | null
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
@@ -304,7 +304,7 @@ export type usersCreateInput = {
 export type usersUncheckedCreateInput = {
   user_id?: number
   name: string
-  email: string
+  email?: string | null
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
@@ -316,7 +316,7 @@ export type usersUncheckedCreateInput = {
 
 export type usersUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -329,7 +329,7 @@ export type usersUpdateInput = {
 export type usersUncheckedUpdateInput = {
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -342,7 +342,7 @@ export type usersUncheckedUpdateInput = {
 export type usersCreateManyInput = {
   user_id?: number
   name: string
-  email: string
+  email?: string | null
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
@@ -350,7 +350,7 @@ export type usersCreateManyInput = {
 
 export type usersUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -359,7 +359,7 @@ export type usersUpdateManyMutationInput = {
 export type usersUncheckedUpdateManyInput = {
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -472,7 +472,7 @@ export type usersUpdateOneRequiredWithoutReviewsNestedInput = {
 
 export type usersCreateWithoutBookingsInput = {
   name: string
-  email: string
+  email?: string | null
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
@@ -484,7 +484,7 @@ export type usersCreateWithoutBookingsInput = {
 export type usersUncheckedCreateWithoutBookingsInput = {
   user_id?: number
   name: string
-  email: string
+  email?: string | null
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
@@ -511,7 +511,7 @@ export type usersUpdateToOneWithWhereWithoutBookingsInput = {
 
 export type usersUpdateWithoutBookingsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -523,7 +523,7 @@ export type usersUpdateWithoutBookingsInput = {
 export type usersUncheckedUpdateWithoutBookingsInput = {
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -534,7 +534,7 @@ export type usersUncheckedUpdateWithoutBookingsInput = {
 
 export type usersCreateWithoutEmailsInput = {
   name: string
-  email: string
+  email?: string | null
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
@@ -546,7 +546,7 @@ export type usersCreateWithoutEmailsInput = {
 export type usersUncheckedCreateWithoutEmailsInput = {
   user_id?: number
   name: string
-  email: string
+  email?: string | null
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
@@ -573,7 +573,7 @@ export type usersUpdateToOneWithWhereWithoutEmailsInput = {
 
 export type usersUpdateWithoutEmailsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -585,7 +585,7 @@ export type usersUpdateWithoutEmailsInput = {
 export type usersUncheckedUpdateWithoutEmailsInput = {
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -596,7 +596,7 @@ export type usersUncheckedUpdateWithoutEmailsInput = {
 
 export type usersCreateWithoutPaymentsInput = {
   name: string
-  email: string
+  email?: string | null
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
@@ -608,7 +608,7 @@ export type usersCreateWithoutPaymentsInput = {
 export type usersUncheckedCreateWithoutPaymentsInput = {
   user_id?: number
   name: string
-  email: string
+  email?: string | null
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
@@ -635,7 +635,7 @@ export type usersUpdateToOneWithWhereWithoutPaymentsInput = {
 
 export type usersUpdateWithoutPaymentsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -647,7 +647,7 @@ export type usersUpdateWithoutPaymentsInput = {
 export type usersUncheckedUpdateWithoutPaymentsInput = {
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -658,7 +658,7 @@ export type usersUncheckedUpdateWithoutPaymentsInput = {
 
 export type usersCreateWithoutReviewsInput = {
   name: string
-  email: string
+  email?: string | null
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
@@ -670,7 +670,7 @@ export type usersCreateWithoutReviewsInput = {
 export type usersUncheckedCreateWithoutReviewsInput = {
   user_id?: number
   name: string
-  email: string
+  email?: string | null
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
@@ -697,7 +697,7 @@ export type usersUpdateToOneWithWhereWithoutReviewsInput = {
 
 export type usersUpdateWithoutReviewsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -709,7 +709,7 @@ export type usersUpdateWithoutReviewsInput = {
 export type usersUncheckedUpdateWithoutReviewsInput = {
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -839,7 +839,7 @@ export type $usersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     user_id: number
     name: string
-    email: string
+    email: string | null
     whatsapp_number: runtime.Decimal
     created_at: Date
     updated_at: Date

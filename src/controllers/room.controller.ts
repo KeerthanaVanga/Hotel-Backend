@@ -31,7 +31,6 @@ export const addRoom = async (req: Request, res: Response) => {
     const {
       room_name,
       room_type,
-      room_number,
       price,
       description,
       total_rooms,
@@ -50,7 +49,6 @@ export const addRoom = async (req: Request, res: Response) => {
     const room = await createRoom({
       room_name,
       room_type,
-      room_number: Number(room_number),
       price: Number(price),
       description,
       image_urls,

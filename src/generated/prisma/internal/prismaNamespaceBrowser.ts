@@ -61,7 +61,8 @@ export const ModelName = {
   users: 'users',
   whatsapp_messages: 'whatsapp_messages',
   reviews: 'reviews',
-  room_offers: 'room_offers'
+  room_offers: 'room_offers',
+  room_units: 'room_units'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -160,7 +161,6 @@ export type Payments_webhooksScalarFieldEnum = (typeof Payments_webhooksScalarFi
 export const RoomsScalarFieldEnum = {
   room_id: 'room_id',
   room_type: 'room_type',
-  room_number: 'room_number',
   rooms_available: 'rooms_available',
   price: 'price',
   description: 'description',
@@ -233,6 +233,18 @@ export const Room_offersScalarFieldEnum = {
 } as const
 
 export type Room_offersScalarFieldEnum = (typeof Room_offersScalarFieldEnum)[keyof typeof Room_offersScalarFieldEnum]
+
+
+export const Room_unitsScalarFieldEnum = {
+  id: 'id',
+  room_number: 'room_number',
+  status: 'status',
+  room_id: 'room_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Room_unitsScalarFieldEnum = (typeof Room_unitsScalarFieldEnum)[keyof typeof Room_unitsScalarFieldEnum]
 
 
 export const SortOrder = {

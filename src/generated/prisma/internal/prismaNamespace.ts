@@ -394,7 +394,8 @@ export const ModelName = {
   users: 'users',
   whatsapp_messages: 'whatsapp_messages',
   reviews: 'reviews',
-  room_offers: 'room_offers'
+  room_offers: 'room_offers',
+  room_units: 'room_units'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -410,7 +411,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "admin" | "bookings" | "email_templates" | "emails" | "payments" | "payments_webhooks" | "rooms" | "users" | "whatsapp_messages" | "reviews" | "room_offers"
+    modelProps: "admin" | "bookings" | "email_templates" | "emails" | "payments" | "payments_webhooks" | "rooms" | "users" | "whatsapp_messages" | "reviews" | "room_offers" | "room_units"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1228,6 +1229,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    room_units: {
+      payload: Prisma.$room_unitsPayload<ExtArgs>
+      fields: Prisma.room_unitsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.room_unitsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_unitsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.room_unitsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_unitsPayload>
+        }
+        findFirst: {
+          args: Prisma.room_unitsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_unitsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.room_unitsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_unitsPayload>
+        }
+        findMany: {
+          args: Prisma.room_unitsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_unitsPayload>[]
+        }
+        create: {
+          args: Prisma.room_unitsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_unitsPayload>
+        }
+        createMany: {
+          args: Prisma.room_unitsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.room_unitsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_unitsPayload>[]
+        }
+        delete: {
+          args: Prisma.room_unitsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_unitsPayload>
+        }
+        update: {
+          args: Prisma.room_unitsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_unitsPayload>
+        }
+        deleteMany: {
+          args: Prisma.room_unitsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.room_unitsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.room_unitsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_unitsPayload>[]
+        }
+        upsert: {
+          args: Prisma.room_unitsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$room_unitsPayload>
+        }
+        aggregate: {
+          args: Prisma.Room_unitsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateRoom_units>
+        }
+        groupBy: {
+          args: Prisma.room_unitsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Room_unitsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.room_unitsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Room_unitsCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1347,7 +1422,6 @@ export type Payments_webhooksScalarFieldEnum = (typeof Payments_webhooksScalarFi
 export const RoomsScalarFieldEnum = {
   room_id: 'room_id',
   room_type: 'room_type',
-  room_number: 'room_number',
   rooms_available: 'rooms_available',
   price: 'price',
   description: 'description',
@@ -1420,6 +1494,18 @@ export const Room_offersScalarFieldEnum = {
 } as const
 
 export type Room_offersScalarFieldEnum = (typeof Room_offersScalarFieldEnum)[keyof typeof Room_offersScalarFieldEnum]
+
+
+export const Room_unitsScalarFieldEnum = {
+  id: 'id',
+  room_number: 'room_number',
+  status: 'status',
+  room_id: 'room_id',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Room_unitsScalarFieldEnum = (typeof Room_unitsScalarFieldEnum)[keyof typeof Room_unitsScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1678,6 +1764,7 @@ export type GlobalOmitConfig = {
   whatsapp_messages?: Prisma.whatsapp_messagesOmit
   reviews?: Prisma.reviewsOmit
   room_offers?: Prisma.room_offersOmit
+  room_units?: Prisma.room_unitsOmit
 }
 
 /* Types for Logging */
