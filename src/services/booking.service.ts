@@ -114,7 +114,7 @@ export const getTodayCheckIns = async () => {
         lt: tomorrow,
       },
       status: {
-        not: "cancelled",
+        notIn: ["cancelled", "checked out"],
       },
     },
     include: {
@@ -160,12 +160,12 @@ export const getTodayCheckOuts = async () => {
             lt: today,
           },
           status: {
-            not: "checked out",
+            equals: "check-in",
           },
         },
       ],
       status: {
-        not: "cancelled",
+        notIn: ["cancelled", "checked out"],
       },
     },
     include: {
