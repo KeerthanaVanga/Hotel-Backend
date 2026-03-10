@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getAllCheckInOptions } from "../services/checkinOption.service";
+import { getAllCheckInOptions } from "../services/checkinOption.service.js";
 import { serializeBigInt } from "../utils/serializeBigint.js";
 
 export const fetchAllCheckInOptions = async (_req: Request, res: Response) => {
