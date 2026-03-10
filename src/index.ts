@@ -12,6 +12,7 @@ import reportRoutes from "./routes/reports.routes.js";
 import inventoryRoutes from "./routes/inventory.routes.js";
 import dashboardRoutes from "./routes/dashboard.routes.js";
 import offerRoutes from "./routes/offers.route.js";
+import checkInOptionRoutes from "./routes/checkinOption.routes.js";
 
 import "./utils/bigint.js";
 
@@ -52,6 +53,7 @@ app.use("/users", userRoutes);
 app.use("/bookings", bookingRoutes);
 app.use("/rooms", roomRoutes);
 app.use("/offers", offerRoutes);
+app.use("/checkin-options", checkInOptionRoutes);
 app.use("/payments", paymentRoutes);
 app.use("/reviews", reviewRoutes);
 app.use("/reports", reportRoutes);

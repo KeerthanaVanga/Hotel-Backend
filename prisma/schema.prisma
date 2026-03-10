@@ -19,22 +19,26 @@ model admin {
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model bookings {
-  booking_id   BigInt     @id @default(autoincrement())
-  user_id      Int
-  room_id      Int
-  check_in     DateTime   @db.Timestamptz(6)
-  check_out    DateTime   @db.Timestamptz(6)
-  status       String     @default("pending")
-  adults       Int?
-  children     Int?       @default(0)
-  guests_total Int?       @default(dbgenerated("(adults + children)"))
-  created_at   DateTime   @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
-  updated_at   DateTime   @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
-  rooms        rooms      @relation(fields: [room_id], references: [room_id], onUpdate: NoAction)
-  users        users      @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
-  emails       emails[]
-  payments     payments[]
-  reviews      reviews[]
+  booking_id        BigInt           @id @default(autoincrement())
+  user_id           Int
+  room_id           Int
+  check_in          DateTime         @db.Timestamptz(6)
+  check_out         DateTime         @db.Timestamptz(6)
+  status            String           @default("pending")
+  adults            Int?
+  children          Int?             @default(0)
+  guests_total      Int?             @default(dbgenerated("(adults + children)"))
+  created_at        DateTime         @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
+  updated_at        DateTime         @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
+  checkin_option_id Int?
+  room_unit_id      Int?
+  rooms             rooms            @relation(fields: [room_id], references: [room_id], onUpdate: NoAction)
+  users             users            @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
+  room_units        room_units?      @relation(fields: [room_unit_id], references: [id], onUpdate: NoAction, map: "fk_booking_room_unit")
+  checkin_options   checkin_options? @relation(fields: [checkin_option_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_checkin_option")
+  emails            emails[]
+  payments          payments[]
+  reviews           reviews[]
 }
 
 model email_templates {
@@ -60,8 +64,8 @@ model payments {
   payment_id       BigInt   @id @default(autoincrement())
   user_id          Int
   booking_id       BigInt
-  method           String
-  status           String
+  payment_method   String
+  payment_status   String
   currency         String   @default("INR")
   bill_amount      Decimal  @db.Decimal(10, 2)
   bill_paid_amount Decimal  @default(0) @db.Decimal(10, 2)
@@ -79,37 +83,39 @@ model payments_webhooks {
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
 model rooms {
-  room_id         Int           @id @default(autoincrement())
-  room_type       String
-  rooms_available Int?
-  price           Decimal       @db.Decimal(10, 2)
-  description     String?
-  image_urls      String[]
-  total_rooms     Int?
-  booked_rooms    Int?
-  guests          Int?
-  created_at      DateTime      @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
-  updated_at      DateTime      @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
-  room_size       String?
-  room_name       String?
-  amenities       String[]
-  bookings        bookings[]
-  reviews         reviews[]
-  room_offers     room_offers[]
-  room_units      room_units[]
+  room_id          Int                @id @default(autoincrement())
+  room_type        String
+  rooms_available  Int?
+  price            Decimal            @db.Decimal(10, 2)
+  description      String?
+  image_urls       String[]
+  total_rooms      Int?
+  booked_rooms     Int?
+  guests           Int?
+  created_at       DateTime           @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
+  updated_at       DateTime           @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
+  room_size        String?
+  room_name        String?
+  amenities        String[]
+  booking_sessions booking_sessions[]
+  bookings         bookings[]
+  reviews          reviews[]
+  room_offers      room_offers[]
+  room_units       room_units[]
 }
 
 model users {
-  user_id         Int        @id @default(autoincrement())
-  name            String
-  email           String?
-  whatsapp_number Decimal    @db.Decimal(12, 0)
-  created_at      DateTime   @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
-  updated_at      DateTime   @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
-  bookings        bookings[]
-  emails          emails[]
-  payments        payments[]
-  reviews         reviews[]
+  user_id          Int                @id @default(autoincrement())
+  name             String
+  email            String?
+  whatsapp_number  Decimal            @db.Decimal(12, 0)
+  created_at       DateTime           @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
+  updated_at       DateTime           @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
+  booking_sessions booking_sessions[]
+  bookings         bookings[]
+  emails           emails[]
+  payments         payments[]
+  reviews          reviews[]
 }
 
 /// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
@@ -156,11 +162,85 @@ model room_offers {
 }
 
 model room_units {
-  id          Int      @id @default(autoincrement())
-  room_number Int      @unique
-  status      String?  @default("available") @db.VarChar(20)
-  room_id     Int
-  created_at  DateTime @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
-  updated_at  DateTime @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
-  rooms       rooms    @relation(fields: [room_id], references: [room_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_room_units_room")
+  id               Int                @id @default(autoincrement())
+  room_number      Int                @unique
+  status           String?            @default("available") @db.VarChar(20)
+  room_id          Int
+  created_at       DateTime           @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
+  updated_at       DateTime           @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
+  booking_sessions booking_sessions[]
+  bookings         bookings[]
+  rooms            rooms              @relation(fields: [room_id], references: [room_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_room_units_room")
+}
+
+model amenities {
+  id          Int       @id @default(autoincrement())
+  name        String?
+  description String?
+  created_at  DateTime? @default(now()) @db.Timestamp(6)
+}
+
+model booking_sessions {
+  session_id        BigInt           @id @default(autoincrement())
+  user_id           Int?
+  room_id           Int?
+  room_unit_id      Int?
+  check_in          DateTime?        @db.Timestamptz(6)
+  check_out         DateTime?        @db.Timestamptz(6)
+  adults            Int?
+  children          Int?             @default(0)
+  checkin_option_id Int?
+  booking_status    String?          @default("collecting") @db.VarChar(20)
+  payment_expected  Decimal?         @db.Decimal(10, 2)
+  expires_at        DateTime?        @default(dbgenerated("(now() + '00:30:00'::interval)")) @db.Timestamptz(6)
+  created_at        DateTime?        @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
+  updated_at        DateTime?        @default(dbgenerated("(now() AT TIME ZONE 'Asia/Kolkata'::text)")) @db.Timestamptz(6)
+  checkin_options   checkin_options? @relation(fields: [checkin_option_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  rooms             rooms?           @relation(fields: [room_id], references: [room_id], onDelete: NoAction, onUpdate: NoAction)
+  room_units        room_units?      @relation(fields: [room_unit_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  users             users?           @relation(fields: [user_id], references: [user_id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model checkin_options {
+  id               Int                @id @default(autoincrement())
+  title            String             @db.VarChar(100)
+  time_range       String             @db.VarChar(50)
+  description      String?
+  tag              String?            @db.VarChar(50)
+  checkin_price    Int?
+  is_free          Boolean?           @default(false)
+  booking_sessions booking_sessions[]
+  bookings         bookings[]
+}
+
+model hotel_highlights {
+  id          Int       @id @default(autoincrement())
+  title       String?
+  description String?
+  created_at  DateTime? @default(now()) @db.Timestamp(6)
+}
+
+model hotel_info {
+  id            Int       @id @default(autoincrement())
+  hotel_name    String    @db.VarChar(150)
+  description   String?
+  address       String?
+  city          String?   @db.VarChar(100)
+  state         String?   @db.VarChar(100)
+  country       String?   @db.VarChar(100)
+  phone         String?   @db.VarChar(20)
+  email         String?   @db.VarChar(150)
+  website       String?   @db.VarChar(255)
+  checkin_time  String?   @db.VarChar(50)
+  checkout_time String?   @db.VarChar(50)
+  total_rooms   Int?
+  created_at    DateTime? @default(now()) @db.Timestamp(6)
+}
+
+model whatsapp_templates {
+  id            Int       @id @default(autoincrement())
+  template_name String    @unique @db.VarChar(100)
+  template_json Json
+  created_at    DateTime? @default(now()) @db.Timestamp(6)
+  variables     String[]
 }

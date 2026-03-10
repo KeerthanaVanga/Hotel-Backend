@@ -33,6 +33,8 @@ export type BookingsAvgAggregateOutputType = {
   adults: number | null
   children: number | null
   guests_total: number | null
+  checkin_option_id: number | null
+  room_unit_id: number | null
 }
 
 export type BookingsSumAggregateOutputType = {
@@ -42,6 +44,8 @@ export type BookingsSumAggregateOutputType = {
   adults: number | null
   children: number | null
   guests_total: number | null
+  checkin_option_id: number | null
+  room_unit_id: number | null
 }
 
 export type BookingsMinAggregateOutputType = {
@@ -56,6 +60,8 @@ export type BookingsMinAggregateOutputType = {
   guests_total: number | null
   created_at: Date | null
   updated_at: Date | null
+  checkin_option_id: number | null
+  room_unit_id: number | null
 }
 
 export type BookingsMaxAggregateOutputType = {
@@ -70,6 +76,8 @@ export type BookingsMaxAggregateOutputType = {
   guests_total: number | null
   created_at: Date | null
   updated_at: Date | null
+  checkin_option_id: number | null
+  room_unit_id: number | null
 }
 
 export type BookingsCountAggregateOutputType = {
@@ -84,6 +92,8 @@ export type BookingsCountAggregateOutputType = {
   guests_total: number
   created_at: number
   updated_at: number
+  checkin_option_id: number
+  room_unit_id: number
   _all: number
 }
 
@@ -95,6 +105,8 @@ export type BookingsAvgAggregateInputType = {
   adults?: true
   children?: true
   guests_total?: true
+  checkin_option_id?: true
+  room_unit_id?: true
 }
 
 export type BookingsSumAggregateInputType = {
@@ -104,6 +116,8 @@ export type BookingsSumAggregateInputType = {
   adults?: true
   children?: true
   guests_total?: true
+  checkin_option_id?: true
+  room_unit_id?: true
 }
 
 export type BookingsMinAggregateInputType = {
@@ -118,6 +132,8 @@ export type BookingsMinAggregateInputType = {
   guests_total?: true
   created_at?: true
   updated_at?: true
+  checkin_option_id?: true
+  room_unit_id?: true
 }
 
 export type BookingsMaxAggregateInputType = {
@@ -132,6 +148,8 @@ export type BookingsMaxAggregateInputType = {
   guests_total?: true
   created_at?: true
   updated_at?: true
+  checkin_option_id?: true
+  room_unit_id?: true
 }
 
 export type BookingsCountAggregateInputType = {
@@ -146,6 +164,8 @@ export type BookingsCountAggregateInputType = {
   guests_total?: true
   created_at?: true
   updated_at?: true
+  checkin_option_id?: true
+  room_unit_id?: true
   _all?: true
 }
 
@@ -247,6 +267,8 @@ export type BookingsGroupByOutputType = {
   guests_total: number | null
   created_at: Date
   updated_at: Date
+  checkin_option_id: number | null
+  room_unit_id: number | null
   _count: BookingsCountAggregateOutputType | null
   _avg: BookingsAvgAggregateOutputType | null
   _sum: BookingsSumAggregateOutputType | null
@@ -284,8 +306,12 @@ export type bookingsWhereInput = {
   guests_total?: Prisma.IntNullableFilter<"bookings"> | number | null
   created_at?: Prisma.DateTimeFilter<"bookings"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"bookings"> | Date | string
+  checkin_option_id?: Prisma.IntNullableFilter<"bookings"> | number | null
+  room_unit_id?: Prisma.IntNullableFilter<"bookings"> | number | null
   rooms?: Prisma.XOR<Prisma.RoomsScalarRelationFilter, Prisma.roomsWhereInput>
   users?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
+  room_units?: Prisma.XOR<Prisma.Room_unitsNullableScalarRelationFilter, Prisma.room_unitsWhereInput> | null
+  checkin_options?: Prisma.XOR<Prisma.Checkin_optionsNullableScalarRelationFilter, Prisma.checkin_optionsWhereInput> | null
   emails?: Prisma.EmailsListRelationFilter
   payments?: Prisma.PaymentsListRelationFilter
   reviews?: Prisma.ReviewsListRelationFilter
@@ -303,8 +329,12 @@ export type bookingsOrderByWithRelationInput = {
   guests_total?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  checkin_option_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  room_unit_id?: Prisma.SortOrderInput | Prisma.SortOrder
   rooms?: Prisma.roomsOrderByWithRelationInput
   users?: Prisma.usersOrderByWithRelationInput
+  room_units?: Prisma.room_unitsOrderByWithRelationInput
+  checkin_options?: Prisma.checkin_optionsOrderByWithRelationInput
   emails?: Prisma.emailsOrderByRelationAggregateInput
   payments?: Prisma.paymentsOrderByRelationAggregateInput
   reviews?: Prisma.reviewsOrderByRelationAggregateInput
@@ -325,8 +355,12 @@ export type bookingsWhereUniqueInput = Prisma.AtLeast<{
   guests_total?: Prisma.IntNullableFilter<"bookings"> | number | null
   created_at?: Prisma.DateTimeFilter<"bookings"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"bookings"> | Date | string
+  checkin_option_id?: Prisma.IntNullableFilter<"bookings"> | number | null
+  room_unit_id?: Prisma.IntNullableFilter<"bookings"> | number | null
   rooms?: Prisma.XOR<Prisma.RoomsScalarRelationFilter, Prisma.roomsWhereInput>
   users?: Prisma.XOR<Prisma.UsersScalarRelationFilter, Prisma.usersWhereInput>
+  room_units?: Prisma.XOR<Prisma.Room_unitsNullableScalarRelationFilter, Prisma.room_unitsWhereInput> | null
+  checkin_options?: Prisma.XOR<Prisma.Checkin_optionsNullableScalarRelationFilter, Prisma.checkin_optionsWhereInput> | null
   emails?: Prisma.EmailsListRelationFilter
   payments?: Prisma.PaymentsListRelationFilter
   reviews?: Prisma.ReviewsListRelationFilter
@@ -344,6 +378,8 @@ export type bookingsOrderByWithAggregationInput = {
   guests_total?: Prisma.SortOrderInput | Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  checkin_option_id?: Prisma.SortOrderInput | Prisma.SortOrder
+  room_unit_id?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.bookingsCountOrderByAggregateInput
   _avg?: Prisma.bookingsAvgOrderByAggregateInput
   _max?: Prisma.bookingsMaxOrderByAggregateInput
@@ -366,6 +402,8 @@ export type bookingsScalarWhereWithAggregatesInput = {
   guests_total?: Prisma.IntNullableWithAggregatesFilter<"bookings"> | number | null
   created_at?: Prisma.DateTimeWithAggregatesFilter<"bookings"> | Date | string
   updated_at?: Prisma.DateTimeWithAggregatesFilter<"bookings"> | Date | string
+  checkin_option_id?: Prisma.IntNullableWithAggregatesFilter<"bookings"> | number | null
+  room_unit_id?: Prisma.IntNullableWithAggregatesFilter<"bookings"> | number | null
 }
 
 export type bookingsCreateInput = {
@@ -380,6 +418,8 @@ export type bookingsCreateInput = {
   updated_at?: Date | string
   rooms: Prisma.roomsCreateNestedOneWithoutBookingsInput
   users: Prisma.usersCreateNestedOneWithoutBookingsInput
+  room_units?: Prisma.room_unitsCreateNestedOneWithoutBookingsInput
+  checkin_options?: Prisma.checkin_optionsCreateNestedOneWithoutBookingsInput
   emails?: Prisma.emailsCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutBookingsInput
@@ -397,6 +437,8 @@ export type bookingsUncheckedCreateInput = {
   guests_total?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  checkin_option_id?: number | null
+  room_unit_id?: number | null
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutBookingsInput
@@ -414,6 +456,8 @@ export type bookingsUpdateInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rooms?: Prisma.roomsUpdateOneRequiredWithoutBookingsNestedInput
   users?: Prisma.usersUpdateOneRequiredWithoutBookingsNestedInput
+  room_units?: Prisma.room_unitsUpdateOneWithoutBookingsNestedInput
+  checkin_options?: Prisma.checkin_optionsUpdateOneWithoutBookingsNestedInput
   emails?: Prisma.emailsUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutBookingsNestedInput
@@ -431,6 +475,8 @@ export type bookingsUncheckedUpdateInput = {
   guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkin_option_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  room_unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   emails?: Prisma.emailsUncheckedUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutBookingsNestedInput
@@ -448,6 +494,8 @@ export type bookingsCreateManyInput = {
   guests_total?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  checkin_option_id?: number | null
+  room_unit_id?: number | null
 }
 
 export type bookingsUpdateManyMutationInput = {
@@ -474,6 +522,8 @@ export type bookingsUncheckedUpdateManyInput = {
   guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkin_option_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  room_unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type bookingsCountOrderByAggregateInput = {
@@ -488,6 +538,8 @@ export type bookingsCountOrderByAggregateInput = {
   guests_total?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  checkin_option_id?: Prisma.SortOrder
+  room_unit_id?: Prisma.SortOrder
 }
 
 export type bookingsAvgOrderByAggregateInput = {
@@ -497,6 +549,8 @@ export type bookingsAvgOrderByAggregateInput = {
   adults?: Prisma.SortOrder
   children?: Prisma.SortOrder
   guests_total?: Prisma.SortOrder
+  checkin_option_id?: Prisma.SortOrder
+  room_unit_id?: Prisma.SortOrder
 }
 
 export type bookingsMaxOrderByAggregateInput = {
@@ -511,6 +565,8 @@ export type bookingsMaxOrderByAggregateInput = {
   guests_total?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  checkin_option_id?: Prisma.SortOrder
+  room_unit_id?: Prisma.SortOrder
 }
 
 export type bookingsMinOrderByAggregateInput = {
@@ -525,6 +581,8 @@ export type bookingsMinOrderByAggregateInput = {
   guests_total?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  checkin_option_id?: Prisma.SortOrder
+  room_unit_id?: Prisma.SortOrder
 }
 
 export type bookingsSumOrderByAggregateInput = {
@@ -534,6 +592,8 @@ export type bookingsSumOrderByAggregateInput = {
   adults?: Prisma.SortOrder
   children?: Prisma.SortOrder
   guests_total?: Prisma.SortOrder
+  checkin_option_id?: Prisma.SortOrder
+  room_unit_id?: Prisma.SortOrder
 }
 
 export type BookingsNullableScalarRelationFilter = {
@@ -700,6 +760,90 @@ export type bookingsUpdateOneRequiredWithoutReviewsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.bookingsUpdateToOneWithWhereWithoutReviewsInput, Prisma.bookingsUpdateWithoutReviewsInput>, Prisma.bookingsUncheckedUpdateWithoutReviewsInput>
 }
 
+export type bookingsCreateNestedManyWithoutRoom_unitsInput = {
+  create?: Prisma.XOR<Prisma.bookingsCreateWithoutRoom_unitsInput, Prisma.bookingsUncheckedCreateWithoutRoom_unitsInput> | Prisma.bookingsCreateWithoutRoom_unitsInput[] | Prisma.bookingsUncheckedCreateWithoutRoom_unitsInput[]
+  connectOrCreate?: Prisma.bookingsCreateOrConnectWithoutRoom_unitsInput | Prisma.bookingsCreateOrConnectWithoutRoom_unitsInput[]
+  createMany?: Prisma.bookingsCreateManyRoom_unitsInputEnvelope
+  connect?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+}
+
+export type bookingsUncheckedCreateNestedManyWithoutRoom_unitsInput = {
+  create?: Prisma.XOR<Prisma.bookingsCreateWithoutRoom_unitsInput, Prisma.bookingsUncheckedCreateWithoutRoom_unitsInput> | Prisma.bookingsCreateWithoutRoom_unitsInput[] | Prisma.bookingsUncheckedCreateWithoutRoom_unitsInput[]
+  connectOrCreate?: Prisma.bookingsCreateOrConnectWithoutRoom_unitsInput | Prisma.bookingsCreateOrConnectWithoutRoom_unitsInput[]
+  createMany?: Prisma.bookingsCreateManyRoom_unitsInputEnvelope
+  connect?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+}
+
+export type bookingsUpdateManyWithoutRoom_unitsNestedInput = {
+  create?: Prisma.XOR<Prisma.bookingsCreateWithoutRoom_unitsInput, Prisma.bookingsUncheckedCreateWithoutRoom_unitsInput> | Prisma.bookingsCreateWithoutRoom_unitsInput[] | Prisma.bookingsUncheckedCreateWithoutRoom_unitsInput[]
+  connectOrCreate?: Prisma.bookingsCreateOrConnectWithoutRoom_unitsInput | Prisma.bookingsCreateOrConnectWithoutRoom_unitsInput[]
+  upsert?: Prisma.bookingsUpsertWithWhereUniqueWithoutRoom_unitsInput | Prisma.bookingsUpsertWithWhereUniqueWithoutRoom_unitsInput[]
+  createMany?: Prisma.bookingsCreateManyRoom_unitsInputEnvelope
+  set?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+  disconnect?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+  delete?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+  connect?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+  update?: Prisma.bookingsUpdateWithWhereUniqueWithoutRoom_unitsInput | Prisma.bookingsUpdateWithWhereUniqueWithoutRoom_unitsInput[]
+  updateMany?: Prisma.bookingsUpdateManyWithWhereWithoutRoom_unitsInput | Prisma.bookingsUpdateManyWithWhereWithoutRoom_unitsInput[]
+  deleteMany?: Prisma.bookingsScalarWhereInput | Prisma.bookingsScalarWhereInput[]
+}
+
+export type bookingsUncheckedUpdateManyWithoutRoom_unitsNestedInput = {
+  create?: Prisma.XOR<Prisma.bookingsCreateWithoutRoom_unitsInput, Prisma.bookingsUncheckedCreateWithoutRoom_unitsInput> | Prisma.bookingsCreateWithoutRoom_unitsInput[] | Prisma.bookingsUncheckedCreateWithoutRoom_unitsInput[]
+  connectOrCreate?: Prisma.bookingsCreateOrConnectWithoutRoom_unitsInput | Prisma.bookingsCreateOrConnectWithoutRoom_unitsInput[]
+  upsert?: Prisma.bookingsUpsertWithWhereUniqueWithoutRoom_unitsInput | Prisma.bookingsUpsertWithWhereUniqueWithoutRoom_unitsInput[]
+  createMany?: Prisma.bookingsCreateManyRoom_unitsInputEnvelope
+  set?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+  disconnect?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+  delete?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+  connect?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+  update?: Prisma.bookingsUpdateWithWhereUniqueWithoutRoom_unitsInput | Prisma.bookingsUpdateWithWhereUniqueWithoutRoom_unitsInput[]
+  updateMany?: Prisma.bookingsUpdateManyWithWhereWithoutRoom_unitsInput | Prisma.bookingsUpdateManyWithWhereWithoutRoom_unitsInput[]
+  deleteMany?: Prisma.bookingsScalarWhereInput | Prisma.bookingsScalarWhereInput[]
+}
+
+export type bookingsCreateNestedManyWithoutCheckin_optionsInput = {
+  create?: Prisma.XOR<Prisma.bookingsCreateWithoutCheckin_optionsInput, Prisma.bookingsUncheckedCreateWithoutCheckin_optionsInput> | Prisma.bookingsCreateWithoutCheckin_optionsInput[] | Prisma.bookingsUncheckedCreateWithoutCheckin_optionsInput[]
+  connectOrCreate?: Prisma.bookingsCreateOrConnectWithoutCheckin_optionsInput | Prisma.bookingsCreateOrConnectWithoutCheckin_optionsInput[]
+  createMany?: Prisma.bookingsCreateManyCheckin_optionsInputEnvelope
+  connect?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+}
+
+export type bookingsUncheckedCreateNestedManyWithoutCheckin_optionsInput = {
+  create?: Prisma.XOR<Prisma.bookingsCreateWithoutCheckin_optionsInput, Prisma.bookingsUncheckedCreateWithoutCheckin_optionsInput> | Prisma.bookingsCreateWithoutCheckin_optionsInput[] | Prisma.bookingsUncheckedCreateWithoutCheckin_optionsInput[]
+  connectOrCreate?: Prisma.bookingsCreateOrConnectWithoutCheckin_optionsInput | Prisma.bookingsCreateOrConnectWithoutCheckin_optionsInput[]
+  createMany?: Prisma.bookingsCreateManyCheckin_optionsInputEnvelope
+  connect?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+}
+
+export type bookingsUpdateManyWithoutCheckin_optionsNestedInput = {
+  create?: Prisma.XOR<Prisma.bookingsCreateWithoutCheckin_optionsInput, Prisma.bookingsUncheckedCreateWithoutCheckin_optionsInput> | Prisma.bookingsCreateWithoutCheckin_optionsInput[] | Prisma.bookingsUncheckedCreateWithoutCheckin_optionsInput[]
+  connectOrCreate?: Prisma.bookingsCreateOrConnectWithoutCheckin_optionsInput | Prisma.bookingsCreateOrConnectWithoutCheckin_optionsInput[]
+  upsert?: Prisma.bookingsUpsertWithWhereUniqueWithoutCheckin_optionsInput | Prisma.bookingsUpsertWithWhereUniqueWithoutCheckin_optionsInput[]
+  createMany?: Prisma.bookingsCreateManyCheckin_optionsInputEnvelope
+  set?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+  disconnect?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+  delete?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+  connect?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+  update?: Prisma.bookingsUpdateWithWhereUniqueWithoutCheckin_optionsInput | Prisma.bookingsUpdateWithWhereUniqueWithoutCheckin_optionsInput[]
+  updateMany?: Prisma.bookingsUpdateManyWithWhereWithoutCheckin_optionsInput | Prisma.bookingsUpdateManyWithWhereWithoutCheckin_optionsInput[]
+  deleteMany?: Prisma.bookingsScalarWhereInput | Prisma.bookingsScalarWhereInput[]
+}
+
+export type bookingsUncheckedUpdateManyWithoutCheckin_optionsNestedInput = {
+  create?: Prisma.XOR<Prisma.bookingsCreateWithoutCheckin_optionsInput, Prisma.bookingsUncheckedCreateWithoutCheckin_optionsInput> | Prisma.bookingsCreateWithoutCheckin_optionsInput[] | Prisma.bookingsUncheckedCreateWithoutCheckin_optionsInput[]
+  connectOrCreate?: Prisma.bookingsCreateOrConnectWithoutCheckin_optionsInput | Prisma.bookingsCreateOrConnectWithoutCheckin_optionsInput[]
+  upsert?: Prisma.bookingsUpsertWithWhereUniqueWithoutCheckin_optionsInput | Prisma.bookingsUpsertWithWhereUniqueWithoutCheckin_optionsInput[]
+  createMany?: Prisma.bookingsCreateManyCheckin_optionsInputEnvelope
+  set?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+  disconnect?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+  delete?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+  connect?: Prisma.bookingsWhereUniqueInput | Prisma.bookingsWhereUniqueInput[]
+  update?: Prisma.bookingsUpdateWithWhereUniqueWithoutCheckin_optionsInput | Prisma.bookingsUpdateWithWhereUniqueWithoutCheckin_optionsInput[]
+  updateMany?: Prisma.bookingsUpdateManyWithWhereWithoutCheckin_optionsInput | Prisma.bookingsUpdateManyWithWhereWithoutCheckin_optionsInput[]
+  deleteMany?: Prisma.bookingsScalarWhereInput | Prisma.bookingsScalarWhereInput[]
+}
+
 export type bookingsCreateWithoutEmailsInput = {
   booking_id?: bigint | number
   check_in: Date | string
@@ -712,6 +856,8 @@ export type bookingsCreateWithoutEmailsInput = {
   updated_at?: Date | string
   rooms: Prisma.roomsCreateNestedOneWithoutBookingsInput
   users: Prisma.usersCreateNestedOneWithoutBookingsInput
+  room_units?: Prisma.room_unitsCreateNestedOneWithoutBookingsInput
+  checkin_options?: Prisma.checkin_optionsCreateNestedOneWithoutBookingsInput
   payments?: Prisma.paymentsCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutBookingsInput
 }
@@ -728,6 +874,8 @@ export type bookingsUncheckedCreateWithoutEmailsInput = {
   guests_total?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  checkin_option_id?: number | null
+  room_unit_id?: number | null
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutBookingsInput
 }
@@ -760,6 +908,8 @@ export type bookingsUpdateWithoutEmailsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rooms?: Prisma.roomsUpdateOneRequiredWithoutBookingsNestedInput
   users?: Prisma.usersUpdateOneRequiredWithoutBookingsNestedInput
+  room_units?: Prisma.room_unitsUpdateOneWithoutBookingsNestedInput
+  checkin_options?: Prisma.checkin_optionsUpdateOneWithoutBookingsNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutBookingsNestedInput
 }
@@ -776,6 +926,8 @@ export type bookingsUncheckedUpdateWithoutEmailsInput = {
   guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkin_option_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  room_unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutBookingsNestedInput
 }
@@ -792,6 +944,8 @@ export type bookingsCreateWithoutPaymentsInput = {
   updated_at?: Date | string
   rooms: Prisma.roomsCreateNestedOneWithoutBookingsInput
   users: Prisma.usersCreateNestedOneWithoutBookingsInput
+  room_units?: Prisma.room_unitsCreateNestedOneWithoutBookingsInput
+  checkin_options?: Prisma.checkin_optionsCreateNestedOneWithoutBookingsInput
   emails?: Prisma.emailsCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutBookingsInput
 }
@@ -808,6 +962,8 @@ export type bookingsUncheckedCreateWithoutPaymentsInput = {
   guests_total?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  checkin_option_id?: number | null
+  room_unit_id?: number | null
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutBookingsInput
 }
@@ -840,6 +996,8 @@ export type bookingsUpdateWithoutPaymentsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rooms?: Prisma.roomsUpdateOneRequiredWithoutBookingsNestedInput
   users?: Prisma.usersUpdateOneRequiredWithoutBookingsNestedInput
+  room_units?: Prisma.room_unitsUpdateOneWithoutBookingsNestedInput
+  checkin_options?: Prisma.checkin_optionsUpdateOneWithoutBookingsNestedInput
   emails?: Prisma.emailsUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutBookingsNestedInput
 }
@@ -856,6 +1014,8 @@ export type bookingsUncheckedUpdateWithoutPaymentsInput = {
   guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkin_option_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  room_unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   emails?: Prisma.emailsUncheckedUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutBookingsNestedInput
 }
@@ -871,6 +1031,8 @@ export type bookingsCreateWithoutRoomsInput = {
   created_at?: Date | string
   updated_at?: Date | string
   users: Prisma.usersCreateNestedOneWithoutBookingsInput
+  room_units?: Prisma.room_unitsCreateNestedOneWithoutBookingsInput
+  checkin_options?: Prisma.checkin_optionsCreateNestedOneWithoutBookingsInput
   emails?: Prisma.emailsCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutBookingsInput
@@ -887,6 +1049,8 @@ export type bookingsUncheckedCreateWithoutRoomsInput = {
   guests_total?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  checkin_option_id?: number | null
+  room_unit_id?: number | null
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutBookingsInput
@@ -933,6 +1097,8 @@ export type bookingsScalarWhereInput = {
   guests_total?: Prisma.IntNullableFilter<"bookings"> | number | null
   created_at?: Prisma.DateTimeFilter<"bookings"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"bookings"> | Date | string
+  checkin_option_id?: Prisma.IntNullableFilter<"bookings"> | number | null
+  room_unit_id?: Prisma.IntNullableFilter<"bookings"> | number | null
 }
 
 export type bookingsCreateWithoutUsersInput = {
@@ -946,6 +1112,8 @@ export type bookingsCreateWithoutUsersInput = {
   created_at?: Date | string
   updated_at?: Date | string
   rooms: Prisma.roomsCreateNestedOneWithoutBookingsInput
+  room_units?: Prisma.room_unitsCreateNestedOneWithoutBookingsInput
+  checkin_options?: Prisma.checkin_optionsCreateNestedOneWithoutBookingsInput
   emails?: Prisma.emailsCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutBookingsInput
@@ -962,6 +1130,8 @@ export type bookingsUncheckedCreateWithoutUsersInput = {
   guests_total?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  checkin_option_id?: number | null
+  room_unit_id?: number | null
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutBookingsInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutBookingsInput
@@ -1005,6 +1175,8 @@ export type bookingsCreateWithoutReviewsInput = {
   updated_at?: Date | string
   rooms: Prisma.roomsCreateNestedOneWithoutBookingsInput
   users: Prisma.usersCreateNestedOneWithoutBookingsInput
+  room_units?: Prisma.room_unitsCreateNestedOneWithoutBookingsInput
+  checkin_options?: Prisma.checkin_optionsCreateNestedOneWithoutBookingsInput
   emails?: Prisma.emailsCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsCreateNestedManyWithoutBookingsInput
 }
@@ -1021,6 +1193,8 @@ export type bookingsUncheckedCreateWithoutReviewsInput = {
   guests_total?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  checkin_option_id?: number | null
+  room_unit_id?: number | null
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutBookingsInput
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutBookingsInput
 }
@@ -1053,6 +1227,8 @@ export type bookingsUpdateWithoutReviewsInput = {
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rooms?: Prisma.roomsUpdateOneRequiredWithoutBookingsNestedInput
   users?: Prisma.usersUpdateOneRequiredWithoutBookingsNestedInput
+  room_units?: Prisma.room_unitsUpdateOneWithoutBookingsNestedInput
+  checkin_options?: Prisma.checkin_optionsUpdateOneWithoutBookingsNestedInput
   emails?: Prisma.emailsUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutBookingsNestedInput
 }
@@ -1069,8 +1245,134 @@ export type bookingsUncheckedUpdateWithoutReviewsInput = {
   guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkin_option_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  room_unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   emails?: Prisma.emailsUncheckedUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutBookingsNestedInput
+}
+
+export type bookingsCreateWithoutRoom_unitsInput = {
+  booking_id?: bigint | number
+  check_in: Date | string
+  check_out: Date | string
+  status?: string
+  adults?: number | null
+  children?: number | null
+  guests_total?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  rooms: Prisma.roomsCreateNestedOneWithoutBookingsInput
+  users: Prisma.usersCreateNestedOneWithoutBookingsInput
+  checkin_options?: Prisma.checkin_optionsCreateNestedOneWithoutBookingsInput
+  emails?: Prisma.emailsCreateNestedManyWithoutBookingsInput
+  payments?: Prisma.paymentsCreateNestedManyWithoutBookingsInput
+  reviews?: Prisma.reviewsCreateNestedManyWithoutBookingsInput
+}
+
+export type bookingsUncheckedCreateWithoutRoom_unitsInput = {
+  booking_id?: bigint | number
+  user_id: number
+  room_id: number
+  check_in: Date | string
+  check_out: Date | string
+  status?: string
+  adults?: number | null
+  children?: number | null
+  guests_total?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  checkin_option_id?: number | null
+  emails?: Prisma.emailsUncheckedCreateNestedManyWithoutBookingsInput
+  payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutBookingsInput
+  reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutBookingsInput
+}
+
+export type bookingsCreateOrConnectWithoutRoom_unitsInput = {
+  where: Prisma.bookingsWhereUniqueInput
+  create: Prisma.XOR<Prisma.bookingsCreateWithoutRoom_unitsInput, Prisma.bookingsUncheckedCreateWithoutRoom_unitsInput>
+}
+
+export type bookingsCreateManyRoom_unitsInputEnvelope = {
+  data: Prisma.bookingsCreateManyRoom_unitsInput | Prisma.bookingsCreateManyRoom_unitsInput[]
+  skipDuplicates?: boolean
+}
+
+export type bookingsUpsertWithWhereUniqueWithoutRoom_unitsInput = {
+  where: Prisma.bookingsWhereUniqueInput
+  update: Prisma.XOR<Prisma.bookingsUpdateWithoutRoom_unitsInput, Prisma.bookingsUncheckedUpdateWithoutRoom_unitsInput>
+  create: Prisma.XOR<Prisma.bookingsCreateWithoutRoom_unitsInput, Prisma.bookingsUncheckedCreateWithoutRoom_unitsInput>
+}
+
+export type bookingsUpdateWithWhereUniqueWithoutRoom_unitsInput = {
+  where: Prisma.bookingsWhereUniqueInput
+  data: Prisma.XOR<Prisma.bookingsUpdateWithoutRoom_unitsInput, Prisma.bookingsUncheckedUpdateWithoutRoom_unitsInput>
+}
+
+export type bookingsUpdateManyWithWhereWithoutRoom_unitsInput = {
+  where: Prisma.bookingsScalarWhereInput
+  data: Prisma.XOR<Prisma.bookingsUpdateManyMutationInput, Prisma.bookingsUncheckedUpdateManyWithoutRoom_unitsInput>
+}
+
+export type bookingsCreateWithoutCheckin_optionsInput = {
+  booking_id?: bigint | number
+  check_in: Date | string
+  check_out: Date | string
+  status?: string
+  adults?: number | null
+  children?: number | null
+  guests_total?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  rooms: Prisma.roomsCreateNestedOneWithoutBookingsInput
+  users: Prisma.usersCreateNestedOneWithoutBookingsInput
+  room_units?: Prisma.room_unitsCreateNestedOneWithoutBookingsInput
+  emails?: Prisma.emailsCreateNestedManyWithoutBookingsInput
+  payments?: Prisma.paymentsCreateNestedManyWithoutBookingsInput
+  reviews?: Prisma.reviewsCreateNestedManyWithoutBookingsInput
+}
+
+export type bookingsUncheckedCreateWithoutCheckin_optionsInput = {
+  booking_id?: bigint | number
+  user_id: number
+  room_id: number
+  check_in: Date | string
+  check_out: Date | string
+  status?: string
+  adults?: number | null
+  children?: number | null
+  guests_total?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  room_unit_id?: number | null
+  emails?: Prisma.emailsUncheckedCreateNestedManyWithoutBookingsInput
+  payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutBookingsInput
+  reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutBookingsInput
+}
+
+export type bookingsCreateOrConnectWithoutCheckin_optionsInput = {
+  where: Prisma.bookingsWhereUniqueInput
+  create: Prisma.XOR<Prisma.bookingsCreateWithoutCheckin_optionsInput, Prisma.bookingsUncheckedCreateWithoutCheckin_optionsInput>
+}
+
+export type bookingsCreateManyCheckin_optionsInputEnvelope = {
+  data: Prisma.bookingsCreateManyCheckin_optionsInput | Prisma.bookingsCreateManyCheckin_optionsInput[]
+  skipDuplicates?: boolean
+}
+
+export type bookingsUpsertWithWhereUniqueWithoutCheckin_optionsInput = {
+  where: Prisma.bookingsWhereUniqueInput
+  update: Prisma.XOR<Prisma.bookingsUpdateWithoutCheckin_optionsInput, Prisma.bookingsUncheckedUpdateWithoutCheckin_optionsInput>
+  create: Prisma.XOR<Prisma.bookingsCreateWithoutCheckin_optionsInput, Prisma.bookingsUncheckedCreateWithoutCheckin_optionsInput>
+}
+
+export type bookingsUpdateWithWhereUniqueWithoutCheckin_optionsInput = {
+  where: Prisma.bookingsWhereUniqueInput
+  data: Prisma.XOR<Prisma.bookingsUpdateWithoutCheckin_optionsInput, Prisma.bookingsUncheckedUpdateWithoutCheckin_optionsInput>
+}
+
+export type bookingsUpdateManyWithWhereWithoutCheckin_optionsInput = {
+  where: Prisma.bookingsScalarWhereInput
+  data: Prisma.XOR<Prisma.bookingsUpdateManyMutationInput, Prisma.bookingsUncheckedUpdateManyWithoutCheckin_optionsInput>
 }
 
 export type bookingsCreateManyRoomsInput = {
@@ -1084,6 +1386,8 @@ export type bookingsCreateManyRoomsInput = {
   guests_total?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  checkin_option_id?: number | null
+  room_unit_id?: number | null
 }
 
 export type bookingsUpdateWithoutRoomsInput = {
@@ -1097,6 +1401,8 @@ export type bookingsUpdateWithoutRoomsInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.usersUpdateOneRequiredWithoutBookingsNestedInput
+  room_units?: Prisma.room_unitsUpdateOneWithoutBookingsNestedInput
+  checkin_options?: Prisma.checkin_optionsUpdateOneWithoutBookingsNestedInput
   emails?: Prisma.emailsUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutBookingsNestedInput
@@ -1113,6 +1419,8 @@ export type bookingsUncheckedUpdateWithoutRoomsInput = {
   guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkin_option_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  room_unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   emails?: Prisma.emailsUncheckedUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutBookingsNestedInput
@@ -1129,6 +1437,8 @@ export type bookingsUncheckedUpdateManyWithoutRoomsInput = {
   guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkin_option_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  room_unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type bookingsCreateManyUsersInput = {
@@ -1142,6 +1452,8 @@ export type bookingsCreateManyUsersInput = {
   guests_total?: number | null
   created_at?: Date | string
   updated_at?: Date | string
+  checkin_option_id?: number | null
+  room_unit_id?: number | null
 }
 
 export type bookingsUpdateWithoutUsersInput = {
@@ -1155,6 +1467,8 @@ export type bookingsUpdateWithoutUsersInput = {
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   rooms?: Prisma.roomsUpdateOneRequiredWithoutBookingsNestedInput
+  room_units?: Prisma.room_unitsUpdateOneWithoutBookingsNestedInput
+  checkin_options?: Prisma.checkin_optionsUpdateOneWithoutBookingsNestedInput
   emails?: Prisma.emailsUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutBookingsNestedInput
@@ -1171,6 +1485,8 @@ export type bookingsUncheckedUpdateWithoutUsersInput = {
   guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkin_option_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  room_unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   emails?: Prisma.emailsUncheckedUpdateManyWithoutBookingsNestedInput
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutBookingsNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutBookingsNestedInput
@@ -1187,6 +1503,140 @@ export type bookingsUncheckedUpdateManyWithoutUsersInput = {
   guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkin_option_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  room_unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
+export type bookingsCreateManyRoom_unitsInput = {
+  booking_id?: bigint | number
+  user_id: number
+  room_id: number
+  check_in: Date | string
+  check_out: Date | string
+  status?: string
+  adults?: number | null
+  children?: number | null
+  guests_total?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  checkin_option_id?: number | null
+}
+
+export type bookingsUpdateWithoutRoom_unitsInput = {
+  booking_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  check_in?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  check_out?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  adults?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  children?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rooms?: Prisma.roomsUpdateOneRequiredWithoutBookingsNestedInput
+  users?: Prisma.usersUpdateOneRequiredWithoutBookingsNestedInput
+  checkin_options?: Prisma.checkin_optionsUpdateOneWithoutBookingsNestedInput
+  emails?: Prisma.emailsUpdateManyWithoutBookingsNestedInput
+  payments?: Prisma.paymentsUpdateManyWithoutBookingsNestedInput
+  reviews?: Prisma.reviewsUpdateManyWithoutBookingsNestedInput
+}
+
+export type bookingsUncheckedUpdateWithoutRoom_unitsInput = {
+  booking_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  room_id?: Prisma.IntFieldUpdateOperationsInput | number
+  check_in?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  check_out?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  adults?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  children?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkin_option_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  emails?: Prisma.emailsUncheckedUpdateManyWithoutBookingsNestedInput
+  payments?: Prisma.paymentsUncheckedUpdateManyWithoutBookingsNestedInput
+  reviews?: Prisma.reviewsUncheckedUpdateManyWithoutBookingsNestedInput
+}
+
+export type bookingsUncheckedUpdateManyWithoutRoom_unitsInput = {
+  booking_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  room_id?: Prisma.IntFieldUpdateOperationsInput | number
+  check_in?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  check_out?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  adults?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  children?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  checkin_option_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
+export type bookingsCreateManyCheckin_optionsInput = {
+  booking_id?: bigint | number
+  user_id: number
+  room_id: number
+  check_in: Date | string
+  check_out: Date | string
+  status?: string
+  adults?: number | null
+  children?: number | null
+  guests_total?: number | null
+  created_at?: Date | string
+  updated_at?: Date | string
+  room_unit_id?: number | null
+}
+
+export type bookingsUpdateWithoutCheckin_optionsInput = {
+  booking_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  check_in?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  check_out?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  adults?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  children?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  rooms?: Prisma.roomsUpdateOneRequiredWithoutBookingsNestedInput
+  users?: Prisma.usersUpdateOneRequiredWithoutBookingsNestedInput
+  room_units?: Prisma.room_unitsUpdateOneWithoutBookingsNestedInput
+  emails?: Prisma.emailsUpdateManyWithoutBookingsNestedInput
+  payments?: Prisma.paymentsUpdateManyWithoutBookingsNestedInput
+  reviews?: Prisma.reviewsUpdateManyWithoutBookingsNestedInput
+}
+
+export type bookingsUncheckedUpdateWithoutCheckin_optionsInput = {
+  booking_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  room_id?: Prisma.IntFieldUpdateOperationsInput | number
+  check_in?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  check_out?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  adults?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  children?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  room_unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  emails?: Prisma.emailsUncheckedUpdateManyWithoutBookingsNestedInput
+  payments?: Prisma.paymentsUncheckedUpdateManyWithoutBookingsNestedInput
+  reviews?: Prisma.reviewsUncheckedUpdateManyWithoutBookingsNestedInput
+}
+
+export type bookingsUncheckedUpdateManyWithoutCheckin_optionsInput = {
+  booking_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  room_id?: Prisma.IntFieldUpdateOperationsInput | number
+  check_in?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  check_out?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  adults?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  children?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  guests_total?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  room_unit_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -1250,8 +1700,12 @@ export type bookingsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   guests_total?: boolean
   created_at?: boolean
   updated_at?: boolean
+  checkin_option_id?: boolean
+  room_unit_id?: boolean
   rooms?: boolean | Prisma.roomsDefaultArgs<ExtArgs>
   users?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  room_units?: boolean | Prisma.bookings$room_unitsArgs<ExtArgs>
+  checkin_options?: boolean | Prisma.bookings$checkin_optionsArgs<ExtArgs>
   emails?: boolean | Prisma.bookings$emailsArgs<ExtArgs>
   payments?: boolean | Prisma.bookings$paymentsArgs<ExtArgs>
   reviews?: boolean | Prisma.bookings$reviewsArgs<ExtArgs>
@@ -1270,8 +1724,12 @@ export type bookingsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   guests_total?: boolean
   created_at?: boolean
   updated_at?: boolean
+  checkin_option_id?: boolean
+  room_unit_id?: boolean
   rooms?: boolean | Prisma.roomsDefaultArgs<ExtArgs>
   users?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  room_units?: boolean | Prisma.bookings$room_unitsArgs<ExtArgs>
+  checkin_options?: boolean | Prisma.bookings$checkin_optionsArgs<ExtArgs>
 }, ExtArgs["result"]["bookings"]>
 
 export type bookingsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1286,8 +1744,12 @@ export type bookingsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   guests_total?: boolean
   created_at?: boolean
   updated_at?: boolean
+  checkin_option_id?: boolean
+  room_unit_id?: boolean
   rooms?: boolean | Prisma.roomsDefaultArgs<ExtArgs>
   users?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  room_units?: boolean | Prisma.bookings$room_unitsArgs<ExtArgs>
+  checkin_options?: boolean | Prisma.bookings$checkin_optionsArgs<ExtArgs>
 }, ExtArgs["result"]["bookings"]>
 
 export type bookingsSelectScalar = {
@@ -1302,12 +1764,16 @@ export type bookingsSelectScalar = {
   guests_total?: boolean
   created_at?: boolean
   updated_at?: boolean
+  checkin_option_id?: boolean
+  room_unit_id?: boolean
 }
 
-export type bookingsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"booking_id" | "user_id" | "room_id" | "check_in" | "check_out" | "status" | "adults" | "children" | "guests_total" | "created_at" | "updated_at", ExtArgs["result"]["bookings"]>
+export type bookingsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"booking_id" | "user_id" | "room_id" | "check_in" | "check_out" | "status" | "adults" | "children" | "guests_total" | "created_at" | "updated_at" | "checkin_option_id" | "room_unit_id", ExtArgs["result"]["bookings"]>
 export type bookingsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   rooms?: boolean | Prisma.roomsDefaultArgs<ExtArgs>
   users?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  room_units?: boolean | Prisma.bookings$room_unitsArgs<ExtArgs>
+  checkin_options?: boolean | Prisma.bookings$checkin_optionsArgs<ExtArgs>
   emails?: boolean | Prisma.bookings$emailsArgs<ExtArgs>
   payments?: boolean | Prisma.bookings$paymentsArgs<ExtArgs>
   reviews?: boolean | Prisma.bookings$reviewsArgs<ExtArgs>
@@ -1316,10 +1782,14 @@ export type bookingsInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type bookingsIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   rooms?: boolean | Prisma.roomsDefaultArgs<ExtArgs>
   users?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  room_units?: boolean | Prisma.bookings$room_unitsArgs<ExtArgs>
+  checkin_options?: boolean | Prisma.bookings$checkin_optionsArgs<ExtArgs>
 }
 export type bookingsIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   rooms?: boolean | Prisma.roomsDefaultArgs<ExtArgs>
   users?: boolean | Prisma.usersDefaultArgs<ExtArgs>
+  room_units?: boolean | Prisma.bookings$room_unitsArgs<ExtArgs>
+  checkin_options?: boolean | Prisma.bookings$checkin_optionsArgs<ExtArgs>
 }
 
 export type $bookingsPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1327,6 +1797,8 @@ export type $bookingsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   objects: {
     rooms: Prisma.$roomsPayload<ExtArgs>
     users: Prisma.$usersPayload<ExtArgs>
+    room_units: Prisma.$room_unitsPayload<ExtArgs> | null
+    checkin_options: Prisma.$checkin_optionsPayload<ExtArgs> | null
     emails: Prisma.$emailsPayload<ExtArgs>[]
     payments: Prisma.$paymentsPayload<ExtArgs>[]
     reviews: Prisma.$reviewsPayload<ExtArgs>[]
@@ -1343,6 +1815,8 @@ export type $bookingsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     guests_total: number | null
     created_at: Date
     updated_at: Date
+    checkin_option_id: number | null
+    room_unit_id: number | null
   }, ExtArgs["result"]["bookings"]>
   composites: {}
 }
@@ -1739,6 +2213,8 @@ export interface Prisma__bookingsClient<T, Null = never, ExtArgs extends runtime
   readonly [Symbol.toStringTag]: "PrismaPromise"
   rooms<T extends Prisma.roomsDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.roomsDefaultArgs<ExtArgs>>): Prisma.Prisma__roomsClient<runtime.Types.Result.GetResult<Prisma.$roomsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   users<T extends Prisma.usersDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.usersDefaultArgs<ExtArgs>>): Prisma.Prisma__usersClient<runtime.Types.Result.GetResult<Prisma.$usersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  room_units<T extends Prisma.bookings$room_unitsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.bookings$room_unitsArgs<ExtArgs>>): Prisma.Prisma__room_unitsClient<runtime.Types.Result.GetResult<Prisma.$room_unitsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  checkin_options<T extends Prisma.bookings$checkin_optionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.bookings$checkin_optionsArgs<ExtArgs>>): Prisma.Prisma__checkin_optionsClient<runtime.Types.Result.GetResult<Prisma.$checkin_optionsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   emails<T extends Prisma.bookings$emailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.bookings$emailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$emailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payments<T extends Prisma.bookings$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.bookings$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$paymentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reviews<T extends Prisma.bookings$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.bookings$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$reviewsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1782,6 +2258,8 @@ export interface bookingsFieldRefs {
   readonly guests_total: Prisma.FieldRef<"bookings", 'Int'>
   readonly created_at: Prisma.FieldRef<"bookings", 'DateTime'>
   readonly updated_at: Prisma.FieldRef<"bookings", 'DateTime'>
+  readonly checkin_option_id: Prisma.FieldRef<"bookings", 'Int'>
+  readonly room_unit_id: Prisma.FieldRef<"bookings", 'Int'>
 }
     
 
@@ -2175,6 +2653,44 @@ export type bookingsDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Limit how many bookings to delete.
    */
   limit?: number
+}
+
+/**
+ * bookings.room_units
+ */
+export type bookings$room_unitsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the room_units
+   */
+  select?: Prisma.room_unitsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the room_units
+   */
+  omit?: Prisma.room_unitsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.room_unitsInclude<ExtArgs> | null
+  where?: Prisma.room_unitsWhereInput
+}
+
+/**
+ * bookings.checkin_options
+ */
+export type bookings$checkin_optionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the checkin_options
+   */
+  select?: Prisma.checkin_optionsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the checkin_options
+   */
+  omit?: Prisma.checkin_optionsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.checkin_optionsInclude<ExtArgs> | null
+  where?: Prisma.checkin_optionsWhereInput
 }
 
 /**

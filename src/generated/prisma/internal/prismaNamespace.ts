@@ -395,7 +395,13 @@ export const ModelName = {
   whatsapp_messages: 'whatsapp_messages',
   reviews: 'reviews',
   room_offers: 'room_offers',
-  room_units: 'room_units'
+  room_units: 'room_units',
+  amenities: 'amenities',
+  booking_sessions: 'booking_sessions',
+  checkin_options: 'checkin_options',
+  hotel_highlights: 'hotel_highlights',
+  hotel_info: 'hotel_info',
+  whatsapp_templates: 'whatsapp_templates'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -411,7 +417,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "admin" | "bookings" | "email_templates" | "emails" | "payments" | "payments_webhooks" | "rooms" | "users" | "whatsapp_messages" | "reviews" | "room_offers" | "room_units"
+    modelProps: "admin" | "bookings" | "email_templates" | "emails" | "payments" | "payments_webhooks" | "rooms" | "users" | "whatsapp_messages" | "reviews" | "room_offers" | "room_units" | "amenities" | "booking_sessions" | "checkin_options" | "hotel_highlights" | "hotel_info" | "whatsapp_templates"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1303,6 +1309,450 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    amenities: {
+      payload: Prisma.$amenitiesPayload<ExtArgs>
+      fields: Prisma.amenitiesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.amenitiesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$amenitiesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.amenitiesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$amenitiesPayload>
+        }
+        findFirst: {
+          args: Prisma.amenitiesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$amenitiesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.amenitiesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$amenitiesPayload>
+        }
+        findMany: {
+          args: Prisma.amenitiesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$amenitiesPayload>[]
+        }
+        create: {
+          args: Prisma.amenitiesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$amenitiesPayload>
+        }
+        createMany: {
+          args: Prisma.amenitiesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.amenitiesCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$amenitiesPayload>[]
+        }
+        delete: {
+          args: Prisma.amenitiesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$amenitiesPayload>
+        }
+        update: {
+          args: Prisma.amenitiesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$amenitiesPayload>
+        }
+        deleteMany: {
+          args: Prisma.amenitiesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.amenitiesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.amenitiesUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$amenitiesPayload>[]
+        }
+        upsert: {
+          args: Prisma.amenitiesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$amenitiesPayload>
+        }
+        aggregate: {
+          args: Prisma.AmenitiesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAmenities>
+        }
+        groupBy: {
+          args: Prisma.amenitiesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AmenitiesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.amenitiesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AmenitiesCountAggregateOutputType> | number
+        }
+      }
+    }
+    booking_sessions: {
+      payload: Prisma.$booking_sessionsPayload<ExtArgs>
+      fields: Prisma.booking_sessionsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.booking_sessionsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booking_sessionsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.booking_sessionsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booking_sessionsPayload>
+        }
+        findFirst: {
+          args: Prisma.booking_sessionsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booking_sessionsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.booking_sessionsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booking_sessionsPayload>
+        }
+        findMany: {
+          args: Prisma.booking_sessionsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booking_sessionsPayload>[]
+        }
+        create: {
+          args: Prisma.booking_sessionsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booking_sessionsPayload>
+        }
+        createMany: {
+          args: Prisma.booking_sessionsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.booking_sessionsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booking_sessionsPayload>[]
+        }
+        delete: {
+          args: Prisma.booking_sessionsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booking_sessionsPayload>
+        }
+        update: {
+          args: Prisma.booking_sessionsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booking_sessionsPayload>
+        }
+        deleteMany: {
+          args: Prisma.booking_sessionsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.booking_sessionsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.booking_sessionsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booking_sessionsPayload>[]
+        }
+        upsert: {
+          args: Prisma.booking_sessionsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$booking_sessionsPayload>
+        }
+        aggregate: {
+          args: Prisma.Booking_sessionsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBooking_sessions>
+        }
+        groupBy: {
+          args: Prisma.booking_sessionsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Booking_sessionsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.booking_sessionsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Booking_sessionsCountAggregateOutputType> | number
+        }
+      }
+    }
+    checkin_options: {
+      payload: Prisma.$checkin_optionsPayload<ExtArgs>
+      fields: Prisma.checkin_optionsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.checkin_optionsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$checkin_optionsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.checkin_optionsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$checkin_optionsPayload>
+        }
+        findFirst: {
+          args: Prisma.checkin_optionsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$checkin_optionsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.checkin_optionsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$checkin_optionsPayload>
+        }
+        findMany: {
+          args: Prisma.checkin_optionsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$checkin_optionsPayload>[]
+        }
+        create: {
+          args: Prisma.checkin_optionsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$checkin_optionsPayload>
+        }
+        createMany: {
+          args: Prisma.checkin_optionsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.checkin_optionsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$checkin_optionsPayload>[]
+        }
+        delete: {
+          args: Prisma.checkin_optionsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$checkin_optionsPayload>
+        }
+        update: {
+          args: Prisma.checkin_optionsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$checkin_optionsPayload>
+        }
+        deleteMany: {
+          args: Prisma.checkin_optionsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.checkin_optionsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.checkin_optionsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$checkin_optionsPayload>[]
+        }
+        upsert: {
+          args: Prisma.checkin_optionsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$checkin_optionsPayload>
+        }
+        aggregate: {
+          args: Prisma.Checkin_optionsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCheckin_options>
+        }
+        groupBy: {
+          args: Prisma.checkin_optionsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Checkin_optionsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.checkin_optionsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Checkin_optionsCountAggregateOutputType> | number
+        }
+      }
+    }
+    hotel_highlights: {
+      payload: Prisma.$hotel_highlightsPayload<ExtArgs>
+      fields: Prisma.hotel_highlightsFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.hotel_highlightsFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_highlightsPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.hotel_highlightsFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_highlightsPayload>
+        }
+        findFirst: {
+          args: Prisma.hotel_highlightsFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_highlightsPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.hotel_highlightsFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_highlightsPayload>
+        }
+        findMany: {
+          args: Prisma.hotel_highlightsFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_highlightsPayload>[]
+        }
+        create: {
+          args: Prisma.hotel_highlightsCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_highlightsPayload>
+        }
+        createMany: {
+          args: Prisma.hotel_highlightsCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.hotel_highlightsCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_highlightsPayload>[]
+        }
+        delete: {
+          args: Prisma.hotel_highlightsDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_highlightsPayload>
+        }
+        update: {
+          args: Prisma.hotel_highlightsUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_highlightsPayload>
+        }
+        deleteMany: {
+          args: Prisma.hotel_highlightsDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.hotel_highlightsUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.hotel_highlightsUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_highlightsPayload>[]
+        }
+        upsert: {
+          args: Prisma.hotel_highlightsUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_highlightsPayload>
+        }
+        aggregate: {
+          args: Prisma.Hotel_highlightsAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateHotel_highlights>
+        }
+        groupBy: {
+          args: Prisma.hotel_highlightsGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Hotel_highlightsGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.hotel_highlightsCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Hotel_highlightsCountAggregateOutputType> | number
+        }
+      }
+    }
+    hotel_info: {
+      payload: Prisma.$hotel_infoPayload<ExtArgs>
+      fields: Prisma.hotel_infoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.hotel_infoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_infoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.hotel_infoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_infoPayload>
+        }
+        findFirst: {
+          args: Prisma.hotel_infoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_infoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.hotel_infoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_infoPayload>
+        }
+        findMany: {
+          args: Prisma.hotel_infoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_infoPayload>[]
+        }
+        create: {
+          args: Prisma.hotel_infoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_infoPayload>
+        }
+        createMany: {
+          args: Prisma.hotel_infoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.hotel_infoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_infoPayload>[]
+        }
+        delete: {
+          args: Prisma.hotel_infoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_infoPayload>
+        }
+        update: {
+          args: Prisma.hotel_infoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_infoPayload>
+        }
+        deleteMany: {
+          args: Prisma.hotel_infoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.hotel_infoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.hotel_infoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_infoPayload>[]
+        }
+        upsert: {
+          args: Prisma.hotel_infoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$hotel_infoPayload>
+        }
+        aggregate: {
+          args: Prisma.Hotel_infoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateHotel_info>
+        }
+        groupBy: {
+          args: Prisma.hotel_infoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Hotel_infoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.hotel_infoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Hotel_infoCountAggregateOutputType> | number
+        }
+      }
+    }
+    whatsapp_templates: {
+      payload: Prisma.$whatsapp_templatesPayload<ExtArgs>
+      fields: Prisma.whatsapp_templatesFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.whatsapp_templatesFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$whatsapp_templatesPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.whatsapp_templatesFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$whatsapp_templatesPayload>
+        }
+        findFirst: {
+          args: Prisma.whatsapp_templatesFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$whatsapp_templatesPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.whatsapp_templatesFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$whatsapp_templatesPayload>
+        }
+        findMany: {
+          args: Prisma.whatsapp_templatesFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$whatsapp_templatesPayload>[]
+        }
+        create: {
+          args: Prisma.whatsapp_templatesCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$whatsapp_templatesPayload>
+        }
+        createMany: {
+          args: Prisma.whatsapp_templatesCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.whatsapp_templatesCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$whatsapp_templatesPayload>[]
+        }
+        delete: {
+          args: Prisma.whatsapp_templatesDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$whatsapp_templatesPayload>
+        }
+        update: {
+          args: Prisma.whatsapp_templatesUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$whatsapp_templatesPayload>
+        }
+        deleteMany: {
+          args: Prisma.whatsapp_templatesDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.whatsapp_templatesUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.whatsapp_templatesUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$whatsapp_templatesPayload>[]
+        }
+        upsert: {
+          args: Prisma.whatsapp_templatesUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$whatsapp_templatesPayload>
+        }
+        aggregate: {
+          args: Prisma.Whatsapp_templatesAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateWhatsapp_templates>
+        }
+        groupBy: {
+          args: Prisma.whatsapp_templatesGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Whatsapp_templatesGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.whatsapp_templatesCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.Whatsapp_templatesCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1366,7 +1816,9 @@ export const BookingsScalarFieldEnum = {
   children: 'children',
   guests_total: 'guests_total',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  checkin_option_id: 'checkin_option_id',
+  room_unit_id: 'room_unit_id'
 } as const
 
 export type BookingsScalarFieldEnum = (typeof BookingsScalarFieldEnum)[keyof typeof BookingsScalarFieldEnum]
@@ -1398,8 +1850,8 @@ export const PaymentsScalarFieldEnum = {
   payment_id: 'payment_id',
   user_id: 'user_id',
   booking_id: 'booking_id',
-  method: 'method',
-  status: 'status',
+  payment_method: 'payment_method',
+  payment_status: 'payment_status',
   currency: 'currency',
   bill_amount: 'bill_amount',
   bill_paid_amount: 'bill_paid_amount',
@@ -1506,6 +1958,90 @@ export const Room_unitsScalarFieldEnum = {
 } as const
 
 export type Room_unitsScalarFieldEnum = (typeof Room_unitsScalarFieldEnum)[keyof typeof Room_unitsScalarFieldEnum]
+
+
+export const AmenitiesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  created_at: 'created_at'
+} as const
+
+export type AmenitiesScalarFieldEnum = (typeof AmenitiesScalarFieldEnum)[keyof typeof AmenitiesScalarFieldEnum]
+
+
+export const Booking_sessionsScalarFieldEnum = {
+  session_id: 'session_id',
+  user_id: 'user_id',
+  room_id: 'room_id',
+  room_unit_id: 'room_unit_id',
+  check_in: 'check_in',
+  check_out: 'check_out',
+  adults: 'adults',
+  children: 'children',
+  checkin_option_id: 'checkin_option_id',
+  booking_status: 'booking_status',
+  payment_expected: 'payment_expected',
+  expires_at: 'expires_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Booking_sessionsScalarFieldEnum = (typeof Booking_sessionsScalarFieldEnum)[keyof typeof Booking_sessionsScalarFieldEnum]
+
+
+export const Checkin_optionsScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  time_range: 'time_range',
+  description: 'description',
+  tag: 'tag',
+  checkin_price: 'checkin_price',
+  is_free: 'is_free'
+} as const
+
+export type Checkin_optionsScalarFieldEnum = (typeof Checkin_optionsScalarFieldEnum)[keyof typeof Checkin_optionsScalarFieldEnum]
+
+
+export const Hotel_highlightsScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  created_at: 'created_at'
+} as const
+
+export type Hotel_highlightsScalarFieldEnum = (typeof Hotel_highlightsScalarFieldEnum)[keyof typeof Hotel_highlightsScalarFieldEnum]
+
+
+export const Hotel_infoScalarFieldEnum = {
+  id: 'id',
+  hotel_name: 'hotel_name',
+  description: 'description',
+  address: 'address',
+  city: 'city',
+  state: 'state',
+  country: 'country',
+  phone: 'phone',
+  email: 'email',
+  website: 'website',
+  checkin_time: 'checkin_time',
+  checkout_time: 'checkout_time',
+  total_rooms: 'total_rooms',
+  created_at: 'created_at'
+} as const
+
+export type Hotel_infoScalarFieldEnum = (typeof Hotel_infoScalarFieldEnum)[keyof typeof Hotel_infoScalarFieldEnum]
+
+
+export const Whatsapp_templatesScalarFieldEnum = {
+  id: 'id',
+  template_name: 'template_name',
+  template_json: 'template_json',
+  created_at: 'created_at',
+  variables: 'variables'
+} as const
+
+export type Whatsapp_templatesScalarFieldEnum = (typeof Whatsapp_templatesScalarFieldEnum)[keyof typeof Whatsapp_templatesScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1765,6 +2301,12 @@ export type GlobalOmitConfig = {
   reviews?: Prisma.reviewsOmit
   room_offers?: Prisma.room_offersOmit
   room_units?: Prisma.room_unitsOmit
+  amenities?: Prisma.amenitiesOmit
+  booking_sessions?: Prisma.booking_sessionsOmit
+  checkin_options?: Prisma.checkin_optionsOmit
+  hotel_highlights?: Prisma.hotel_highlightsOmit
+  hotel_info?: Prisma.hotel_infoOmit
+  whatsapp_templates?: Prisma.whatsapp_templatesOmit
 }
 
 /* Types for Logging */

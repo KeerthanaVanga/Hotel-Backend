@@ -46,8 +46,8 @@ export type PaymentsMinAggregateOutputType = {
   payment_id: bigint | null
   user_id: number | null
   booking_id: bigint | null
-  method: string | null
-  status: string | null
+  payment_method: string | null
+  payment_status: string | null
   currency: string | null
   bill_amount: runtime.Decimal | null
   bill_paid_amount: runtime.Decimal | null
@@ -59,8 +59,8 @@ export type PaymentsMaxAggregateOutputType = {
   payment_id: bigint | null
   user_id: number | null
   booking_id: bigint | null
-  method: string | null
-  status: string | null
+  payment_method: string | null
+  payment_status: string | null
   currency: string | null
   bill_amount: runtime.Decimal | null
   bill_paid_amount: runtime.Decimal | null
@@ -72,8 +72,8 @@ export type PaymentsCountAggregateOutputType = {
   payment_id: number
   user_id: number
   booking_id: number
-  method: number
-  status: number
+  payment_method: number
+  payment_status: number
   currency: number
   bill_amount: number
   bill_paid_amount: number
@@ -103,8 +103,8 @@ export type PaymentsMinAggregateInputType = {
   payment_id?: true
   user_id?: true
   booking_id?: true
-  method?: true
-  status?: true
+  payment_method?: true
+  payment_status?: true
   currency?: true
   bill_amount?: true
   bill_paid_amount?: true
@@ -116,8 +116,8 @@ export type PaymentsMaxAggregateInputType = {
   payment_id?: true
   user_id?: true
   booking_id?: true
-  method?: true
-  status?: true
+  payment_method?: true
+  payment_status?: true
   currency?: true
   bill_amount?: true
   bill_paid_amount?: true
@@ -129,8 +129,8 @@ export type PaymentsCountAggregateInputType = {
   payment_id?: true
   user_id?: true
   booking_id?: true
-  method?: true
-  status?: true
+  payment_method?: true
+  payment_status?: true
   currency?: true
   bill_amount?: true
   bill_paid_amount?: true
@@ -229,8 +229,8 @@ export type PaymentsGroupByOutputType = {
   payment_id: bigint
   user_id: number
   booking_id: bigint
-  method: string
-  status: string
+  payment_method: string
+  payment_status: string
   currency: string
   bill_amount: runtime.Decimal
   bill_paid_amount: runtime.Decimal
@@ -265,8 +265,8 @@ export type paymentsWhereInput = {
   payment_id?: Prisma.BigIntFilter<"payments"> | bigint | number
   user_id?: Prisma.IntFilter<"payments"> | number
   booking_id?: Prisma.BigIntFilter<"payments"> | bigint | number
-  method?: Prisma.StringFilter<"payments"> | string
-  status?: Prisma.StringFilter<"payments"> | string
+  payment_method?: Prisma.StringFilter<"payments"> | string
+  payment_status?: Prisma.StringFilter<"payments"> | string
   currency?: Prisma.StringFilter<"payments"> | string
   bill_amount?: Prisma.DecimalFilter<"payments"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: Prisma.DecimalFilter<"payments"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -280,8 +280,8 @@ export type paymentsOrderByWithRelationInput = {
   payment_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   booking_id?: Prisma.SortOrder
-  method?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  payment_method?: Prisma.SortOrder
+  payment_status?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   bill_amount?: Prisma.SortOrder
   bill_paid_amount?: Prisma.SortOrder
@@ -298,8 +298,8 @@ export type paymentsWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.paymentsWhereInput | Prisma.paymentsWhereInput[]
   user_id?: Prisma.IntFilter<"payments"> | number
   booking_id?: Prisma.BigIntFilter<"payments"> | bigint | number
-  method?: Prisma.StringFilter<"payments"> | string
-  status?: Prisma.StringFilter<"payments"> | string
+  payment_method?: Prisma.StringFilter<"payments"> | string
+  payment_status?: Prisma.StringFilter<"payments"> | string
   currency?: Prisma.StringFilter<"payments"> | string
   bill_amount?: Prisma.DecimalFilter<"payments"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: Prisma.DecimalFilter<"payments"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -313,8 +313,8 @@ export type paymentsOrderByWithAggregationInput = {
   payment_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   booking_id?: Prisma.SortOrder
-  method?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  payment_method?: Prisma.SortOrder
+  payment_status?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   bill_amount?: Prisma.SortOrder
   bill_paid_amount?: Prisma.SortOrder
@@ -334,8 +334,8 @@ export type paymentsScalarWhereWithAggregatesInput = {
   payment_id?: Prisma.BigIntWithAggregatesFilter<"payments"> | bigint | number
   user_id?: Prisma.IntWithAggregatesFilter<"payments"> | number
   booking_id?: Prisma.BigIntWithAggregatesFilter<"payments"> | bigint | number
-  method?: Prisma.StringWithAggregatesFilter<"payments"> | string
-  status?: Prisma.StringWithAggregatesFilter<"payments"> | string
+  payment_method?: Prisma.StringWithAggregatesFilter<"payments"> | string
+  payment_status?: Prisma.StringWithAggregatesFilter<"payments"> | string
   currency?: Prisma.StringWithAggregatesFilter<"payments"> | string
   bill_amount?: Prisma.DecimalWithAggregatesFilter<"payments"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: Prisma.DecimalWithAggregatesFilter<"payments"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -345,8 +345,8 @@ export type paymentsScalarWhereWithAggregatesInput = {
 
 export type paymentsCreateInput = {
   payment_id?: bigint | number
-  method: string
-  status: string
+  payment_method: string
+  payment_status: string
   currency?: string
   bill_amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -360,8 +360,8 @@ export type paymentsUncheckedCreateInput = {
   payment_id?: bigint | number
   user_id: number
   booking_id: bigint | number
-  method: string
-  status: string
+  payment_method: string
+  payment_status: string
   currency?: string
   bill_amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -371,8 +371,8 @@ export type paymentsUncheckedCreateInput = {
 
 export type paymentsUpdateInput = {
   payment_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  method?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_method?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_status?: Prisma.StringFieldUpdateOperationsInput | string
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bill_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -386,8 +386,8 @@ export type paymentsUncheckedUpdateInput = {
   payment_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
   booking_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  method?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_method?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_status?: Prisma.StringFieldUpdateOperationsInput | string
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bill_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -399,8 +399,8 @@ export type paymentsCreateManyInput = {
   payment_id?: bigint | number
   user_id: number
   booking_id: bigint | number
-  method: string
-  status: string
+  payment_method: string
+  payment_status: string
   currency?: string
   bill_amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -410,8 +410,8 @@ export type paymentsCreateManyInput = {
 
 export type paymentsUpdateManyMutationInput = {
   payment_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  method?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_method?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_status?: Prisma.StringFieldUpdateOperationsInput | string
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bill_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -423,8 +423,8 @@ export type paymentsUncheckedUpdateManyInput = {
   payment_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
   booking_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  method?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_method?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_status?: Prisma.StringFieldUpdateOperationsInput | string
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bill_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -446,8 +446,8 @@ export type paymentsCountOrderByAggregateInput = {
   payment_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   booking_id?: Prisma.SortOrder
-  method?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  payment_method?: Prisma.SortOrder
+  payment_status?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   bill_amount?: Prisma.SortOrder
   bill_paid_amount?: Prisma.SortOrder
@@ -467,8 +467,8 @@ export type paymentsMaxOrderByAggregateInput = {
   payment_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   booking_id?: Prisma.SortOrder
-  method?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  payment_method?: Prisma.SortOrder
+  payment_status?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   bill_amount?: Prisma.SortOrder
   bill_paid_amount?: Prisma.SortOrder
@@ -480,8 +480,8 @@ export type paymentsMinOrderByAggregateInput = {
   payment_id?: Prisma.SortOrder
   user_id?: Prisma.SortOrder
   booking_id?: Prisma.SortOrder
-  method?: Prisma.SortOrder
-  status?: Prisma.SortOrder
+  payment_method?: Prisma.SortOrder
+  payment_status?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   bill_amount?: Prisma.SortOrder
   bill_paid_amount?: Prisma.SortOrder
@@ -591,8 +591,8 @@ export type paymentsUncheckedUpdateManyWithoutUsersNestedInput = {
 
 export type paymentsCreateWithoutBookingsInput = {
   payment_id?: bigint | number
-  method: string
-  status: string
+  payment_method: string
+  payment_status: string
   currency?: string
   bill_amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -604,8 +604,8 @@ export type paymentsCreateWithoutBookingsInput = {
 export type paymentsUncheckedCreateWithoutBookingsInput = {
   payment_id?: bigint | number
   user_id: number
-  method: string
-  status: string
+  payment_method: string
+  payment_status: string
   currency?: string
   bill_amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -646,8 +646,8 @@ export type paymentsScalarWhereInput = {
   payment_id?: Prisma.BigIntFilter<"payments"> | bigint | number
   user_id?: Prisma.IntFilter<"payments"> | number
   booking_id?: Prisma.BigIntFilter<"payments"> | bigint | number
-  method?: Prisma.StringFilter<"payments"> | string
-  status?: Prisma.StringFilter<"payments"> | string
+  payment_method?: Prisma.StringFilter<"payments"> | string
+  payment_status?: Prisma.StringFilter<"payments"> | string
   currency?: Prisma.StringFilter<"payments"> | string
   bill_amount?: Prisma.DecimalFilter<"payments"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: Prisma.DecimalFilter<"payments"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -657,8 +657,8 @@ export type paymentsScalarWhereInput = {
 
 export type paymentsCreateWithoutUsersInput = {
   payment_id?: bigint | number
-  method: string
-  status: string
+  payment_method: string
+  payment_status: string
   currency?: string
   bill_amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -670,8 +670,8 @@ export type paymentsCreateWithoutUsersInput = {
 export type paymentsUncheckedCreateWithoutUsersInput = {
   payment_id?: bigint | number
   booking_id: bigint | number
-  method: string
-  status: string
+  payment_method: string
+  payment_status: string
   currency?: string
   bill_amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -708,8 +708,8 @@ export type paymentsUpdateManyWithWhereWithoutUsersInput = {
 export type paymentsCreateManyBookingsInput = {
   payment_id?: bigint | number
   user_id: number
-  method: string
-  status: string
+  payment_method: string
+  payment_status: string
   currency?: string
   bill_amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -719,8 +719,8 @@ export type paymentsCreateManyBookingsInput = {
 
 export type paymentsUpdateWithoutBookingsInput = {
   payment_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  method?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_method?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_status?: Prisma.StringFieldUpdateOperationsInput | string
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bill_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -732,8 +732,8 @@ export type paymentsUpdateWithoutBookingsInput = {
 export type paymentsUncheckedUpdateWithoutBookingsInput = {
   payment_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
-  method?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_method?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_status?: Prisma.StringFieldUpdateOperationsInput | string
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bill_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -744,8 +744,8 @@ export type paymentsUncheckedUpdateWithoutBookingsInput = {
 export type paymentsUncheckedUpdateManyWithoutBookingsInput = {
   payment_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   user_id?: Prisma.IntFieldUpdateOperationsInput | number
-  method?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_method?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_status?: Prisma.StringFieldUpdateOperationsInput | string
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bill_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -756,8 +756,8 @@ export type paymentsUncheckedUpdateManyWithoutBookingsInput = {
 export type paymentsCreateManyUsersInput = {
   payment_id?: bigint | number
   booking_id: bigint | number
-  method: string
-  status: string
+  payment_method: string
+  payment_status: string
   currency?: string
   bill_amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -767,8 +767,8 @@ export type paymentsCreateManyUsersInput = {
 
 export type paymentsUpdateWithoutUsersInput = {
   payment_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  method?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_method?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_status?: Prisma.StringFieldUpdateOperationsInput | string
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bill_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -780,8 +780,8 @@ export type paymentsUpdateWithoutUsersInput = {
 export type paymentsUncheckedUpdateWithoutUsersInput = {
   payment_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   booking_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  method?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_method?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_status?: Prisma.StringFieldUpdateOperationsInput | string
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bill_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -792,8 +792,8 @@ export type paymentsUncheckedUpdateWithoutUsersInput = {
 export type paymentsUncheckedUpdateManyWithoutUsersInput = {
   payment_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
   booking_id?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
-  method?: Prisma.StringFieldUpdateOperationsInput | string
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_method?: Prisma.StringFieldUpdateOperationsInput | string
+  payment_status?: Prisma.StringFieldUpdateOperationsInput | string
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   bill_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   bill_paid_amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -807,8 +807,8 @@ export type paymentsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   payment_id?: boolean
   user_id?: boolean
   booking_id?: boolean
-  method?: boolean
-  status?: boolean
+  payment_method?: boolean
+  payment_status?: boolean
   currency?: boolean
   bill_amount?: boolean
   bill_paid_amount?: boolean
@@ -822,8 +822,8 @@ export type paymentsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   payment_id?: boolean
   user_id?: boolean
   booking_id?: boolean
-  method?: boolean
-  status?: boolean
+  payment_method?: boolean
+  payment_status?: boolean
   currency?: boolean
   bill_amount?: boolean
   bill_paid_amount?: boolean
@@ -837,8 +837,8 @@ export type paymentsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   payment_id?: boolean
   user_id?: boolean
   booking_id?: boolean
-  method?: boolean
-  status?: boolean
+  payment_method?: boolean
+  payment_status?: boolean
   currency?: boolean
   bill_amount?: boolean
   bill_paid_amount?: boolean
@@ -852,8 +852,8 @@ export type paymentsSelectScalar = {
   payment_id?: boolean
   user_id?: boolean
   booking_id?: boolean
-  method?: boolean
-  status?: boolean
+  payment_method?: boolean
+  payment_status?: boolean
   currency?: boolean
   bill_amount?: boolean
   bill_paid_amount?: boolean
@@ -861,7 +861,7 @@ export type paymentsSelectScalar = {
   updated_at?: boolean
 }
 
-export type paymentsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"payment_id" | "user_id" | "booking_id" | "method" | "status" | "currency" | "bill_amount" | "bill_paid_amount" | "created_at" | "updated_at", ExtArgs["result"]["payments"]>
+export type paymentsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"payment_id" | "user_id" | "booking_id" | "payment_method" | "payment_status" | "currency" | "bill_amount" | "bill_paid_amount" | "created_at" | "updated_at", ExtArgs["result"]["payments"]>
 export type paymentsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   bookings?: boolean | Prisma.bookingsDefaultArgs<ExtArgs>
   users?: boolean | Prisma.usersDefaultArgs<ExtArgs>
@@ -885,8 +885,8 @@ export type $paymentsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     payment_id: bigint
     user_id: number
     booking_id: bigint
-    method: string
-    status: string
+    payment_method: string
+    payment_status: string
     currency: string
     bill_amount: runtime.Decimal
     bill_paid_amount: runtime.Decimal
@@ -1320,8 +1320,8 @@ export interface paymentsFieldRefs {
   readonly payment_id: Prisma.FieldRef<"payments", 'BigInt'>
   readonly user_id: Prisma.FieldRef<"payments", 'Int'>
   readonly booking_id: Prisma.FieldRef<"payments", 'BigInt'>
-  readonly method: Prisma.FieldRef<"payments", 'String'>
-  readonly status: Prisma.FieldRef<"payments", 'String'>
+  readonly payment_method: Prisma.FieldRef<"payments", 'String'>
+  readonly payment_status: Prisma.FieldRef<"payments", 'String'>
   readonly currency: Prisma.FieldRef<"payments", 'String'>
   readonly bill_amount: Prisma.FieldRef<"payments", 'Decimal'>
   readonly bill_paid_amount: Prisma.FieldRef<"payments", 'Decimal'>

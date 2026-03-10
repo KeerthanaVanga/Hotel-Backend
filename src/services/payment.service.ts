@@ -40,19 +40,31 @@ export type UpdatePaymentInput = {
 
 export const updatePayment = async (
   paymentId: bigint,
-  data: UpdatePaymentInput
+  data: UpdatePaymentInput,
 ) => {
-  const payload: { method?: string; status?: string; bill_paid_amount?: number } = {};
+  const payload: {
+    method?: string;
+    status?: string;
+    bill_paid_amount?: number;
+  } = {};
   if (data.method !== undefined) payload.method = data.method;
   if (data.status !== undefined) payload.status = data.status;
-  if (data.bill_paid_amount !== undefined) payload.bill_paid_amount = data.bill_paid_amount;
+  if (data.bill_paid_amount !== undefined)
+    payload.bill_paid_amount = data.bill_paid_amount;
 
   return prisma.payments.update({
     where: { payment_id: paymentId },
     data: payload,
     include: {
       users: { select: { user_id: true, name: true, email: true } },
-      bookings: { select: { booking_id: true, check_in: true, check_out: true, status: true } },
+      bookings: {
+        select: {
+          booking_id: true,
+          check_in: true,
+          check_out: true,
+          status: true,
+        },
+      },
     },
   });
 };

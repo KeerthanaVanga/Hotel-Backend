@@ -77,3 +77,33 @@ export type room_offers = Prisma.room_offersModel
  * 
  */
 export type room_units = Prisma.room_unitsModel
+/**
+ * Model amenities
+ * 
+ */
+export type amenities = Prisma.amenitiesModel
+/**
+ * Model booking_sessions
+ * 
+ */
+export type booking_sessions = Prisma.booking_sessionsModel
+/**
+ * Model checkin_options
+ * 
+ */
+export type checkin_options = Prisma.checkin_optionsModel
+/**
+ * Model hotel_highlights
+ * 
+ */
+export type hotel_highlights = Prisma.hotel_highlightsModel
+/**
+ * Model hotel_info
+ * 
+ */
+export type hotel_info = Prisma.hotel_infoModel
+/**
+ * Model whatsapp_templates
+ * 
+ */
+export type whatsapp_templates = Prisma.whatsapp_templatesModel

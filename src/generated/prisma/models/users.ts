@@ -228,6 +228,7 @@ export type usersWhereInput = {
   whatsapp_number?: Prisma.DecimalFilter<"users"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFilter<"users"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"users"> | Date | string
+  booking_sessions?: Prisma.Booking_sessionsListRelationFilter
   bookings?: Prisma.BookingsListRelationFilter
   emails?: Prisma.EmailsListRelationFilter
   payments?: Prisma.PaymentsListRelationFilter
@@ -241,6 +242,7 @@ export type usersOrderByWithRelationInput = {
   whatsapp_number?: Prisma.SortOrder
   created_at?: Prisma.SortOrder
   updated_at?: Prisma.SortOrder
+  booking_sessions?: Prisma.booking_sessionsOrderByRelationAggregateInput
   bookings?: Prisma.bookingsOrderByRelationAggregateInput
   emails?: Prisma.emailsOrderByRelationAggregateInput
   payments?: Prisma.paymentsOrderByRelationAggregateInput
@@ -257,6 +259,7 @@ export type usersWhereUniqueInput = Prisma.AtLeast<{
   whatsapp_number?: Prisma.DecimalFilter<"users"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFilter<"users"> | Date | string
   updated_at?: Prisma.DateTimeFilter<"users"> | Date | string
+  booking_sessions?: Prisma.Booking_sessionsListRelationFilter
   bookings?: Prisma.BookingsListRelationFilter
   emails?: Prisma.EmailsListRelationFilter
   payments?: Prisma.PaymentsListRelationFilter
@@ -295,6 +298,7 @@ export type usersCreateInput = {
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
+  booking_sessions?: Prisma.booking_sessionsCreateNestedManyWithoutUsersInput
   bookings?: Prisma.bookingsCreateNestedManyWithoutUsersInput
   emails?: Prisma.emailsCreateNestedManyWithoutUsersInput
   payments?: Prisma.paymentsCreateNestedManyWithoutUsersInput
@@ -308,6 +312,7 @@ export type usersUncheckedCreateInput = {
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
+  booking_sessions?: Prisma.booking_sessionsUncheckedCreateNestedManyWithoutUsersInput
   bookings?: Prisma.bookingsUncheckedCreateNestedManyWithoutUsersInput
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutUsersInput
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutUsersInput
@@ -320,6 +325,7 @@ export type usersUpdateInput = {
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  booking_sessions?: Prisma.booking_sessionsUpdateManyWithoutUsersNestedInput
   bookings?: Prisma.bookingsUpdateManyWithoutUsersNestedInput
   emails?: Prisma.emailsUpdateManyWithoutUsersNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutUsersNestedInput
@@ -333,6 +339,7 @@ export type usersUncheckedUpdateInput = {
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  booking_sessions?: Prisma.booking_sessionsUncheckedUpdateManyWithoutUsersNestedInput
   bookings?: Prisma.bookingsUncheckedUpdateManyWithoutUsersNestedInput
   emails?: Prisma.emailsUncheckedUpdateManyWithoutUsersNestedInput
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutUsersNestedInput
@@ -470,12 +477,29 @@ export type usersUpdateOneRequiredWithoutReviewsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutReviewsInput, Prisma.usersUpdateWithoutReviewsInput>, Prisma.usersUncheckedUpdateWithoutReviewsInput>
 }
 
+export type usersCreateNestedOneWithoutBooking_sessionsInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutBooking_sessionsInput, Prisma.usersUncheckedCreateWithoutBooking_sessionsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutBooking_sessionsInput
+  connect?: Prisma.usersWhereUniqueInput
+}
+
+export type usersUpdateOneWithoutBooking_sessionsNestedInput = {
+  create?: Prisma.XOR<Prisma.usersCreateWithoutBooking_sessionsInput, Prisma.usersUncheckedCreateWithoutBooking_sessionsInput>
+  connectOrCreate?: Prisma.usersCreateOrConnectWithoutBooking_sessionsInput
+  upsert?: Prisma.usersUpsertWithoutBooking_sessionsInput
+  disconnect?: Prisma.usersWhereInput | boolean
+  delete?: Prisma.usersWhereInput | boolean
+  connect?: Prisma.usersWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.usersUpdateToOneWithWhereWithoutBooking_sessionsInput, Prisma.usersUpdateWithoutBooking_sessionsInput>, Prisma.usersUncheckedUpdateWithoutBooking_sessionsInput>
+}
+
 export type usersCreateWithoutBookingsInput = {
   name: string
   email?: string | null
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
+  booking_sessions?: Prisma.booking_sessionsCreateNestedManyWithoutUsersInput
   emails?: Prisma.emailsCreateNestedManyWithoutUsersInput
   payments?: Prisma.paymentsCreateNestedManyWithoutUsersInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutUsersInput
@@ -488,6 +512,7 @@ export type usersUncheckedCreateWithoutBookingsInput = {
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
+  booking_sessions?: Prisma.booking_sessionsUncheckedCreateNestedManyWithoutUsersInput
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutUsersInput
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutUsersInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutUsersInput
@@ -515,6 +540,7 @@ export type usersUpdateWithoutBookingsInput = {
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  booking_sessions?: Prisma.booking_sessionsUpdateManyWithoutUsersNestedInput
   emails?: Prisma.emailsUpdateManyWithoutUsersNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutUsersNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutUsersNestedInput
@@ -527,6 +553,7 @@ export type usersUncheckedUpdateWithoutBookingsInput = {
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  booking_sessions?: Prisma.booking_sessionsUncheckedUpdateManyWithoutUsersNestedInput
   emails?: Prisma.emailsUncheckedUpdateManyWithoutUsersNestedInput
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutUsersNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutUsersNestedInput
@@ -538,6 +565,7 @@ export type usersCreateWithoutEmailsInput = {
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
+  booking_sessions?: Prisma.booking_sessionsCreateNestedManyWithoutUsersInput
   bookings?: Prisma.bookingsCreateNestedManyWithoutUsersInput
   payments?: Prisma.paymentsCreateNestedManyWithoutUsersInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutUsersInput
@@ -550,6 +578,7 @@ export type usersUncheckedCreateWithoutEmailsInput = {
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
+  booking_sessions?: Prisma.booking_sessionsUncheckedCreateNestedManyWithoutUsersInput
   bookings?: Prisma.bookingsUncheckedCreateNestedManyWithoutUsersInput
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutUsersInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutUsersInput
@@ -577,6 +606,7 @@ export type usersUpdateWithoutEmailsInput = {
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  booking_sessions?: Prisma.booking_sessionsUpdateManyWithoutUsersNestedInput
   bookings?: Prisma.bookingsUpdateManyWithoutUsersNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutUsersNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutUsersNestedInput
@@ -589,6 +619,7 @@ export type usersUncheckedUpdateWithoutEmailsInput = {
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  booking_sessions?: Prisma.booking_sessionsUncheckedUpdateManyWithoutUsersNestedInput
   bookings?: Prisma.bookingsUncheckedUpdateManyWithoutUsersNestedInput
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutUsersNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutUsersNestedInput
@@ -600,6 +631,7 @@ export type usersCreateWithoutPaymentsInput = {
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
+  booking_sessions?: Prisma.booking_sessionsCreateNestedManyWithoutUsersInput
   bookings?: Prisma.bookingsCreateNestedManyWithoutUsersInput
   emails?: Prisma.emailsCreateNestedManyWithoutUsersInput
   reviews?: Prisma.reviewsCreateNestedManyWithoutUsersInput
@@ -612,6 +644,7 @@ export type usersUncheckedCreateWithoutPaymentsInput = {
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
+  booking_sessions?: Prisma.booking_sessionsUncheckedCreateNestedManyWithoutUsersInput
   bookings?: Prisma.bookingsUncheckedCreateNestedManyWithoutUsersInput
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutUsersInput
   reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutUsersInput
@@ -639,6 +672,7 @@ export type usersUpdateWithoutPaymentsInput = {
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  booking_sessions?: Prisma.booking_sessionsUpdateManyWithoutUsersNestedInput
   bookings?: Prisma.bookingsUpdateManyWithoutUsersNestedInput
   emails?: Prisma.emailsUpdateManyWithoutUsersNestedInput
   reviews?: Prisma.reviewsUpdateManyWithoutUsersNestedInput
@@ -651,6 +685,7 @@ export type usersUncheckedUpdateWithoutPaymentsInput = {
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  booking_sessions?: Prisma.booking_sessionsUncheckedUpdateManyWithoutUsersNestedInput
   bookings?: Prisma.bookingsUncheckedUpdateManyWithoutUsersNestedInput
   emails?: Prisma.emailsUncheckedUpdateManyWithoutUsersNestedInput
   reviews?: Prisma.reviewsUncheckedUpdateManyWithoutUsersNestedInput
@@ -662,6 +697,7 @@ export type usersCreateWithoutReviewsInput = {
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
+  booking_sessions?: Prisma.booking_sessionsCreateNestedManyWithoutUsersInput
   bookings?: Prisma.bookingsCreateNestedManyWithoutUsersInput
   emails?: Prisma.emailsCreateNestedManyWithoutUsersInput
   payments?: Prisma.paymentsCreateNestedManyWithoutUsersInput
@@ -674,6 +710,7 @@ export type usersUncheckedCreateWithoutReviewsInput = {
   whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Date | string
   updated_at?: Date | string
+  booking_sessions?: Prisma.booking_sessionsUncheckedCreateNestedManyWithoutUsersInput
   bookings?: Prisma.bookingsUncheckedCreateNestedManyWithoutUsersInput
   emails?: Prisma.emailsUncheckedCreateNestedManyWithoutUsersInput
   payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutUsersInput
@@ -701,6 +738,7 @@ export type usersUpdateWithoutReviewsInput = {
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  booking_sessions?: Prisma.booking_sessionsUpdateManyWithoutUsersNestedInput
   bookings?: Prisma.bookingsUpdateManyWithoutUsersNestedInput
   emails?: Prisma.emailsUpdateManyWithoutUsersNestedInput
   payments?: Prisma.paymentsUpdateManyWithoutUsersNestedInput
@@ -713,9 +751,76 @@ export type usersUncheckedUpdateWithoutReviewsInput = {
   whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  booking_sessions?: Prisma.booking_sessionsUncheckedUpdateManyWithoutUsersNestedInput
   bookings?: Prisma.bookingsUncheckedUpdateManyWithoutUsersNestedInput
   emails?: Prisma.emailsUncheckedUpdateManyWithoutUsersNestedInput
   payments?: Prisma.paymentsUncheckedUpdateManyWithoutUsersNestedInput
+}
+
+export type usersCreateWithoutBooking_sessionsInput = {
+  name: string
+  email?: string | null
+  whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
+  created_at?: Date | string
+  updated_at?: Date | string
+  bookings?: Prisma.bookingsCreateNestedManyWithoutUsersInput
+  emails?: Prisma.emailsCreateNestedManyWithoutUsersInput
+  payments?: Prisma.paymentsCreateNestedManyWithoutUsersInput
+  reviews?: Prisma.reviewsCreateNestedManyWithoutUsersInput
+}
+
+export type usersUncheckedCreateWithoutBooking_sessionsInput = {
+  user_id?: number
+  name: string
+  email?: string | null
+  whatsapp_number: runtime.Decimal | runtime.DecimalJsLike | number | string
+  created_at?: Date | string
+  updated_at?: Date | string
+  bookings?: Prisma.bookingsUncheckedCreateNestedManyWithoutUsersInput
+  emails?: Prisma.emailsUncheckedCreateNestedManyWithoutUsersInput
+  payments?: Prisma.paymentsUncheckedCreateNestedManyWithoutUsersInput
+  reviews?: Prisma.reviewsUncheckedCreateNestedManyWithoutUsersInput
+}
+
+export type usersCreateOrConnectWithoutBooking_sessionsInput = {
+  where: Prisma.usersWhereUniqueInput
+  create: Prisma.XOR<Prisma.usersCreateWithoutBooking_sessionsInput, Prisma.usersUncheckedCreateWithoutBooking_sessionsInput>
+}
+
+export type usersUpsertWithoutBooking_sessionsInput = {
+  update: Prisma.XOR<Prisma.usersUpdateWithoutBooking_sessionsInput, Prisma.usersUncheckedUpdateWithoutBooking_sessionsInput>
+  create: Prisma.XOR<Prisma.usersCreateWithoutBooking_sessionsInput, Prisma.usersUncheckedCreateWithoutBooking_sessionsInput>
+  where?: Prisma.usersWhereInput
+}
+
+export type usersUpdateToOneWithWhereWithoutBooking_sessionsInput = {
+  where?: Prisma.usersWhereInput
+  data: Prisma.XOR<Prisma.usersUpdateWithoutBooking_sessionsInput, Prisma.usersUncheckedUpdateWithoutBooking_sessionsInput>
+}
+
+export type usersUpdateWithoutBooking_sessionsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bookings?: Prisma.bookingsUpdateManyWithoutUsersNestedInput
+  emails?: Prisma.emailsUpdateManyWithoutUsersNestedInput
+  payments?: Prisma.paymentsUpdateManyWithoutUsersNestedInput
+  reviews?: Prisma.reviewsUpdateManyWithoutUsersNestedInput
+}
+
+export type usersUncheckedUpdateWithoutBooking_sessionsInput = {
+  user_id?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  whatsapp_number?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  bookings?: Prisma.bookingsUncheckedUpdateManyWithoutUsersNestedInput
+  emails?: Prisma.emailsUncheckedUpdateManyWithoutUsersNestedInput
+  payments?: Prisma.paymentsUncheckedUpdateManyWithoutUsersNestedInput
+  reviews?: Prisma.reviewsUncheckedUpdateManyWithoutUsersNestedInput
 }
 
 
@@ -724,6 +829,7 @@ export type usersUncheckedUpdateWithoutReviewsInput = {
  */
 
 export type UsersCountOutputType = {
+  booking_sessions: number
   bookings: number
   emails: number
   payments: number
@@ -731,6 +837,7 @@ export type UsersCountOutputType = {
 }
 
 export type UsersCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  booking_sessions?: boolean | UsersCountOutputTypeCountBooking_sessionsArgs
   bookings?: boolean | UsersCountOutputTypeCountBookingsArgs
   emails?: boolean | UsersCountOutputTypeCountEmailsArgs
   payments?: boolean | UsersCountOutputTypeCountPaymentsArgs
@@ -745,6 +852,13 @@ export type UsersCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extens
    * Select specific fields to fetch from the UsersCountOutputType
    */
   select?: Prisma.UsersCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * UsersCountOutputType without action
+ */
+export type UsersCountOutputTypeCountBooking_sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.booking_sessionsWhereInput
 }
 
 /**
@@ -783,6 +897,7 @@ export type usersSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   whatsapp_number?: boolean
   created_at?: boolean
   updated_at?: boolean
+  booking_sessions?: boolean | Prisma.users$booking_sessionsArgs<ExtArgs>
   bookings?: boolean | Prisma.users$bookingsArgs<ExtArgs>
   emails?: boolean | Prisma.users$emailsArgs<ExtArgs>
   payments?: boolean | Prisma.users$paymentsArgs<ExtArgs>
@@ -819,6 +934,7 @@ export type usersSelectScalar = {
 
 export type usersOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"user_id" | "name" | "email" | "whatsapp_number" | "created_at" | "updated_at", ExtArgs["result"]["users"]>
 export type usersInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  booking_sessions?: boolean | Prisma.users$booking_sessionsArgs<ExtArgs>
   bookings?: boolean | Prisma.users$bookingsArgs<ExtArgs>
   emails?: boolean | Prisma.users$emailsArgs<ExtArgs>
   payments?: boolean | Prisma.users$paymentsArgs<ExtArgs>
@@ -831,6 +947,7 @@ export type usersIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
 export type $usersPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "users"
   objects: {
+    booking_sessions: Prisma.$booking_sessionsPayload<ExtArgs>[]
     bookings: Prisma.$bookingsPayload<ExtArgs>[]
     emails: Prisma.$emailsPayload<ExtArgs>[]
     payments: Prisma.$paymentsPayload<ExtArgs>[]
@@ -1237,6 +1354,7 @@ readonly fields: usersFieldRefs;
  */
 export interface Prisma__usersClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  booking_sessions<T extends Prisma.users$booking_sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$booking_sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$booking_sessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   bookings<T extends Prisma.users$bookingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$bookingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   emails<T extends Prisma.users$emailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$emailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$emailsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payments<T extends Prisma.users$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.users$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$paymentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1661,6 +1779,30 @@ export type usersDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Limit how many users to delete.
    */
   limit?: number
+}
+
+/**
+ * users.booking_sessions
+ */
+export type users$booking_sessionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the booking_sessions
+   */
+  select?: Prisma.booking_sessionsSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the booking_sessions
+   */
+  omit?: Prisma.booking_sessionsOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.booking_sessionsInclude<ExtArgs> | null
+  where?: Prisma.booking_sessionsWhereInput
+  orderBy?: Prisma.booking_sessionsOrderByWithRelationInput | Prisma.booking_sessionsOrderByWithRelationInput[]
+  cursor?: Prisma.booking_sessionsWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.Booking_sessionsScalarFieldEnum | Prisma.Booking_sessionsScalarFieldEnum[]
 }
 
 /**

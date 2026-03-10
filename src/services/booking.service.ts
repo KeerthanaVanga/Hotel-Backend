@@ -60,8 +60,20 @@ export const getUpcomingBookingsForAllUsers = async () => {
           room_id: true,
           room_name: true,
           room_type: true,
-          room_number: true,
           price: true,
+        },
+      },
+      room_units: {
+        select: {
+          room_id: true,
+          room_number: true,
+        },
+      },
+      checkin_options: {
+        select: {
+          id: true,
+          title: true,
+          time_range: true,
         },
       },
     },
@@ -85,7 +97,6 @@ export const getBookingById = async (bookingId: bigint) => {
           room_id: true,
           room_name: true,
           room_type: true,
-          room_number: true,
           price: true,
         },
       },
@@ -128,6 +139,19 @@ export const getTodayCheckIns = async () => {
         select: {
           room_id: true,
           room_name: true,
+        },
+      },
+      room_units: {
+        select: {
+          room_id: true,
+          room_number: true,
+        },
+      },
+      checkin_options: {
+        select: {
+          id: true,
+          title: true,
+          time_range: true,
         },
       },
     },

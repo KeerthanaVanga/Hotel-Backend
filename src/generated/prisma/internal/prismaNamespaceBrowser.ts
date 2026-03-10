@@ -62,7 +62,13 @@ export const ModelName = {
   whatsapp_messages: 'whatsapp_messages',
   reviews: 'reviews',
   room_offers: 'room_offers',
-  room_units: 'room_units'
+  room_units: 'room_units',
+  amenities: 'amenities',
+  booking_sessions: 'booking_sessions',
+  checkin_options: 'checkin_options',
+  hotel_highlights: 'hotel_highlights',
+  hotel_info: 'hotel_info',
+  whatsapp_templates: 'whatsapp_templates'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -105,7 +111,9 @@ export const BookingsScalarFieldEnum = {
   children: 'children',
   guests_total: 'guests_total',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  checkin_option_id: 'checkin_option_id',
+  room_unit_id: 'room_unit_id'
 } as const
 
 export type BookingsScalarFieldEnum = (typeof BookingsScalarFieldEnum)[keyof typeof BookingsScalarFieldEnum]
@@ -137,8 +145,8 @@ export const PaymentsScalarFieldEnum = {
   payment_id: 'payment_id',
   user_id: 'user_id',
   booking_id: 'booking_id',
-  method: 'method',
-  status: 'status',
+  payment_method: 'payment_method',
+  payment_status: 'payment_status',
   currency: 'currency',
   bill_amount: 'bill_amount',
   bill_paid_amount: 'bill_paid_amount',
@@ -245,6 +253,90 @@ export const Room_unitsScalarFieldEnum = {
 } as const
 
 export type Room_unitsScalarFieldEnum = (typeof Room_unitsScalarFieldEnum)[keyof typeof Room_unitsScalarFieldEnum]
+
+
+export const AmenitiesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  created_at: 'created_at'
+} as const
+
+export type AmenitiesScalarFieldEnum = (typeof AmenitiesScalarFieldEnum)[keyof typeof AmenitiesScalarFieldEnum]
+
+
+export const Booking_sessionsScalarFieldEnum = {
+  session_id: 'session_id',
+  user_id: 'user_id',
+  room_id: 'room_id',
+  room_unit_id: 'room_unit_id',
+  check_in: 'check_in',
+  check_out: 'check_out',
+  adults: 'adults',
+  children: 'children',
+  checkin_option_id: 'checkin_option_id',
+  booking_status: 'booking_status',
+  payment_expected: 'payment_expected',
+  expires_at: 'expires_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type Booking_sessionsScalarFieldEnum = (typeof Booking_sessionsScalarFieldEnum)[keyof typeof Booking_sessionsScalarFieldEnum]
+
+
+export const Checkin_optionsScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  time_range: 'time_range',
+  description: 'description',
+  tag: 'tag',
+  checkin_price: 'checkin_price',
+  is_free: 'is_free'
+} as const
+
+export type Checkin_optionsScalarFieldEnum = (typeof Checkin_optionsScalarFieldEnum)[keyof typeof Checkin_optionsScalarFieldEnum]
+
+
+export const Hotel_highlightsScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  created_at: 'created_at'
+} as const
+
+export type Hotel_highlightsScalarFieldEnum = (typeof Hotel_highlightsScalarFieldEnum)[keyof typeof Hotel_highlightsScalarFieldEnum]
+
+
+export const Hotel_infoScalarFieldEnum = {
+  id: 'id',
+  hotel_name: 'hotel_name',
+  description: 'description',
+  address: 'address',
+  city: 'city',
+  state: 'state',
+  country: 'country',
+  phone: 'phone',
+  email: 'email',
+  website: 'website',
+  checkin_time: 'checkin_time',
+  checkout_time: 'checkout_time',
+  total_rooms: 'total_rooms',
+  created_at: 'created_at'
+} as const
+
+export type Hotel_infoScalarFieldEnum = (typeof Hotel_infoScalarFieldEnum)[keyof typeof Hotel_infoScalarFieldEnum]
+
+
+export const Whatsapp_templatesScalarFieldEnum = {
+  id: 'id',
+  template_name: 'template_name',
+  template_json: 'template_json',
+  created_at: 'created_at',
+  variables: 'variables'
+} as const
+
+export type Whatsapp_templatesScalarFieldEnum = (typeof Whatsapp_templatesScalarFieldEnum)[keyof typeof Whatsapp_templatesScalarFieldEnum]
 
 
 export const SortOrder = {
