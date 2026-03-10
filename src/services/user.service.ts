@@ -27,7 +27,7 @@ export const getAllUsers = async () => {
               created_at: "desc",
             },
             select: {
-              status: true,
+              payment_status: true,
             },
           },
         },
@@ -45,7 +45,7 @@ export const getAllUsers = async () => {
 
     check_in: user.bookings[0]?.check_in || null,
     check_out: user.bookings[0]?.check_out || null,
-    payment_status: user.bookings[0]?.payments[0]?.status || null,
+    payment_status: user.bookings[0]?.payments[0]?.payment_status || null,
   }));
 };
 export const createUser = async (data: {

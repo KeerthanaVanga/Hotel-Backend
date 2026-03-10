@@ -8,22 +8,16 @@ const formatDate = (date: Date) =>
     day: "numeric",
   });
 
-
-export const getReportsSummary = async (
-  from?: string,
-  to?: string
-) => {
+export const getReportsSummary = async (from?: string, to?: string) => {
   const fromDate = from ? new Date(from) : startOfDay(new Date());
   const toDate = to ? new Date(to) : endOfDay(new Date());
 
   /* ---------------- Revenue ---------------- */
-  const payments = await prisma.payments.findMany({
-    
-  });
+  const payments = await prisma.payments.findMany({});
 
   const totalRevenue = payments.reduce(
     (sum, p) => sum + Number(p.bill_paid_amount),
-    0
+    0,
   );
 
   /* ---------------- Revenue Today ---------------- */
@@ -52,31 +46,18 @@ export const getReportsSummary = async (
   /* ---------------- Rooms / Occupancy ---------------- */
   const rooms = await prisma.rooms.findMany();
 
-  const totalRooms = rooms.reduce(
-    (sum, r) => sum + (r.total_rooms ?? 0),
-    0
-  );
+  const totalRooms = rooms.reduce((sum, r) => sum + (r.total_rooms ?? 0), 0);
 
-  const bookedRooms = rooms.reduce(
-    (sum, r) => sum + (r.booked_rooms ?? 0),
-    0
-  );
+  const bookedRooms = rooms.reduce((sum, r) => sum + (r.booked_rooms ?? 0), 0);
 
   const occupancy =
-    totalRooms === 0
-      ? 0
-      : Math.round((bookedRooms / totalRooms) * 100);
+    totalRooms === 0 ? 0 : Math.round((bookedRooms / totalRooms) * 100);
 
   /* ---------------- ADR & RevPAR ---------------- */
   const adr =
-    totalBookings === 0
-      ? 0
-      : Math.round(totalRevenue / totalBookings);
+    totalBookings === 0 ? 0 : Math.round(totalRevenue / totalBookings);
 
-  const revpar =
-    totalRooms === 0
-      ? 0
-      : Math.round(totalRevenue / totalRooms);
+  const revpar = totalRooms === 0 ? 0 : Math.round(totalRevenue / totalRooms);
 
   /* ---------------- Revenue Trend ---------------- */
   const revenueTrend = await prisma.$queryRaw<
@@ -105,47 +86,44 @@ export const getReportsSummary = async (
 
   /* ---------------- Payment Status (COUNT + AMOUNTS) ---------------- */
 
-type PaymentBucket = {
-  status: string;
-  count: number;
-  totalBillAmount: number;
-  paidAmount: number;
-  pendingAmount: number;
-};
+  type PaymentBucket = {
+    status: string;
+    count: number;
+    totalBillAmount: number;
+    paidAmount: number;
+    pendingAmount: number;
+  };
 
-const paymentStatusMap: Record<string, PaymentBucket> = {};
+  const paymentStatusMap: Record<string, PaymentBucket> = {};
 
-for (const p of payments) {
-  const status = p.status.toLowerCase();
+  for (const p of payments) {
+    const status = p.payment_status.toLowerCase();
 
-  if (!paymentStatusMap[status]) {
-    paymentStatusMap[status] = {
-      status,
-      count: 0,
-      totalBillAmount: 0,
-      paidAmount: 0,
-      pendingAmount: 0,
-    };
+    if (!paymentStatusMap[status]) {
+      paymentStatusMap[status] = {
+        status,
+        count: 0,
+        totalBillAmount: 0,
+        paidAmount: 0,
+        pendingAmount: 0,
+      };
+    }
+
+    const billAmount = Number(p.bill_amount || 0);
+    const paidAmount = Number(p.bill_paid_amount || 0);
+
+    paymentStatusMap[status].count += 1;
+    paymentStatusMap[status].totalBillAmount += billAmount;
+    paymentStatusMap[status].paidAmount += paidAmount;
   }
 
-  const billAmount = Number(p.bill_amount || 0);
-  const paidAmount = Number(p.bill_paid_amount || 0);
+  /* calculate pending per status */
+  for (const key in paymentStatusMap) {
+    const bucket = paymentStatusMap[key];
+    bucket.pendingAmount = bucket.totalBillAmount - bucket.paidAmount;
+  }
 
-  paymentStatusMap[status].count += 1;
-  paymentStatusMap[status].totalBillAmount += billAmount;
-  paymentStatusMap[status].paidAmount += paidAmount;
-}
-
-/* calculate pending per status */
-for (const key in paymentStatusMap) {
-  const bucket = paymentStatusMap[key];
-  bucket.pendingAmount = bucket.totalBillAmount - bucket.paidAmount;
-}
-
-const paymentStatus = Object.values(paymentStatusMap);
-
-
-
+  const paymentStatus = Object.values(paymentStatusMap);
 
   return {
     kpis: {
@@ -163,7 +141,7 @@ const paymentStatus = Object.values(paymentStatusMap);
         revenue: r.revenue,
       })),
       revenueByRoom: revenueByRoom,
-      paymentStatus: paymentStatus
+      paymentStatus: paymentStatus,
     },
   };
 };

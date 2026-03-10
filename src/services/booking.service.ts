@@ -103,7 +103,7 @@ export const getBookingById = async (bookingId: bigint) => {
       payments: {
         take: 1,
         orderBy: { created_at: "desc" },
-        select: { method: true },
+        select: { payment_method: true },
       },
     },
   });
@@ -350,7 +350,7 @@ export const rescheduleBooking = async (input: RescheduleBookingInput) => {
     await prisma.payments.update({
       where: { payment_id: firstPayment.payment_id },
       data: {
-        method: input.payment_method,
+        payment_method: input.payment_method,
         bill_amount: billAmount,
       },
     });
@@ -505,8 +505,8 @@ export const createBooking = async (input: CreateBookingInput) => {
     data: {
       user_id: user.user_id,
       booking_id: booking.booking_id,
-      method: input.payment_method,
-      status: "pending",
+      payment_method: input.payment_method,
+      payment_status: "pending",
       currency: "INR",
       bill_amount: billAmount,
       bill_paid_amount: 0,
