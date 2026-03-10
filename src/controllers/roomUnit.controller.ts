@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getAllRoomUnits } from "../services/roomUnit.service";
+import { getAllRoomUnits } from "../services/roomUnit.service.js";
 import { serializeBigInt } from "../utils/serializeBigint.js";
 
 export const fetchAllRoomUnits = async (_req: Request, res: Response) => {
