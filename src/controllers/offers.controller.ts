@@ -8,6 +8,10 @@ import {
   updateOffer,
 } from "../services/offers.service.js";
 import { prisma } from "../lib/prisma.js";
+import { updateRoomOffersDiscountTemplate } from "../whatsapp/room-offers_discount.js";
+import { updateDeluxeRoomTemplate } from "../whatsapp/deluxe_room.js";
+import { updateExecutiveRoomTemplate } from "../whatsapp/executive_room.js";
+import { updateSuiteRoomTemplate } from "../whatsapp/suite_room.js";
 
 /** GET /offers */
 export const fetchOffers = async (_req: Request, res: Response) => {
@@ -72,6 +76,29 @@ export const createOfferHandler = async (req: Request, res: Response) => {
       is_active: is_active ?? true,
     });
 
+    try {
+      const fullRoom = await prisma.rooms.findFirst({ where: { room_id: room.room_id } });
+      if (fullRoom) {
+        await updateRoomOffersDiscountTemplate({
+          roomId: room.room_id,
+          name: fullRoom.room_name || "",
+          originalPrice: String(fullRoom.price || ""),
+          offerPrice: String(created.offer_price ?? fullRoom.price ?? ""),
+          discountPercentage: String(created.discount_percent ?? "0")
+        });
+
+        if (room.room_id === 1 && created.offer_price != null) {
+          await updateDeluxeRoomTemplate({ offerPrice: String(created.offer_price) });
+        } else if (room.room_id === 2 && created.offer_price != null) {
+          await updateExecutiveRoomTemplate({ offerPrice: String(created.offer_price) });
+        } else if (room.room_id === 3 && created.offer_price != null) {
+          await updateSuiteRoomTemplate({ offerPrice: String(created.offer_price) });
+        }
+      }
+    } catch (err) {
+      console.error("Template update failed:", err);
+    }
+
     return res.status(201).json({ success: true, data: created });
   } catch (error) {
     console.error("CREATE OFFER ERROR:", error);
@@ -121,6 +148,32 @@ export const updateOfferHandler = async (req: Request, res: Response) => {
       ...(is_active !== undefined ? { is_active: Boolean(is_active) } : {}),
       ...(title !== undefined ? { title } : {}),
     });
+
+    try {
+      const currentRoomId = resolvedRoomId || updated.room_id;
+      if (currentRoomId) {
+        const fullRoom = await prisma.rooms.findFirst({ where: { room_id: currentRoomId } });
+        if (fullRoom) {
+          await updateRoomOffersDiscountTemplate({
+            roomId: currentRoomId,
+            name: fullRoom.room_name || "",
+            originalPrice: String(fullRoom.price || ""),
+            offerPrice: String(updated.offer_price ?? fullRoom.price ?? ""),
+            discountPercentage: String(updated.discount_percent ?? "0")
+          });
+
+          if (currentRoomId === 1 && updated.offer_price != null) {
+            await updateDeluxeRoomTemplate({ offerPrice: String(updated.offer_price) });
+          } else if (currentRoomId === 2 && updated.offer_price != null) {
+            await updateExecutiveRoomTemplate({ offerPrice: String(updated.offer_price) });
+          } else if (currentRoomId === 3 && updated.offer_price != null) {
+            await updateSuiteRoomTemplate({ offerPrice: String(updated.offer_price) });
+          }
+        }
+      }
+    } catch (err) {
+      console.error("Template update failed:", err);
+    }
 
     return res.json({ success: true, data: updated });
   } catch (error) {

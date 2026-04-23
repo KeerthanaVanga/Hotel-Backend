@@ -6,6 +6,11 @@ import {
 } from "../services/room.service.js";
 import { uploadBufferToCloudinary } from "../utils/cloudinaryUpload.js";
 import { serializeBigInt } from "../utils/serializeBigint.js";
+import { updateRoomTypesTemplate } from "../whatsapp/room_types.js";
+import { updateRoomOffersDiscountTemplate } from "../whatsapp/room-offers_discount.js";
+import { updateDeluxeRoomTemplate } from "../whatsapp/deluxe_room.js";
+import { updateExecutiveRoomTemplate } from "../whatsapp/executive_room.js";
+import { updateSuiteRoomTemplate } from "../whatsapp/suite_room.js";
 
 export const fetchAllRooms = async (req: Request, res: Response) => {
   try {
@@ -86,9 +91,9 @@ export const updateRoom = async (req: Request, res: Response) => {
       amenities,
       existing_images,
     } = req.body;
-
+    
     const files = (req.files as Express.Multer.File[]) || [];
-
+    const amenitiesArray = JSON.parse(amenities);
     // ✅ Upload new images to Cloudinary
     const newImageUrls = await Promise.all(
       files.map((f) => uploadBufferToCloudinary(f.buffer, "hotel/rooms")),
@@ -108,8 +113,58 @@ export const updateRoom = async (req: Request, res: Response) => {
       image_urls: finalImages,
       guests: Number(guests),
       room_size,
-      amenities: JSON.parse(amenities),
+      amenities: amenitiesArray,
     });
+    const templateDescription = description.replace(/[\r\n]+/g, " ").trim();
+
+    const numRoomId = Number(roomId);
+    try {
+      await updateRoomTypesTemplate({
+        roomId: numRoomId,
+        name: room_name || "",
+        description: description || "",
+        capacity: String(guests || ""),
+      });
+
+      await updateRoomOffersDiscountTemplate({
+        roomId: numRoomId,
+        name: room_name || "",
+        originalPrice: String(price || ""),
+        offerPrice: String(req.body.offerPrice || price || ""),
+        discountPercentage: String(req.body.discountPercentage || "0"),
+      });
+
+      if (numRoomId === 1) {
+        await updateDeluxeRoomTemplate({
+          name: room_name || "",
+          description1: room_type || "",
+          description2:  templateDescription || "",
+          capacity: String(guests || ""),
+          originalPrice: String(price || ""),
+          policies: amenitiesArray.join(",") || "",
+        });
+      } else if (numRoomId === 2) {
+        await updateExecutiveRoomTemplate({
+          name: room_name || "",
+          description1: room_type || "",
+          description2: templateDescription || "",
+          capacity: String(guests || ""),
+          originalPrice: String(price || ""),
+          policies: amenitiesArray.join(",") || "",
+        });
+      } else if (numRoomId === 3) {
+        await updateSuiteRoomTemplate({
+          name: room_name || "",
+          description1: room_type || "",
+          description2: templateDescription || "",
+          capacity: String(guests || ""),
+          originalPrice: String(price || ""),
+          policies: amenitiesArray.join(",") || "",
+        });
+      }
+    } catch (tmplErr) {
+      console.error("Failed to update WhatsApp templates:", tmplErr);
+    }
 
     return res.status(200).json({
       success: true,
